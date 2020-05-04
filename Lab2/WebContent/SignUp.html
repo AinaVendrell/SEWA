@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>TWITTER ESTUDIANTES</title>
+</head>
+<body>
+	<h1><b>Registro</b></h1>
+	<p>Rellena todos los campos para registrarse</p>
+	<form>
+		<label for="nombre">Nombre:</label>
+		<input type="text" id="nombre" name="nombre"><br><br>
+		
+		<label for="apellidos">Apellidos:</label>
+		<input type="text" id="apellidos" name="apellidos"><br><br>
+		
+		<label for="nusuario">Nombre de usuario:</label>
+		<input type="text" id="nusuario" name="nusuario"><br><br>
+		
+		<label for="email">Email:</label>
+		<input type="email" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"  title="Ha de tener formato de email"><br><br>
+		
+		<label for="nacimiento">Fecha Nacimiento:</label>
+		<input type="date" id="nacimiento" name="nacimiento">
+		
+		<label for="contraseña">Contraseña:</label>
+		<input type="password" id="contraseña" name="contraseña" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"  title="8 caracteres. Ha de incluir mayusculas, minusculas y numeros"><br><br>
+		
+		<label for="rcontraseña">Repetir contraseña:</label>
+		<input type="password" id="rcontraseña" name="rcontraseña" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"  title="8 caracteres. Ha de incluir mayusculas, minusculas y numeros"><br><br>
+		
+		<label for="Sexo">Sexo:</label>
+		<select id="sexo">
+		  <option value="hombre">Hombre</option>
+		  <option value="mujer">Mujer</option>
+		  <option value="otro">Otro</option>
+		  <option value="nodecir">Prefiero no decirlo</option>
+		</select>
+		<input type="submit" value="Submit">
+	</form>
+</body>
+</html>
