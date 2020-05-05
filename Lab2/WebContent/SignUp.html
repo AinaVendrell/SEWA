@@ -70,6 +70,35 @@
 				en : 'Your password must contain at least (%s) number.'
 			}
 		});
+
+		/* add validation for minimum age */
+		window.Parsley
+				.addValidator(
+						"minimumage",
+						{
+							validateString : function(value, requirements) {
+								// get validation requirments
+								var reqs = value.split("/"), day = reqs[0], month = reqs[1], year = reqs[2];
+
+								// check if date is a valid
+								var birthday = new Date(year + "-" + month
+										+ "-" + day);
+
+								// Calculate birtday and check if age is greater than 18
+								var today = new Date();
+
+								var age = today.getFullYear()
+										- birthday.getFullYear();
+								var m = today.getMonth() - birthday.getMonth();
+								if (m < 0
+										|| (m === 0 && today.getDate() < birthday
+												.getDate())) {
+									age--;
+								}
+
+								return age >= requirements;
+							}
+						});
 	</script>
 	<script>
 		$(document).ready(
@@ -83,7 +112,7 @@
 						todayHighlight : true,
 						autoclose : true,
 					}).on('changeDate', function(e) {
-				        $(this).parsley().validate();
+						$(this).parsley().validate();
 					})
 				})
 	</script>
@@ -117,7 +146,10 @@
 			<div class="col-auto">
 				<label class="control-label" for="date">Fecha de nacimiento</label>
 				<input class="form-control" id="nacimiento" name="date"
-					placeholder="dd/mm/yyyy" type="text" required data-parsley-pattern="^[0-9]{2}/[0-9]{2}/[0-9]{4}$" data-parsley-pattern-message="Invalid Date." data-date-format="DD/MM/YYYY"/>
+					placeholder="dd/mm/yyyy" type="text" required
+					data-parsley-pattern="^[0-9]{2}/[0-9]{2}/[0-9]{4}$"
+					data-parsley-pattern-message="Invalid Date."
+					data-date-format="DD/MM/YYYY" data-parsley-minimumage="13" data-parsley-minimumage-message="Minimum age is 13" data-parsley-validdate=""/>
 			</div>
 			<!--data-parsley-maxdate="10/10/2019"-->
 			<div class="col-auto">
