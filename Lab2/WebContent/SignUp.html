@@ -27,7 +27,50 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 	<link rel="stylesheet"
 		href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+	<script src="parsley/parsley.js"></script>
+	<script type="text/javascript">
+		//has uppercase
+		window.Parsley
+				.addValidator(
+						'uppercase',
+						{
+							requirementType : 'number',
+							validateString : function(value, requirement) {
+								var uppercases = value.match(/[A-Z]/g) || [];
+								return uppercases.length >= requirement;
+							},
+							messages : {
+								en : 'Your password must contain at least (%s) uppercase letter.'
+							}
+						});
 
+		//has lowercase
+		window.Parsley
+				.addValidator(
+						'lowercase',
+						{
+							requirementType : 'number',
+							validateString : function(value, requirement) {
+								var lowecases = value.match(/[a-z]/g) || [];
+								return lowecases.length >= requirement;
+							},
+							messages : {
+								en : 'Your password must contain at least (%s) lowercase letter.'
+							}
+						});
+
+		//has number
+		window.Parsley.addValidator('number', {
+			requirementType : 'number',
+			validateString : function(value, requirement) {
+				var numbers = value.match(/[0-9]/g) || [];
+				return numbers.length >= requirement;
+			},
+			messages : {
+				en : 'Your password must contain at least (%s) number.'
+			}
+		});
+	</script>
 	<script>
 		$(document).ready(
 				function() {
@@ -42,46 +85,48 @@
 					})
 				})
 	</script>
-
-
+	<script>
+		$(document).ready(function() {
+			$('form').parsley();
+		});
+	</script>
 
 	<div class="description">
 		<h1>Crea una cuenta de NOM</h1>
 		<p>Rellena todos los campos para registrarte</p>
-		<hr/>
+		<hr />
 		<br>
-
 	</div>
-	<form class="mx-sm-5">
+	<form class="mx-sm-5" data-parsley-trigger="keyup"
+		data-parsley-validate>
 		<div class="form-row ">
 			<div class="form-group col-auto">
 				<label class="sr-only" for="nombre">Nombre</label> <input
 					type="text" class="form-control" id="nombre" name="nombre"
-					placeholder="Nombre">
+					placeholder="Nombre" pattern="[A-Za-z]+" required>
 			</div>
 			<div class="form-group col-auto">
 				<label class="sr-only" for="apellidos">Apellidos</label> <input
 					type="text" class="form-control" id="apellidos" name="apellidos"
-					placeholder="Apellidos">
+					placeholder="Apellidos" pattern="[A-Za-z]+" required>
 			</div>
 		</div>
 		<div class="form-row mb-4">
 			<div class="col-auto">
 				<label class="control-label" for="date">Fecha de nacimiento</label>
 				<input class="form-control" id="nacimiento" name="date"
-					placeholder="dd/mm/yyyy" type="text" />
+					placeholder="dd/mm/yyyy" type="text" required />
 			</div>
 			<div class="col-auto">
-				<label for="genero">Género:</label> <select
-					id="genero" class="form-control">
-					<option selected>...</option>
+				<label for="genero">Género:</label> <select id="genero"
+					class="form-control" required>
+					<option></option>
 					<option value="hombre">Hombre</option>
 					<option value="mujer">Mujer</option>
 					<option value="otro">Otro</option>
 					<option value="nodecir">Prefiero no decirlo</option>
 				</select>
 			</div>
-
 		</div>
 
 		<div class="form-row">
@@ -92,30 +137,35 @@
 						<div class="input-group-text">@</div>
 					</div>
 					<input type="text" class="form-control" id="nusuario"
-						name="nusuario" placeholder="Nombre de Usuario">
+						name="nusuario" placeholder="Nombre de Usuario" required
+						data-parsley-type="alphanum">
 				</div>
 			</div>
 		</div>
 		<div class="form-row mb-4">
 			<div class="col-md-4">
 				<label for="email" class="sr-only">Email</label> <input type="email"
-					class="form-control" id="email" placeholder="name@example.com">
+					class="form-control" id="email" placeholder="name@example.com"
+					required data-parsley-type="email">
 			</div>
 		</div>
-
 		<div class="form-row mb-4">
 			<div class="col-md-3">
 				<label for="userpassword">Contraseña:</label> <input type="password"
-					id="userpassword" class="form-control"
-					aria-describedby="passwordHelpBlock"> <small
-					id="passwordHelpBlock" class="form-text text-muted"> Your
-					password must be 8-20 characters long, contain letters and numbers,
+					id="userpassword1" class="form-control"
+					aria-describedby="passwordHelpBlock" required
+					data-parsley-minlength="8" data-parsley-maxlength="20"
+					data-parsley-uppercase="1" data-parsley-lowercase="1"
+					data-parsley-number="1"> <small id="passwordHelpBlock"
+					class="form-text text-muted"> Your password must be 8-20
+					characters long, contain lowercase and captial letters and numbers,
 					and must not contain spaces, special characters, or emoji. </small>
 			</div>
 			<div class="col-md-3">
 				<label for="reppass">Repite la contraseña:</label><input
 					type="password" id="reppass" class="form-control"
-					aria-describedby="passwordHelpBlock">
+					aria-describedby="passwordHelpBlock" required
+					data-parsley-equalto="#userpassword1">
 			</div>
 		</div>
 		<div class="form-row mb-4">
@@ -128,13 +178,6 @@
 		<div class="form-row mb-4">
 			<button type="submit" class="btn btn-primary">Sign up</button>
 		</div>
-
 	</form>
-
-
-
-
-
-
 </body>
 </html>
