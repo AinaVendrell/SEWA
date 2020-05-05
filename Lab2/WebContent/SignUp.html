@@ -48,7 +48,7 @@
 	<div class="description">
 		<h1>Crea una cuenta de NOM</h1>
 		<p>Rellena todos los campos para registrarte</p>
-		<hr/>
+		<hr />
 		<br>
 
 	</div>
@@ -57,24 +57,24 @@
 			<div class="form-group col-auto">
 				<label class="sr-only" for="nombre">Nombre</label> <input
 					type="text" class="form-control" id="nombre" name="nombre"
-					placeholder="Nombre">
+					placeholder="Nombre" pattern="[A-Za-z]+" required>
 			</div>
 			<div class="form-group col-auto">
 				<label class="sr-only" for="apellidos">Apellidos</label> <input
 					type="text" class="form-control" id="apellidos" name="apellidos"
-					placeholder="Apellidos">
+					placeholder="Apellidos" pattern="[A-Za-z]+" required>
 			</div>
 		</div>
 		<div class="form-row mb-4">
 			<div class="col-auto">
 				<label class="control-label" for="date">Fecha de nacimiento</label>
 				<input class="form-control" id="nacimiento" name="date"
-					placeholder="dd/mm/yyyy" type="text" />
+					placeholder="dd/mm/yyyy" type="text" required />
 			</div>
 			<div class="col-auto">
-				<label for="genero">Género:</label> <select
-					id="genero" class="form-control">
-					<option selected>...</option>
+				<label for="genero">Género:</label> <select id="genero"
+					class="form-control" required>
+					<option></option>
 					<option value="hombre">Hombre</option>
 					<option value="mujer">Mujer</option>
 					<option value="otro">Otro</option>
@@ -92,14 +92,14 @@
 						<div class="input-group-text">@</div>
 					</div>
 					<input type="text" class="form-control" id="nusuario"
-						name="nusuario" placeholder="Nombre de Usuario">
+						name="nusuario" placeholder="Nombre de Usuario" required>
 				</div>
 			</div>
 		</div>
 		<div class="form-row mb-4">
 			<div class="col-md-4">
 				<label for="email" class="sr-only">Email</label> <input type="email"
-					class="form-control" id="email" placeholder="name@example.com">
+					class="form-control" id="email" placeholder="name@example.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="No es un email valido" required>
 			</div>
 		</div>
 
@@ -107,9 +107,9 @@
 			<div class="col-md-3">
 				<label for="userpassword">Contraseña:</label> <input type="password"
 					id="userpassword" class="form-control"
-					aria-describedby="passwordHelpBlock"> <small
+					aria-describedby="passwordHelpBlock" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}" required> <small
 					id="passwordHelpBlock" class="form-text text-muted"> Your
-					password must be 8-20 characters long, contain letters and numbers,
+					password must be 8-20 characters long, contain lowercase and captial letters and numbers,
 					and must not contain spaces, special characters, or emoji. </small>
 			</div>
 			<div class="col-md-3">
