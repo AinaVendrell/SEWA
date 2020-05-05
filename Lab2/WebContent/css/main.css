@@ -1,0 +1,13 @@
+.description {
+	text-align: center;
+}
+
+.description h1 {
+	font-size: xx-large;
+}
+
+.center_form {
+  margin: auto;
+  transform: translate(30%, 0%);
+  
+}
