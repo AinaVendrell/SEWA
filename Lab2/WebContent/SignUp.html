@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous" />
+<link rel="stylesheet" type="text/css" href="css/main.css">
+
+<title>Twitter Estudiantes</title>
+</head>
+<body>
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+		crossorigin="anonymous"></script>
+	<!-- Include Date Range Picker -->
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+
+	<script>
+		$(document).ready(
+				function() {
+					var date_input = $('input[name="date"]'); //our date input has the name "date"
+					var container = $('.bootstrap-iso form').length > 0 ? $(
+							'.bootstrap-iso form').parent() : "body";
+					date_input.datepicker({
+						format : 'dd/mm/yyyy',
+						container : container,
+						todayHighlight : true,
+						autoclose : true,
+					})
+				})
+	</script>
+
+
+
+	<div class="description">
+		<h1>Crea una cuenta de _____</h1>
+		<p>Rellena todos los campos para registrarte</p>
+		<hr/>
+		<br>
+
+	</div>
+
+	<!--  ALEIX -->
+
+	<form class="mx-sm-5">
+		<div class="form-row ">
+			<div class="form-group col-auto">
+				<label class="sr-only" for="nombre">Nombre</label> <input
+					type="text" class="form-control" id="nombre" name="nombre"
+					placeholder="Nombre">
+			</div>
+			<div class="form-group col-auto">
+				<label class="sr-only" for="apellidos">Apellidos</label> <input
+					type="text" class="form-control" id="apellidos" name="apellidos"
+					placeholder="Apellidos">
+			</div>
+		</div>
+		<div class="form-row mb-4">
+			<div class="col-auto">
+				<label class="control-label" for="date">Fecha de nacimiento</label>
+				<input class="form-control" id="nacimiento" name="date"
+					placeholder="dd/mm/yyy" type="text" />
+			</div>
+			<div class="col-auto">
+				<label for="genero">Género:</label> <select
+					id="genero" class="form-control">
+					<option selected>...</option>
+					<option value="hombre">Hombre</option>
+					<option value="mujer">Mujer</option>
+					<option value="otro">Otro</option>
+					<option value="nodecir">Prefiero no decirlo</option>
+				</select>
+			</div>
+
+		</div>
+
+		<div class="form-row">
+			<div class="col-auto">
+				<label class="sr-only" for="nusuario">Nombre de Usuario</label>
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<div class="input-group-text">@</div>
+					</div>
+					<input type="text" class="form-control" id="nusuario"
+						name="nusuario" placeholder="Nombre de Usuario">
+				</div>
+			</div>
+		</div>
+		<div class="form-row mb-4">
+			<div class="col-md-4">
+				<label for="email" class="sr-only">Email</label> <input type="email"
+					class="form-control" id="email" placeholder="name@example.com">
+			</div>
+		</div>
+
+		<div class="form-row mb-4">
+			<div class="col-md-3">
+				<label for="userpassword">Contraseña:</label> <input type="password"
+					id="userpassword" class="form-control"
+					aria-describedby="passwordHelpBlock"> <small
+					id="passwordHelpBlock" class="form-text text-muted"> Your
+					password must be 8-20 characters long, contain letters and numbers,
+					and must not contain spaces, special characters, or emoji. </small>
+			</div>
+			<div class="col-md-3">
+				<label for="reppass">Repite la contraseña:</label><input
+					type="password" id="reppass" class="form-control"
+					aria-describedby="passwordHelpBlock">
+			</div>
+		</div>
+		<div class="form-row mb-4">
+			<div class="form-check">
+				<input class="form-check-input" type="checkbox" value=""
+					id="termCheck" required> <label class="form-check-label"
+					for="termCheck"> He leído y acepto los términos </label>
+			</div>
+		</div>
+		<div class="form-row mb-4">
+			<button type="submit" class="btn btn-primary">Sign up</button>
+		</div>
+		<!--  ALEIX -->
+
+
+	</form>
+
+
+
+
+
+
+</body>
+</html>
