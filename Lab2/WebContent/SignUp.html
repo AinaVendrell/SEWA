@@ -191,7 +191,7 @@
 					aria-describedby="passwordHelpBlock" required
 					data-parsley-minlength="8" data-parsley-maxlength="20"
 					data-parsley-uppercase="1" data-parsley-lowercase="1"
-					data-parsley-number="1"> <small id="passwordHelpBlock"
+					data-parsley-number="1"  data-parsley-pattern = "^[^\s]+$"> <small id="passwordHelpBlock"
 					class="form-text text-muted"> Your password must be 8-20
 					characters long, contain lowercase and captial letters and numbers,
 					and must not contain spaces, special characters, or emoji. </small>
@@ -207,12 +207,15 @@
 			<div class="form-check">
 				<input class="form-check-input" type="checkbox" value=""
 					id="termCheck" required> <label class="form-check-label"
-					for="termCheck"> He leído y acepto los términos </label>
+					for="termCheck"> <a href = "PoliticaDatos.html" target= _blank> He leido y accepto los terminos de uso</a> </label>
 			</div>
 		</div>
+		<div class="g-recaptcha" data-sitekey="6LddUPMUAAAAAKiCV92TW_0z-ZAF5nOx_p8UMwCZ"></div>
+   		<input type="submit" name="submit" />
 		<div class="form-row mb-4">
 			<button type="submit" class="btn btn-primary">Sign up</button>
 		</div>
 	</form>
+	
 </body>
 </html>
