@@ -164,8 +164,7 @@
 					data-parsley-pattern-message="Invalid Date."
 					data-date-format="DD/MM/YYYY" data-parsley-minimumage="13"
 					data-parsley-minimumage-message="Minimum age is 13"
-					data-parsley-max="01/01/1930"
-					data-parsley-max-message="Minimum age is 90"
+					max = "90"
 					data-parsley-validdate="" />
 			</div>
 			<!--data-parsley-maxdate="10/10/2019"-->
@@ -235,7 +234,9 @@
 		</div>
 		<div class="form-row mb-4">
 			<div class="g-recaptcha"
-				data-sitekey="6Ld-avMUAAAAABKyzNxOhNTl063Xj0hWjFh8idTo"></div>
+				data-sitekey="6Ld-avMUAAAAABKyzNxOhNTl063Xj0hWjFh8idTo"
+				data-size="visible"
+    		    data-callback="onSubmit"></div>
 		</div>
 		<div class="form-row mb-4">
 			<button type="submit" class="btn btn-primary">Sign up</button>
