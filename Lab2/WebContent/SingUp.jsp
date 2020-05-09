@@ -281,8 +281,7 @@ prefix = "c" %>
 		        value="${model.pwd2}"
 		        required
 		        aria-describedby="passwordHelpBlock"
-		        data-parsley-equalto="#pwd1"
-		      />
+		        data-parsley-equalto="#pwd1"/>
  			</div>
       	</div>
       	<div class="form-row mb-4">
