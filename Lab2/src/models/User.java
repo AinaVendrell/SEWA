@@ -1,5 +1,5 @@
 package models;
-//Aina
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -7,66 +7,126 @@ public class User implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	private String user = "";
-	private String mail = "";
-	private String pwd1 = "";
-	private String pwd2 = "";
+	private String nombre = "";
+	private String apellidos = "";
+	private String nacimiento = "";
+	private String genero = ""; 
+	private String nusuario = "";
+	private String email = "";
+	private String userpassword1 = "";
+	private String reppass = "";
 	
-	private boolean[] error  = {false,false,false,false};
+	private boolean[] error  = {false,false,false,false,false,false,false,false};
 	
 	public User() {
 		
 	}
 	
-	public String getUser() {
-		return this.user;
-	}
 	
-	public void setUser(String user) {
-		/* We simulate that a user with the same name exists in our DB and mark error[0] as true  */
-		error[0] = true;
-		//this.user = user;
-		//System.out.println(user);
+	public String getNombre() {
+		return nombre;
 	}
-	
-	public String getMail() {
-		return this.mail;
+
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
-	
-	public void setMail(String mail) {
+
+
+
+	public String getApellidos() {
+		return apellidos;
+	}
+
+
+
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
+	}
+
+
+
+	public String getNacimiento() {
+		return nacimiento;
+	}
+
+
+
+	public void setNacimiento(String nacimiento) {
+		this.nacimiento = nacimiento;
+	}
+
+
+
+	public String getGenero() {
+		return genero;
+	}
+
+
+
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
+
+
+
+	public String getNusuario() {
+		return nusuario;
+	}
+
+
+
+	public void setNusuario(String nusuario) {
+		this.nusuario = nusuario;
+		System.out.println(nusuario);
+	}
+
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+
+	public void setEmail(String mail) {
 		String regex = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(mail);
 		if (matcher.matches()) {
-			this.mail = mail;
+			this.email = mail;
 			System.out.println(mail);
 		} else {
 			error[1]=true;
 			System.out.println(mail);
 		}
-			
-		
 	}
-	
-	public String getPwd1() {
-		return this.pwd1;
+
+
+
+	public String getUserpassword1() {
+		return userpassword1;
 	}
-	
-	public void setPwd1(String pwd1) {
-		/* TODO check restriction with pattern */
-		this.pwd1 = pwd1;
-		System.out.println(pwd1);
+
+
+
+	public void setUserpassword1(String userpassword1) {
+		this.userpassword1 = userpassword1;
 	}
-	
-	public String getPwd2() {
-		return this.pwd2;
+
+
+
+	public String getReppass() {
+		return reppass;
 	}
-	
-	public void setPwd2(String pwd2) {
-		/* TODO check restriction with pattern and check if pwd1=pwd2*/
-		this.pwd2 = pwd2;
-		System.out.println(pwd2);
+
+
+
+	public void setReppass(String reppass) {
+		this.reppass = reppass;
 	}
+
 	
 	public boolean[] getError() {
 		return error;

@@ -29,14 +29,18 @@ public class ManageUser {
 	
 	
 	// Add new user
-	public void addUser(String name, String mail, String pwd) {
-		String query = "INSERT INTO users (usr,mail,pwd) VALUES (?,?,?)";
+	public void addUser(String nom, String surname, String gender, String bdate, String usr, String mail, String pwd) {
+		String query = "INSERT INTO users (name,surname,gender,bdate,usr,mail,pwd) VALUES (?,?,?,?,?,?,?)";
 		PreparedStatement statement = null;
 		try {
 			statement = db.prepareStatement(query);
-			statement.setString(1,name);
-			statement.setString(2,mail);
-			statement.setString(3,pwd);
+			statement.setString(1,nom); //cambio a nom xq name dara problema en sql
+			statement.setString(2,surname);
+			statement.setString(3,gender);
+			statement.setString(4,bdate);
+			statement.setString(5,usr);
+			statement.setString(6,mail);
+			statement.setString(7,pwd);
 			statement.executeUpdate();
 			statement.close();
 		} catch (SQLException e) {
@@ -46,10 +50,14 @@ public class ManageUser {
 	
 	/*Check if all the fields are filled correctly */
 	public boolean isComplete(User user) {
-	    return(hasValue(user.getUser()) &&
-	    	   hasValue(user.getMail()) &&
-	    	   hasValue(user.getPwd1()) &&
-	           hasValue(user.getPwd2()) );
+	    return(hasValue(user.getNombre()) &&
+	    	   hasValue(user.getApellidos()) &&
+	    	   hasValue(user.getGenero()) &&
+	    	   hasValue(user.getNacimiento()) &&
+		       hasValue(user.getNusuario()) &&
+	    	   hasValue(user.getEmail()) &&
+	    	   hasValue(user.getUserpassword1()) &&
+	    	   hasValue(user.getReppass()) );
 	}
 	
 	private boolean hasValue(String val) {
