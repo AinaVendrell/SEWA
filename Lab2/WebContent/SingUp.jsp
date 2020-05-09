@@ -190,7 +190,7 @@ prefix = "c" %>
 			        type="text"
 			        id="birthday"
 			        name="birthday"
-			        placeholder="Birthday"
+			        placeholder="DD/MM/YYYY"
 			        data-parsley-pattern="^[0-9]{2}/[0-9]{2}/[0-9]{4}$"
 					data-parsley-pattern-message="Invalid Date."
 					data-date-format="DD/MM/YYYY" data-parsley-minimumage="13"
@@ -226,8 +226,7 @@ prefix = "c" %>
 						        placeholder="Nombre de Usuario"
 						        value="${model.userName}"
 						        data-parsley-type="alphanum"
-						        required
-						      />
+						        required/>
 				</div>
 			</div>
 		</div>
@@ -244,8 +243,7 @@ prefix = "c" %>
 			        placeholder="name@example.com"
 			        value="${model.email}"
 			        required
-			        data-parsley-type="email"
-			      />
+			        data-parsley-type="email"/>
 			</div>
 		</div>
       
@@ -301,7 +299,7 @@ prefix = "c" %>
 		</div>
       <div class="form-row mb-4">
 			<div class="g-recaptcha"
-				data-sitekey="6Ld-avMUAAAAABKyzNxOhNTl063Xj0hWjFh8idTo" ></div>
+				data-sitekey="6Ld-avMUAAAAABKyzNxOhNTl063Xj0hWjFh8idTo" data-parsley-required></div>
 	  </div>
      	<div class="form-row mb-4">
 			<button type="submit" class="btn btn-primary">Sign up</button>
