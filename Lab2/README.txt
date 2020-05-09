@@ -16,12 +16,12 @@ CREATE TABLE users (
 name CHAR(24),
 surname CHAR(24),
 gender CHAR(24),
-bdate CHAR(24),
-usr CHAR(24),
-mail CHAR(24),
+birthday CHAR(24),
+userName CHAR(24),
+email CHAR(24),
 pwd CHAR(24),
-PRIMARY KEY (usr));
+PRIMARY KEY (userName));
 
-INSERT INTO users (name,surname,gender,bdate,usr,mail,pwd) VALUES ('name','surname','gender','bdate','usr','mail','pwd');
+INSERT INTO users (name,surname,gender,birthday,userName,email,pwd) VALUES ('name','surname','gender','birthday','userName','email','pwd');
 
 SELECT * FROM users;

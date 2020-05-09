@@ -7,14 +7,14 @@ public class User implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	private String nombre = "";
-	private String apellidos = "";
-	private String nacimiento = "";
-	private String genero = ""; 
-	private String nusuario = "";
+	private String name = "";
+	private String surname = "";
+	private String birthday = "";
+	private String gender = ""; 
+	private String userName = "";
 	private String email = "";
-	private String userpassword1 = "";
-	private String reppass = "";
+	private String pwd1 = "";
+	private String pwd2 = "";
 	
 	private boolean[] error  = {false,false,false,false,false,false,false,false};
 	
@@ -23,63 +23,63 @@ public class User implements java.io.Serializable {
 	}
 	
 	
-	public String getNombre() {
-		return nombre;
+	public String getName() {
+		return name;
 	}
 
 
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 
 
-	public String getApellidos() {
-		return apellidos;
+	public String getSurname() {
+		return surname;
 	}
 
 
 
-	public void setApellidos(String apellidos) {
-		this.apellidos = apellidos;
+	public void setSurname(String surname) {
+		this.surname = surname;
 	}
 
 
 
-	public String getNacimiento() {
-		return nacimiento;
+	public String getBirthday() {
+		return birthday;
 	}
 
 
 
-	public void setNacimiento(String nacimiento) {
-		this.nacimiento = nacimiento;
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
 	}
 
 
 
-	public String getGenero() {
-		return genero;
+	public String getGender() {
+		return gender;
 	}
 
 
 
-	public void setGenero(String genero) {
-		this.genero = genero;
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 
 
-	public String getNusuario() {
-		return nusuario;
+	public String getUserName() {
+		return userName;
 	}
 
 
 
-	public void setNusuario(String nusuario) {
-		this.nusuario = nusuario;
-		System.out.println(nusuario);
+	public void setUserName(String userName) {
+		this.userName = userName;
+		System.out.println(userName);
 	}
 
 
@@ -105,26 +105,26 @@ public class User implements java.io.Serializable {
 
 
 
-	public String getUserpassword1() {
-		return userpassword1;
+	public String getPwd1() {
+		return pwd1;
 	}
 
 
 
-	public void setUserpassword1(String userpassword1) {
-		this.userpassword1 = userpassword1;
+	public void setPwd1(String pwd1) {
+		this.pwd1 = pwd1;
 	}
 
 
 
-	public String getReppass() {
-		return reppass;
+	public String getPwd2() {
+		return pwd2;
 	}
 
 
 
-	public void setReppass(String reppass) {
-		this.reppass = reppass;
+	public void setPwd2(String pwd2) {
+		this.pwd2 = pwd2;
 	}
 
 	

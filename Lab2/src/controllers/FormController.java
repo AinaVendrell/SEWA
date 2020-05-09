@@ -42,7 +42,7 @@ public class FormController extends HttpServlet {
 		try {
 			BeanUtils.populate(model,request.getParameterMap());
 			if (manager.isComplete(model)) {
-				manager.addUser(model.getNombre(), model.getApellidos(), model.getGenero(), model.getNacimiento(), model.getNusuario(), model.getEmail(), model.getUserpassword1());
+				manager.addUser(model.getName(), model.getSurname(), model.getGender(), model.getBirthday(), model.getUserName(), model.getEmail(), model.getPwd1());
 				manager.finalize();
 				view = "RegisteredEL.jsp";
 			}
