@@ -158,7 +158,7 @@ prefix = "c" %>
     <form class="mx-sm-5" data-parsley-trigger="keyup" data-parsley-validate action="FormController">
     <div class="form-row">
     	<div class="form-group col-auto">
- 			<label class="sr-only" for="name"> Nombre:</label>
+ 			<label for="name"> Nombre:</label>
 		      <input
 		        type="text"
 		        class="form-control"
@@ -170,7 +170,7 @@ prefix = "c" %>
 		        required/>
         </div>
         <div class="form-group col-auto">
-	     	<label class="sr-only" for="surname">Apellidos:</label>
+	     	<label for="surname">Apellidos:</label>
 	      	<input
 	        type="text"
 	        class="form-control"
@@ -213,7 +213,7 @@ prefix = "c" %>
        	</div>
       <div class="form-row">
 		<div class="col-auto"> 	
-		      <label for="userName" class="sr-only"> Nombre de Usuario</label>
+		      <label for="userName"> Nombre de Usuario:</label>
 		      	<div class="input-group mb-3">
 							<div class="input-group-prepend">
 								<div class="input-group-text">@</div>
@@ -235,8 +235,7 @@ prefix = "c" %>
     
       <div class ="form-row mb-4">
      	 <div class ="col-md-4">
-      		<label for="email" class="sr-only"> Email: </label>
-			      <br />
+      		<label for="email"> Email: </label>
 			      <input
 			        type="email"
 			        class="form-control"
@@ -249,7 +248,6 @@ prefix = "c" %>
 			      />
 			</div>
 		</div>
-      
       
       <div class="form-row mb-4">
       	 <div class="col-md-3">
@@ -305,7 +303,9 @@ prefix = "c" %>
 			<div class="g-recaptcha"
 				data-sitekey="6Ld-avMUAAAAABKyzNxOhNTl063Xj0hWjFh8idTo" ></div>
 	  </div>
-      <button>Submit</button>
+     	<div class="form-row mb-4">
+			<button type="submit" class="btn btn-primary">Sign up</button>
+		</div>
     </form>
   </body>
 </html>
