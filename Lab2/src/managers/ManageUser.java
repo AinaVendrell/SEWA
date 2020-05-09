@@ -30,7 +30,7 @@ public class ManageUser {
 	
 	// Add new user
 	public void addUser(String nom, String surname, String gender, String bdate, String usr, String mail, String pwd) {
-		String query = "INSERT INTO users (name,surname,gender,bdate,usr,mail,pwd) VALUES (?,?,?,?,?,?,?)";
+		String query = "INSERT INTO users (name,surname,gender,birthday,userName,email,pwd) VALUES (?,?,?,?,?,?,?)";
 		PreparedStatement statement = null;
 		try {
 			statement = db.prepareStatement(query);
@@ -50,14 +50,14 @@ public class ManageUser {
 	
 	/*Check if all the fields are filled correctly */
 	public boolean isComplete(User user) {
-	    return(hasValue(user.getNombre()) &&
-	    	   hasValue(user.getApellidos()) &&
-	    	   hasValue(user.getGenero()) &&
-	    	   hasValue(user.getNacimiento()) &&
-		       hasValue(user.getNusuario()) &&
+	    return(hasValue(user.getName()) &&
+	    	   hasValue(user.getSurname()) &&
+	    	   hasValue(user.getGender()) &&
+	    	   hasValue(user.getBirthday()) &&
+		       hasValue(user.getUserName()) &&
 	    	   hasValue(user.getEmail()) &&
-	    	   hasValue(user.getUserpassword1()) &&
-	    	   hasValue(user.getReppass()) );
+	    	   hasValue(user.getPwd1()) &&
+	    	   hasValue(user.getPwd2()) );
 	}
 	
 	private boolean hasValue(String val) {

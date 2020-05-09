@@ -21,58 +21,58 @@ prefix = "c" %>
     </ul>
 
     <form data-parsley-validate action="FormController">
-      <label for="nombre"> Nombre:</label>
+      <label for="name"> Name:</label>
       <br />
       <input
         type="text"
-        id="nombre"
-        name="nombre"
-        placeholder="Nombre"
-        value="${model.nombre}"
+        id="name"
+        name="name"
+        placeholder="Name"
+        value="${model.name}"
         required
       />
       <br />
-      <label for="apellidos"> Apellidos:</label>
+      <label for="surname"> Surname:</label>
       <br />
       <input
         type="text"
-        id="apellidos"
-        name="apellidos"
-        placeholder="Apellidos"
-        value="${model.apellidos}"
+        id="surname"
+        name="surname"
+        placeholder="Surname"
+        value="${model.surname}"
         required
       />
       <br />
-      <label for="nacimiento"> User name:</label>
+      <label for="birthday"> Birthday:</label>
       <br />
       <input
         type="text"
-        id="nacimiento"
-        name="nacimiento"
-        placeholder="Nacimiento"
-        value="${model.nacimiento}"
+        id="birthday"
+        name="birthday"
+        placeholder="Birthday"
+        value="${model.birthday}"
         required
       />
       <br />
-      <label for="genero"> User name:</label>
+      <label for="gender"> Gender:</label>
       <br />
       <input
         type="text"
-        id="genero"
-        name="genero"
-        placeholder="Genero"
-        value="${model.genero}"
+        id="gender"
+        name="gender"
+        placeholder="Gender"
+        value="${model.gender}"
         required
       />
       <br />
-      <label for="nusuario"> User name:</label>
+      <label for="userName"> User name:</label>
       <br />
       <input
         type="text"
-        id="nusuario"
-        name="nusuario"
-        placeholder="Nusuario"
-        value="${model.nusuario}"
+        id="userName"
+        name="userName"
+        placeholder="UserName"
+        value="${model.userName}"
         required
       />
       <br />
@@ -87,28 +87,28 @@ prefix = "c" %>
         required
       />
       <br />
-      <label for="userpassword1"> Password: </label>
+      <label for="pwd1"> Password: </label>
       <br />
       <input
         type="password"
-        id="userpassword1"
-        name="userpassword1"
+        id="pwd1"
+        name="pwd1"
         placeholder="Password"
-        value="${model.userpassword1}"
+        value="${model.pwd1}"
         required
         pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$"
       />
       <br />
-      <label for="reppass"> Confirm password: </label>
+      <label for="pwd2"> Confirm password: </label>
       <br />
       <input
         type="password"
-        id="reppass"
-        name="reppass"
+        id="pwd2"
+        name="pwd2"
         placeholder="Confirm Password"
-        value="${model.reppass}"
+        value="${model.pwd2}"
         required
-        data-parsley-equalto="#userpassword1"
+        data-parsley-equalto="#pwd1"
       />
       <br /><br />
       <button>Submit</button>
