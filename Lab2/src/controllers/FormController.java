@@ -36,13 +36,13 @@ public class FormController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		User model = new User();
-		String view = "Parsley.jsp";
+		String view = "Parsley+EL.jsp";
 		ManageUser manager = new ManageUser();
 		
 		try {
 			BeanUtils.populate(model,request.getParameterMap());
 			if (manager.isComplete(model)) {
-				manager.addUser(model.getUser(), model.getMail(), model.getPwd1());
+				manager.addUser(model.getNombre(), model.getApellidos(), model.getGenero(), model.getNacimiento(), model.getNusuario(), model.getEmail(), model.getUserpassword1());
 				manager.finalize();
 				view = "RegisteredEL.jsp";
 			}
