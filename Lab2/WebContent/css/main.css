@@ -3,13 +3,11 @@
 }
 
 .description h1 {
-	font-size: xx-large;
+	font-size: large;
 }
 
 .center_form {
-  margin: auto;
-  transform: translate(30%, 0%);
-  
+  margin: auto;  
 }
 
 .wrapper{
@@ -40,7 +38,7 @@ textarea.parsley-error:focus {
     color: #d16e6c;
     margin-top: 5px;
     margin-bottom: 0;
-  padding-left: 0;
+  	padding-left: 0;
 }
 
 .parsley-errors-list.filled {
