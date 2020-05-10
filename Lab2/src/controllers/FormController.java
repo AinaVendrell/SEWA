@@ -36,7 +36,7 @@ public class FormController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		User model = new User();
-		String view = "Parsley+EL.jsp";
+		String view = "signupjsp.jsp";
 		ManageUser manager = new ManageUser();
 		
 		try {

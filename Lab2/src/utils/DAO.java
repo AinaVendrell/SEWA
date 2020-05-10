@@ -12,7 +12,7 @@ public class DAO {
 		String user = "mysql";
 		String password="prac";
 		Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-		connection=DriverManager.getConnection("jdbc:mysql://localhost/ts1?user="+user+"&password="+password);
+		connection=DriverManager.getConnection("jdbc:mysql://localhost/twitter?user="+user+"&password="+password);
 
 	}
 	
