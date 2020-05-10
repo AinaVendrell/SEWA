@@ -7,9 +7,9 @@
 }
 
 .center_form {
-  margin: auto;  
+  margin: auto;
+  transform: translate(31%, 0%);
 }
-
 .wrapper{
 	padding-top: 50px;
 }

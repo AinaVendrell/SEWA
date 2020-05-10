@@ -15,7 +15,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="parsley/parsley.min.js"></script>
 <!--  <script src="parsley/i18n/ca.js"></script> -->
-<link rel="stylesheet" type="text/css" href="css/main.css" />
+<link rel="stylesheet" type="text/css" href="css/main.css"/>
 </head>
 
 <body>
