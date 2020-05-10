@@ -1,17 +1,32 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%> <%@ taglib uri = "http://java.sun.com/jsp/jstl/core"
+prefix = "c" %>
+
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8" />
-<link rel="stylesheet"
+  <head>
+    <meta charset="UTF-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="parsley/parsley.min.js"></script>
+    <!--  <script src="parsley/i18n/ca.js"></script> -->
+    <title>Registrarse - NOM</title>
+    <link rel="stylesheet" type="text/css" href="css/estil.css" />
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
 	crossorigin="anonymous" />
-<link rel="stylesheet" type="text/css" href="css/main.css">
-<title>Registrarse - NOM</title>
-<script src='https://www.google.com/recaptcha/api.js'></script>
-</head>
-<body>
-	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+  </head>
+
+  <body>
+    <ul class="server-errors-list">
+      <c:if test="${model.error[0]}">
+        <li>Entered user name has been already registered</li>
+      </c:if>
+    </ul>
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
 		crossorigin="anonymous"></script>
 	<script
@@ -133,96 +148,143 @@
 			$('form').parsley();
 		});
 	</script>
-
-
+	
 	<div class="description">
 		<h1>Crea una cuenta de NOM</h1>
 		<p>Rellena todos los campos para registrarte</p>
 		<hr />
-		<br>
 	</div>
-	
-	<form class="mx-sm-5" data-parsley-trigger="keyup"
-		data-parsley-validate>
-		<div class="form-row ">
-			<div class="form-group col-auto">
-				<label class="sr-only" for="nombre">Nombre</label> <input
-					type="text" class="form-control" id="nombre" name="nombre"
-					placeholder="Nombre" pattern="[A-Za-z]+" required>
-			</div>
-			<div class="form-group col-auto">
-				<label class="sr-only" for="apellidos">Apellidos</label> <input
-					type="text" class="form-control" id="apellidos" name="apellidos"
-					placeholder="Apellidos" pattern="[A-Za-z]+" required>
-			</div>
-		</div>
-		<div class="form-row mb-4">
+
+    <form class="mx-sm-5" data-parsley-trigger="keyup" data-parsley-validate action="FormController">
+    <div class="form-row">
+    	<div class="form-group col-auto">
+ 			<label for="name"> Nombre:</label>
+		      <input
+		        type="text"
+		        class="form-control"
+		        id="name"
+		        name="name"
+		        placeholder="Nombre"
+		        value="${model.name}"
+		        pattern="[A-Za-z]+"
+		        required/>
+        </div>
+        <div class="form-group col-auto">
+	     	<label for="surname">Apellidos:</label>
+	      	<input
+	        type="text"
+	        class="form-control"
+	        id="surname"
+	        name="surname"
+	        placeholder="Apellidos"
+	        pattern="[A-Za-z]+" 
+	        value="${model.surname}"
+	        required/>
+       </div>
+    </div>
+	  <div class="form-row mb-4">
 			<div class="col-auto">
-				<label class="control-label" for="date">Fecha de nacimiento</label>
-				<input class="form-control" id="nacimiento" name="date"
-					placeholder="dd/mm/yyyy" type="text" required
-					data-parsley-pattern="^[0-9]{2}/[0-9]{2}/[0-9]{4}$"
+      			<label class="control-label" for="birthday">Fecha de nacimiento:</label>
+			      <input
+			      	class="form-control"
+			        type="text"
+			        id="birthday"
+			        name="birthday"
+			        placeholder="DD/MM/YYYY"
+			        data-parsley-pattern="^[0-9]{2}/[0-9]{2}/[0-9]{4}$"
 					data-parsley-pattern-message="Invalid Date."
 					data-date-format="DD/MM/YYYY" data-parsley-minimumage="13"
 					data-parsley-minimumage-message="Minimum age is 13"
-				    data-parsley-validdate="" />
+					data-parsley-validdate=""
+			        value="${model.birthday}"
+			        required/>
 			</div>
-			<!--data-parsley-maxdate="10/10/2019"-->
-			
-			
 			<div class="col-auto">
-				<label for="genero">Género:</label> <select id="genero"
-					class="form-control" required>
+     			 <label for="gender">Genero:</label>
+     			 <select id="gender"
+					class="form-control" required value="${model.gender}">
 					<option></option>
 					<option value="hombre">Hombre</option>
 					<option value="mujer">Mujer</option>
 					<option value="otro">Otro</option>
 					<option value="nodecir">Prefiero no decirlo</option>
 				</select>
-			</div>
-		</div>
-
-		<div class="form-row">
-			<div class="col-auto">
-				<label class="sr-only" for="nusuario">Nombre de Usuario</label>
-				<div class="input-group mb-3">
-					<div class="input-group-prepend">
-						<div class="input-group-text">@</div>
-					</div>
-					<input type="text" class="form-control" id="nusuario"
-						name="nusuario" placeholder="Nombre de Usuario" required
-						data-parsley-type="alphanum">
+       		</div>
+       	</div>
+      <div class="form-row">
+		<div class="col-auto"> 	
+		      <label for="userName"> Nombre de Usuario:</label>
+		      	<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<div class="input-group-text">@</div>
+							</div>
+						      <input
+						        type="text"
+						        class="form-control"
+						        id="userName"
+						        name="userName"
+						        placeholder="Nombre de Usuario"
+						        value="${model.userName}"
+						        data-parsley-type="alphanum"
+						        required/>
 				</div>
 			</div>
 		</div>
-		<div class="form-row mb-4">
-			<div class="col-md-4">
-				<label for="email" class="sr-only">Email</label> <input type="email"
-					class="form-control" id="email" placeholder="name@example.com"
-					required data-parsley-type="email">
+      
+    
+      <div class ="form-row mb-4">
+     	 <div class ="col-md-4">
+      		<label for="email"> Email: </label>
+			      <input
+			        type="email"
+			        class="form-control"
+			        id="email"
+			        name="email"
+			        placeholder="name@example.com"
+			        value="${model.email}"
+			        required
+			        data-parsley-type="email"/>
 			</div>
 		</div>
-		<div class="form-row mb-4">
-			<div class="col-md-3">
-				<label for="userpassword">Contraseña:</label> <input type="password"
-					id="userpassword1" class="form-control"
-					aria-describedby="passwordHelpBlock" required
-					data-parsley-minlength="8" data-parsley-maxlength="20"
-					data-parsley-uppercase="1" data-parsley-lowercase="1"
-					data-parsley-number="1" data-parsley-nowhitespace> <small
+      
+      <div class="form-row mb-4">
+      	 <div class="col-md-3">
+      		<label for="pwd1">Contraseña:</label>
+		      <input
+		        type="password"
+		        id="pwd1"
+		        class="form-control"
+		        aria-describedby="passwordHelpBlock" required
+				data-parsley-minlength="8" data-parsley-maxlength="20"
+				data-parsley-uppercase="1" data-parsley-lowercase="1"
+				data-parsley-number="1" data-parsley-nowhitespace
+		        name="pwd1"
+		        placeholder="Contraseña"
+		        value="${model.pwd1}"
+		        required
+		        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$"/>
+		      <small
 					id="passwordHelpBlock" class="form-text text-muted"> Your
 					password must be 8-20 characters long, contain lowercase and
-					captial letters and numbers, and must not contain spaces, special
+					capital letters and numbers, and must not contain spaces, special
 					characters, or emoji. </small>
-			</div>
-			<div class="col-md-3">
-				<label for="reppass">Repite la contraseña:</label><input
-					type="password" id="reppass" class="form-control"
-					aria-describedby="passwordHelpBlock" required
-					data-parsley-equalto="#userpassword1">
-			</div>
-		</div>
-		<div class="form-row mb-4">
+		    </div>
+		    
+		     <div class="col-md-3">
+		    	<label for="pwd2"> Confirmar Contraseña: </label>
+		      <input
+		        type="password"
+		        id="pwd2"
+		        name="pwd2"
+		        class="form-control"
+		        placeholder="Confirm Password"
+		        value="${model.pwd2}"
+		        required
+		        aria-describedby="passwordHelpBlock"
+		        data-parsley-equalto="#pwd1"/>
+ 			</div>
+      	</div>
+      	<div class="form-row mb-4">
 			<div class="col-auto">
 				<div class="form-check">
 					<input class="form-check-input" type="checkbox" id="termCheck"
@@ -234,14 +296,13 @@
 				</div>
 			</div>
 		</div>
-		<div class="form-row mb-4">
+      <div class="form-row mb-4">
 			<div class="g-recaptcha"
-				data-sitekey="6Ld-avMUAAAAABKyzNxOhNTl063Xj0hWjFh8idTo" required></div>
-		</div>
-		<div class="form-row mb-4">
+				data-sitekey="6Ld-avMUAAAAABKyzNxOhNTl063Xj0hWjFh8idTo" data-parsley-required></div>
+	  </div>
+     	<div class="form-row mb-4">
 			<button type="submit" class="btn btn-primary">Sign up</button>
 		</div>
-	</form>
-
-</body>
+    </form>
+  </body>
 </html>
