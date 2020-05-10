@@ -61,11 +61,11 @@ textarea.parsley-error {
 <form data-parsley-validate action="FormController">
   <label for="user"> User name:</label>
   <br>
-  <input type="text" id="user" name="user" placeholder="Name" value="<%= ((User)request.getAttribute("model")).getUser() %>" required>
+  <input type="text" id="user" name="user" placeholder="Name" value="<%= ((User)request.getAttribute("model")).getUserName() %>" required>
   <br>
   <label for="mail"> Mail: </label>
   <br>
-  <input type="email" id="mail" name="mail" placeholder="Email" value="<%= ((User)request.getAttribute("model")).getMail() %>" required>
+  <input type="email" id="mail" name="mail" placeholder="Email" value="<%= ((User)request.getAttribute("model")).getEmail() %>" required>
   <br>
   <label for="pwd1"> Password: </label>
   <br>

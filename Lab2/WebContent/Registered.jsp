@@ -7,6 +7,6 @@
 <title> Registered view </title>
 </head>
 <body>
-User <%= ((User)request.getAttribute("model")).getUser() %> has been registered correctly.
+User <%= ((User)request.getAttribute("model")).getUserName() %> has been registered correctly.
 </body>
 </html>
