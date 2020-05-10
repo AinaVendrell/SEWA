@@ -19,33 +19,179 @@ prefix="c"%>
     <link rel="stylesheet" type="text/css" href="css/main.css" />
   </head>
 
-  <body>
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-      crossorigin="anonymous"
-    ></script>
-    <!-- Include Date Range Picker -->
-    <script
-      type="text/javascript"
-      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"
-    ></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"
-    />
-    <script src="parsley/parsley.js"></script>
-    <script type="text/javascript">
+<body>
+
+	<nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light">
+		<a class="navbar-brand" href="#"> <img src="images/unio.svg"
+			width="30" height="30" alt="">
+		</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarTogglerDemo02"
+			aria-controls="navbarTogglerDemo02" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+				<li class="nav-item active"><a class="nav-link" href="#">Home
+						<span class="sr-only">(current)</span>
+				</a></li>
+				<!-- 
+				<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+				 -->
+			</ul>
+			<!--
+			<form class="form-inline my-2 my-lg-0">
+				<input class="form-control mr-sm-2" type="search"
+					placeholder="Search">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+			</form>
+			-->
+		</div>
+
+	</nav>
+
+	<ul class="server-errors-list">
+		<c:if test="${model.error[0]}">
+			<li>Entered user name has been already registered</li>
+		</c:if>
+	</ul>
+
+	<div class="description">
+		<img class="mb-4" src="images/unio.svg" alt="unio" width="72"
+			height="72" />
+
+		<h1>Sign up in UNIO</h1>
+		<hr />
+		<br />
+	</div>
+	<div class="container">
+		<form data-parsley-trigger="keyup" data-parsley-validate
+			action="FormController">
+			<div class="form-row justify-content-center h-100">
+				<div class="form-group col-sm-2">
+					<label class="sr-only" for="name">Nombre</label> <input type="text"
+						id="name" name="name" class="form-control" placeholder="Nombre"
+						value="${model.name}" pattern="[A-Za-z]+" required />
+				</div>
+				<div class="form-group col-sm-2">
+					<label class="sr-only" for="surname">Apellidos</label> <input
+						type="text" id="surname" name="surname" class="form-control"
+						placeholder="Apellidos" value="${model.surname}"
+						pattern="[A-Za-z]+" required />
+				</div>
+			</div>
+			<!-- data-parsley-pattern="^[0-9]{2}/[0-9]{2}/[0-9]{4}$" -->
+			<div class="form-row justify-content-center h-100 mb-4">
+				<div class="col-sm-2">
+					<label class="control-label" for="birthday">Fecha
+						de nacimiento</label> <input class="form-control" id="birthday"
+						name="birthday" type="date" required
+						data-parsley-pattern-message="Invalid Date."
+						data-date-format="DD/MM/YYYY" data-parsley-minimumage="13"
+						data-parsley-minimumage-message="Minimum age is 13"
+						value="${model.birthday}" />
+				</div>
+				<!--data-parsley-maxdate="10/10/2019"-->
+
+				<div class="col-sm-2">
+					<label for="gender">Género:</label> <select id="gender"
+						name="gender" class="form-control" value="${model.gender}"
+						required>
+						<option></option>
+						<option value="hombre">Hombre</option>
+						<option value="mujer">Mujer</option>
+						<option value="otro">Otro</option>
+						<option value="nodecir">Prefiero no decirlo</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-row justify-content-center h-100 mb-2">
+				<div class="col-sm-4">
+					<label class="sr-only" for="userName">Nombre de Usuario</label>
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<div class="input-group-text">@</div>
+						</div>
+						<input type="text" class="form-control" id="userName"
+							name="userName" placeholder="Nombre de Usuario" required
+							data-parsley-type="alphanum" value="${model.userName}" />
+					</div>
+				</div>
+			</div>
+			<div class="form-row justify-content-center h-100 mb-4">
+				<div class="col-sm-4">
+					<label for="email" class="sr-only">Email</label> <input
+						type="email" class="form-control" id="email" name="email"
+						placeholder="Email" required data-parsley-type="email"
+						value="${model.email}" />
+				</div>
+			</div>
+			<div class="form-row justify-content-center h-100 mb-4">
+				<div class="col-sm-4">
+					<label class="sr-only" for="pwd1">Contraseña:</label> <input
+						type="password" id="pwd1" name="pwd1" class="form-control"
+						placeholder="Password" aria-describedby="passwordHelpBlock"
+						required data-parsley-minlength="8" data-parsley-maxlength="20"
+						data-parsley-uppercase="1" data-parsley-lowercase="1"
+						data-parsley-number="1" data-parsley-nowhitespace
+						value="${model.pwd1}" /> <small
+						id="passwordHelpBlock" class="form-text text-muted"> Your
+						password must be 8-20 characters long, contain lowercase and
+						captial letters and numbers, and must not contain spaces, special
+						characters, or emoji. </small>
+				</div>
+			</div>
+			<div class="form-row justify-content-center h-100 mb-4">
+				<div class="col-sm-4">
+					<label class="sr-only" for="pwd2">Repite la contraseña:</label><input
+						type="password" id="pwd2" name="pwd2" class="form-control"
+						placeholder="Repeat password" aria-describedby="passwordHelpBlock"
+						value="${model.pwd2}" required data-parsley-equalto="#pwd1" />
+				</div>
+			</div>
+			<div class="form-row justify-content-center h-100 mb-4">
+				<div class="col-auto">
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" id="termCheck"
+							required /> <label class="form-check-label"
+							for="termCheck"> He leido y acepto los <a
+							href="PoliticaDatos.html" target="popup"
+							onclick="window.open('PoliticaDatos.html','popup','width=600,height=600'); return false;">términos
+								de uso</a>
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-row justify-content-center h-100 mb-4">
+				<div class="col-sm-4">
+					<button type="submit" class="btn btn-primary btn-block">
+						Sign up</button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<!-- SCRIPTS -->
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+		crossorigin="anonymous"></script>
+	<!-- Include Date Range Picker -->
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+	<script src="parsley/parsley.js"></script>
+	<script type="text/javascript">
       //has uppercase
       window.Parsley.addValidator('uppercase', {
         requirementType: 'number',
@@ -119,210 +265,12 @@ prefix="c"%>
         },
       })
     </script>
-    <script>
+	<script>
       $(document).ready(function () {
         $('form').parsley()
       })
     </script>
 
-    <ul class="server-errors-list">
-      <c:if test="${model.error[0]}">
-        <li>Entered user name has been already registered</li>
-      </c:if>
-    </ul>
-
-    <div class="description">
-      <img
-        class="mb-4"
-        src="images/unio.svg"
-        alt="unio"
-        width="72"
-        height="72"
-      />
-
-      <h1>Sign up in UNIO</h1>
-      <hr />
-      <br />
-    </div>
-    <div class="center_form">
-      <form
-        class="mx-sm-5"
-        data-parsley-trigger="keyup"
-        data-parsley-validate
-        action="FormController"
-      >
-        <div class="form-row">
-          <div class="form-group col-sm-2">
-            <label class="sr-only" for="name">Nombre</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              class="form-control"
-              placeholder="Nombre"
-              value="${model.name}"
-              pattern="[A-Za-z]+"
-              required
-            />
-          </div>
-          <div class="form-group col-sm-2">
-            <label class="sr-only" for="surname">Apellidos</label>
-            <input
-              type="text"
-              id="surname"
-              name="surname"
-              class="form-control"
-              placeholder="Apellidos"
-              value="${model.surname}"
-              pattern="[A-Za-z]+"
-              required
-            />
-          </div>
-        </div>
-        <!-- data-parsley-pattern="^[0-9]{2}/[0-9]{2}/[0-9]{4}$" -->
-        <div class="form-row mb-4">
-          <div class="col-sm-2">
-            <label class="control-label" for="birthday"
-              >Fecha de nacimiento</label
-            >
-            <input
-              class="form-control"
-              id="birthday"
-              name="birthday"
-              type="date"
-              required
-              data-parsley-pattern-message="Invalid Date."
-              data-date-format="DD/MM/YYYY"
-              data-parsley-minimumage="13"
-              data-parsley-minimumage-message="Minimum age is 13"
-              value="${model.birthday}"
-            />
-          </div>
-          <!--data-parsley-maxdate="10/10/2019"-->
-
-          <div class="col-sm-2">
-            <label for="gender">Género:</label>
-            <select
-              id="gender"
-              name="gender"
-              class="form-control"
-              value="${model.gender}"
-              required
-            >
-              <option></option>
-              <option value="hombre">Hombre</option>
-              <option value="mujer">Mujer</option>
-              <option value="otro">Otro</option>
-              <option value="nodecir">Prefiero no decirlo</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-row mb-2">
-          <div class="col-sm-4">
-            <label class="sr-only" for="userName">Nombre de Usuario</label>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <div class="input-group-text">@</div>
-              </div>
-              <input
-                type="text"
-                class="form-control"
-                id="userName"
-                name="userName"
-                placeholder="Nombre de Usuario"
-                required
-                data-parsley-type="alphanum"
-                value="${model.userName}"
-              />
-            </div>
-          </div>
-        </div>
-        <div class="form-row mb-4">
-          <div class="col-sm-4">
-            <label for="email" class="sr-only">Email</label>
-            <input
-              type="email"
-              class="form-control"
-              id="email"
-              name="email"
-              placeholder="Email"
-              required
-              data-parsley-type="email"
-              value="${model.email}"
-            />
-          </div>
-        </div>
-        <div class="form-row mb-4">
-          <div class="col-sm-4">
-            <label class="sr-only" for="pwd1">Contraseña:</label>
-            <input
-              type="password"
-              id="pwd1"
-              name="pwd1"
-              class="form-control"
-              placeholder="Password"
-              aria-describedby="passwordHelpBlock"
-              required
-              data-parsley-minlength="8"
-              data-parsley-maxlength="20"
-              data-parsley-uppercase="1"
-              data-parsley-lowercase="1"
-              data-parsley-number="1"
-              data-parsley-nowhitespace
-              value="${model.pwd1}"
-            />
-            <small id="passwordHelpBlock" class="form-text text-muted">
-              Your password must be 8-20 characters long, contain lowercase and
-              captial letters and numbers, and must not contain spaces, special
-              characters, or emoji.
-            </small>
-          </div>
-        </div>
-        <div class="form-row mb-4">
-          <div class="col-sm-4">
-            <label class="sr-only" for="pwd2">Repite la contraseña:</label
-            ><input
-              type="password"
-              id="pwd2"
-              name="pwd2"
-              class="form-control"
-              placeholder="Repeat password"
-              aria-describedby="passwordHelpBlock"
-              value="${model.pwd2}"
-              required
-              data-parsley-equalto="#pwd1"
-            />
-          </div>
-        </div>
-        <div class="form-row mb-4">
-          <div class="col-auto">
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                id="termCheck"
-                required
-              />
-              <label class="form-check-label" for="termCheck">
-                He leido y acepto los
-                <a
-                  href="PoliticaDatos.html"
-                  target="popup"
-                  onclick="window.open('PoliticaDatos.html','popup','width=600,height=600'); return false;"
-                  >términos de uso</a
-                >
-              </label>
-            </div>
-          </div>
-        </div>
-        <div class="form-row mb-4">
-          <div class="col-sm-4">
-            <button type="submit" class="btn btn-primary btn-block">
-              Sign up
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
-  </body>
+	<!-- END SCRIPTS -->
+</body>
 </html>
