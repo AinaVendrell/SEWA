@@ -42,9 +42,11 @@ public class FormController extends HttpServlet {
 		try {
 			BeanUtils.populate(model,request.getParameterMap());
 			if (manager.isComplete(model)) {
-				manager.addUser(model.getName(), model.getSurname(), model.getGender(), model.getBirthday(), model.getUserName(), model.getEmail(), model.getPwd1());
-				manager.finalize();
-				view = "RegisteredEL.jsp";
+				if (manager.isCorrect(model)) {
+					manager.addUser(model.getName(), model.getSurname(), model.getGender(), model.getBirthday(), model.getUserName(), model.getEmail(), model.getPwd1());
+					manager.finalize();
+					view = "RegisteredEL.jsp";
+				}	
 			}
 				
 		} catch (IllegalAccessException | InvocationTargetException e) {
