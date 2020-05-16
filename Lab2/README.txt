@@ -1,9 +1,11 @@
 ----------- MYSQL -----------
 
-DROP SCHEMA IF EXISTS twitter;
-CREATE SCHEMA IF NOT EXISTS twitter;
+SET GLOBAL time_zone = '-3:00';
 
-USE twitter;
+DROP SCHEMA IF EXISTS unio;
+CREATE SCHEMA IF NOT EXISTS unio;
+
+USE unio;
 
 CREATE TABLE `Users`(
     `id`  INTEGER NOT NULL AUTO_INCREMENT,
@@ -19,7 +21,7 @@ CREATE TABLE `Users`(
     UNIQUE(`userName`)
 );
 
-USE twitter;
+USE unio;
 
 INSERT INTO `Users` (`name`, `surname`, `gender`, `birthday`, `userName`, `email`, `pwd`) VALUES
 ('eva', 'martos', 'mujer', '2016-01-14', 'evamartos', 'evamartos@gmail.com', 'EvMar1999'),
@@ -27,4 +29,4 @@ INSERT INTO `Users` (`name`, `surname`, `gender`, `birthday`, `userName`, `email
 ('mar', 'calafato', 'mujer', '2016-01-14', 'marcalafato', 'marcalafato@gmail.com', 'MarCala1999'),
 ('aina', 'vendrell', 'mujer', '2016-01-14', 'ainavendrell', 'ainavendrell@gmail.com', 'AiVen1999');
 
-SELECT * FROM Users
+SELECT * FROM Users;

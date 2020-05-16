@@ -2,6 +2,7 @@ package managers;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.ResultSet;
 
 import models.User;
 import utils.DAO;
@@ -66,5 +67,54 @@ public class ManageUser {
 		
 	
 	// TODO: add other methods 
+	
+	public boolean isCorrect(User user) {
+		if(userNameExists(user.getUserName())){
+			user.setError(0);
+			System.out.print("user exists");
+		}
+		if(emailExists(user.getEmail())){
+			user.setError(1);
+			System.out.print("email exists");
+		}
+		if(emailExists(user.getEmail()) || userNameExists(user.getUserName())) {
+			return false;
+		}
+		return true;	
+	}
 
+	
+	private boolean userNameExists(String userName) {
+		String query ="SELECT * FROM Users WHERE userName = ?";
+		PreparedStatement statement = null;
+		try {
+			statement = db.prepareStatement(query);
+			statement.setString(1, userName);
+			ResultSet rs = statement.executeQuery();	
+			if (!rs.isBeforeFirst() ) {    
+			    return false;
+			}
+			statement.close();	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
+	
+	private boolean emailExists(String email) {
+		String query ="SELECT * FROM Users WHERE email = ?";
+		PreparedStatement statement = null;
+		try {
+			statement = db.prepareStatement(query);
+			statement.setString(1, email);
+			ResultSet rs = statement.executeQuery();	
+			if (!rs.isBeforeFirst() ) {    
+			    return false;
+			}
+			statement.close();	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
 }

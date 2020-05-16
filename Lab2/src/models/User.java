@@ -131,5 +131,9 @@ public class User implements java.io.Serializable {
 	public boolean[] getError() {
 		return error;
 	}
+	
+	public void setError(int index) {
+		this.error[index]= true;
+	}
 		
 }
