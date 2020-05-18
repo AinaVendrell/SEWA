@@ -12,7 +12,7 @@ prefix="c"%>
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
-    <title>SignUp - UNIO</title>
+    <title>Sign up in UNIO</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="parsley/parsley.min.js"></script>
     <!--  <script src="parsley/i18n/ca.js"></script> -->
@@ -69,7 +69,7 @@ prefix="c"%>
 	<div class="container">
 		<form data-parsley-trigger="keyup" data-parsley-validate
 			action="RegisterController">
-			<div class="form-row justify-content-center h-100">
+			<div class="form-row justify-content-center h-100 mb-2">
 				<div class="form-group col-sm-2">
 					<label class="sr-only" for="name">First Name</label> <input type="text"
 						id="name" name="name" class="form-control" placeholder="First Name"
@@ -85,20 +85,19 @@ prefix="c"%>
 			<!-- data-parsley-pattern="^[0-9]{2}/[0-9]{2}/[0-9]{4}$" -->
 			<div class="form-row justify-content-center h-100 mb-4">
 				<div class="col-sm-2">
-					<label class="control-label" for="birthday">Birthday</label> <input class="form-control" id="birthday"
-						name="birthday" type="date" required
+					<label class="control-label sr-only" for="birthday">Birthday</label> <input class="form-control" id="birthday"
+						name="birthday" type="text" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'" placeholder="Birthday" required
 						data-parsley-pattern-message="Invalid Date."
 						data-date-format="DD/MM/YYYY" data-parsley-minimumage="13"
 						data-parsley-minimumage-message="Minimum age is 13"
 						value="${user.birthday}" />
 				</div>
-				<!--data-parsley-maxdate="10/10/2019"-->
-
+				<!--data-parsley-maxdate="10/10/2019"-->				
 				<div class="col-sm-2">
-					<label for="gender">Gender</label> <select id="gender"
+					<label class="sr-only" for="gender">Gender</label> <select id="gender"
 						name="gender" class="form-control" value="${user.gender}"
 						required>
-						<option></option>
+						<option value="">Gender</option>
 						<option value="hombre">Male</option>
 						<option value="mujer">Female</option>
 						<option value="otro">Other</option>
@@ -168,7 +167,7 @@ prefix="c"%>
 						Sign up</button>
 				</div>
 			</div>
-		</form>
+		</form>		
 	</div>
 
 	<!-- SCRIPTS -->
@@ -268,7 +267,6 @@ prefix="c"%>
         $('form').parsley()
       })
     </script>
-
 	<!-- END SCRIPTS -->
 </body>
 </html>
