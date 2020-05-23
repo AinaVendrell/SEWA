@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.BeanUtils;
 
+import managers.ManageLogin;
 import models.Login;
 
 /**
@@ -37,12 +38,10 @@ public class LoginController extends HttpServlet {
 		System.out.print("LoginController: ");
 		
 		Login login = new Login();
+		ManageLogin manager = new ManageLogin();
 	    try {
-			
 	    	BeanUtils.populate(login, request.getParameterMap());
-			
-	    	if (login.isComplete()) {
-		    	
+	    	if (manager.isComplete(login) && manager.isCorrect(login)) {
 	    		System.out.println("login OK, forwarding to ViewLoginDone ");
 		    	HttpSession session = request.getSession();
 		    	session.setAttribute("user",login.getUser());
@@ -52,7 +51,7 @@ public class LoginController extends HttpServlet {
 		    } 
 			else {
 		     
-				System.out.println("login OK, forwarding to ViewLoginDone ");
+				System.out.println("login WRONG, forwarding to ViewLoginDone ");
 			    request.setAttribute("login",login);
 			    RequestDispatcher dispatcher = request.getRequestDispatcher("ViewLoginForm.jsp");
 			    dispatcher.forward(request, response);

@@ -30,8 +30,8 @@ public class ManageUser {
 	
 	
     // Add new user
-    public void addUser(String name, String surname, String gender, String birthday, String userName, String email, String pwd) {
-        String query = "INSERT INTO users (name,surname,gender,birthday,userName,email,pwd) VALUES (?,?,?,?,?,?,?)";
+    public void addUser(String name, String surname, String gender, String birthday, String username, String email, String pwd) {
+        String query = "INSERT INTO users (name,surname,gender,birthday,username,email,pwd) VALUES (?,?,?,?,?,?,?)";
         PreparedStatement statement = null;
         try {
             statement = db.prepareStatement(query);
@@ -39,7 +39,7 @@ public class ManageUser {
             statement.setString(2,surname);
             statement.setString(3,gender);
             statement.setString(4,birthday);
-            statement.setString(5,userName);
+            statement.setString(5,username);
             statement.setString(6,email);
             statement.setString(7,pwd);
             statement.executeUpdate();
@@ -55,7 +55,7 @@ public class ManageUser {
 	    	   hasValue(user.getSurname()) &&
 	    	   hasValue(user.getGender()) &&
 	    	   hasValue(user.getBirthday()) &&
-		       hasValue(user.getUserName()) &&
+		       hasValue(user.getUsername()) &&
 	    	   hasValue(user.getEmail()) &&
 	    	   hasValue(user.getPwd1()) &&
 	    	   hasValue(user.getPwd2()) );
@@ -69,7 +69,7 @@ public class ManageUser {
 	// TODO: add other methods 
 	
 	public boolean isCorrect(User user) {
-		if(userNameExists(user.getUserName())){
+		if(usernameExists(user.getUsername())){
 			user.setError(0);
 			System.out.print("user exists");
 		}
@@ -77,19 +77,19 @@ public class ManageUser {
 			user.setError(1);
 			System.out.print("email exists");
 		}
-		if(emailExists(user.getEmail()) || userNameExists(user.getUserName())) {
+		if(emailExists(user.getEmail()) || usernameExists(user.getUsername())) {
 			return false;
 		}
 		return true;	
 	}
 
 	
-	private boolean userNameExists(String userName) {
-		String query ="SELECT * FROM Users WHERE userName = ?";
+	private boolean usernameExists(String username) {
+		String query ="SELECT * FROM Users WHERE username = ?";
 		PreparedStatement statement = null;
 		try {
 			statement = db.prepareStatement(query);
-			statement.setString(1, userName);
+			statement.setString(1, username);
 			ResultSet rs = statement.executeQuery();	
 			if (!rs.isBeforeFirst() ) {    
 			    return false;

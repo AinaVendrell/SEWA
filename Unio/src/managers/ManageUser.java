@@ -30,8 +30,8 @@ public class ManageUser {
 	
 	
     // Add new user
-    public void addUser(String name, String surname, String gender, String birthday, String userName, String email, String pwd) {
-        String query = "INSERT INTO users (name,surname,gender,birthday,userName,email,pwd) VALUES (?,?,?,?,?,?,?)";
+    public void addUser(String name, String surname, String gender, String birthday, String username, String email, String pwd) {
+        String query = "INSERT INTO users (name,surname,gender,birthday,username,email,pwd) VALUES (?,?,?,?,?,?,?)";
         PreparedStatement statement = null;
         try {
             statement = db.prepareStatement(query);
@@ -39,7 +39,7 @@ public class ManageUser {
             statement.setString(2,surname);
             statement.setString(3,gender);
             statement.setString(4,birthday);
-            statement.setString(5,userName);
+            statement.setString(5,username);
             statement.setString(6,email);
             statement.setString(7,pwd);
             statement.executeUpdate();
@@ -49,13 +49,13 @@ public class ManageUser {
         }
     }
 	
-	/*Check if all the fields are filled correctly */
+	// Check if all the fields are filled correctly 
 	public boolean isComplete(User user) {
 	    return(hasValue(user.getName()) &&
 	    	   hasValue(user.getSurname()) &&
 	    	   hasValue(user.getGender()) &&
 	    	   hasValue(user.getBirthday()) &&
-		       hasValue(user.getUserName()) &&
+		       hasValue(user.getUsername()) &&
 	    	   hasValue(user.getEmail()) &&
 	    	   hasValue(user.getPwd1()) &&
 	    	   hasValue(user.getPwd2()) );
@@ -65,11 +65,9 @@ public class ManageUser {
 		return((val != null) && (!val.equals("")));
 	}
 		
-	
-	// TODO: add other methods 
-	
+	// Check if the username and email doesn't exist yet
 	public boolean isCorrect(User user) {
-		if(userNameExists(user.getUserName())){
+		if(usernameExists(user.getUsername())){
 			user.setError(0);
 			System.out.print("User already exists\n");
 		}
@@ -84,13 +82,13 @@ public class ManageUser {
 		return true;	
 	}
 
-	
-	private boolean userNameExists(String userName) {
-		String query ="SELECT * FROM Users WHERE userName = ?";
+	// Check if the username doesn't exist yet
+	private boolean usernameExists(String username) {
+		String query ="SELECT * FROM Users WHERE username = ?";
 		PreparedStatement statement = null;
 		try {
 			statement = db.prepareStatement(query);
-			statement.setString(1, userName);
+			statement.setString(1, username);
 			ResultSet rs = statement.executeQuery();	
 			if (!rs.isBeforeFirst() ) {    
 			    return false;
@@ -102,6 +100,7 @@ public class ManageUser {
 		return true;
 	}
 	
+	// Check if the email doesn't exist yet
 	private boolean emailExists(String email) {
 		String query ="SELECT * FROM Users WHERE email = ?";
 		PreparedStatement statement = null;
