@@ -3,27 +3,44 @@ package models;
 public class Login {
 
 	private String user = "";
-	private int[] error = {0};
+	private String email = "";
+	private String pwd = "";
+	private boolean[] error = {false, false};
 	
-	public String getUser(){
+	public String getUser() {
 		return user;
 	}
-	
-	public void setUser(String user){
+
+	public void setUser(String user) {
+		System.out.println(user);
 		this.user = user;
 	}
 	
-	public int[] getError() {
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		System.out.println(email);
+		this.email = email;
+	}
+
+
+	public String getPwd() {
+		return pwd;
+	}
+
+	public void setPwd(String pwd) {
+		System.out.println(pwd);
+		this.pwd = pwd;
+	}
+	
+	public boolean[] getError() {
 		return error;
 	}
 	
-	public boolean isComplete() {
-	    return(hasValue(getUser()));
+	public void setError(int index) {
+		this.error[index]= true;
 	}
-	
-	
-	private boolean hasValue(String val) {
-		return((val != null) && (!val.equals("")));
-	}
-	
 }
+	

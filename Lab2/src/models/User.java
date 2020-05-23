@@ -11,7 +11,7 @@ public class User implements java.io.Serializable {
 	private String surname = "";
 	private String birthday = "";
 	private String gender = ""; 
-	private String userName = "";
+	private String username = "";
 	private String email = "";
 	private String pwd1 = "";
 	private String pwd2 = "";
@@ -71,15 +71,15 @@ public class User implements java.io.Serializable {
 
 
 
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
 
 
 
-	public void setUserName(String userName) {
-		this.userName = userName;
-		System.out.println(userName);
+	public void setUsername(String username) {
+		this.username = username;
+		System.out.println(username);
 	}
 
 

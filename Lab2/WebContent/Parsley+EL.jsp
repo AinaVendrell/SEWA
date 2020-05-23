@@ -65,14 +65,14 @@ prefix = "c" %>
         required
       />
       <br />
-      <label for="userName"> User name:</label>
+      <label for="username"> User name:</label>
       <br />
       <input
         type="text"
-        id="userName"
-        name="userName"
-        placeholder="UserName"
-        value="${model.userName}"
+        id="username"
+        name="username"
+        placeholder="Username"
+        value="${model.username}"
         required
       />
       <br />

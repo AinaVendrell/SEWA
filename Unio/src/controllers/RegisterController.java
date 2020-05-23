@@ -44,7 +44,7 @@ public class RegisterController extends HttpServlet {
 			BeanUtils.populate(user,request.getParameterMap());
 			if (manager.isComplete(user)) {
 				if (manager.isCorrect(user)) {
-					manager.addUser(user.getName(), user.getSurname(), user.getGender(), user.getBirthday(), user.getUserName(), user.getEmail(), user.getPwd1());
+					manager.addUser(user.getName(), user.getSurname(), user.getGender(), user.getBirthday(), user.getUsername(), user.getEmail(), user.getPwd1());
 					manager.finalize();
 					view = "RegisteredEL.jsp";
 				}	

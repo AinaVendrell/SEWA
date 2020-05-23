@@ -13,17 +13,17 @@ CREATE TABLE `Users`(
     `surname`  CHAR(50) NOT NULL,
     `gender` CHAR(50) NOT NULL,
     `birthday`  CHAR(50) NOT NULL,
-    `userName`  CHAR(50) NOT NULL,
+    `username`  CHAR(50) NOT NULL,
     `email`  CHAR(50) NOT NULL,
     `pwd`  CHAR(50) NOT NULL,
     PRIMARY KEY (`id`),
     UNIQUE(`email`),
-    UNIQUE(`userName`)
+    UNIQUE(`username`)
 );
 
 USE unio;
 
-INSERT INTO `Users` (`name`, `surname`, `gender`, `birthday`, `userName`, `email`, `pwd`) VALUES
+INSERT INTO `Users` (`name`, `surname`, `gender`, `birthday`, `username`, `email`, `pwd`) VALUES
 ('eva', 'martos', 'mujer', '2016-01-14', 'evamartos', 'evamartos@gmail.com', 'EvMar1999'),
 ('aleix', 'alonso', 'hombre', '2016-01-14', 'aleixalonso', 'aleixalonso@gmail.com', 'AleAlo1999'),
 ('mar', 'calafato', 'mujer', '2016-01-14', 'marcalafato', 'marcalafato@gmail.com', 'MarCala1999'),
