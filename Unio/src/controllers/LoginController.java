@@ -50,7 +50,6 @@ public class LoginController extends HttpServlet {
 			    
 		    } 
 			else {
-		     
 				System.out.println("login WRONG, forwarding to ViewLoginDone ");
 			    request.setAttribute("login",login);
 			    RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");

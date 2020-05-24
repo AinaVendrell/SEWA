@@ -21,7 +21,7 @@ public class Login {
 	}
 
 	public void setEmail(String email) {
-		System.out.println(email);
+		System.out.println("inside login" + email);
 		this.email = email;
 	}
 
