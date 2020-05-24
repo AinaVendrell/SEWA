@@ -53,7 +53,7 @@ public class LoginController extends HttpServlet {
 		     
 				System.out.println("login WRONG, forwarding to ViewLoginDone ");
 			    request.setAttribute("login",login);
-			    RequestDispatcher dispatcher = request.getRequestDispatcher("ViewLoginForm.jsp");
+			    RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
 			    dispatcher.forward(request, response);
 		    	
 		    }
