@@ -27,7 +27,7 @@ prefix="c"%>
       method="POST"
     >
       <div class="form-row justify-content-center h-100 mb-4">
-        <div class="col-sm-4">
+        <div class="col-lg-4 col-md-8">
           <label for="email" class="sr-only">Email</label>
           <input
             type="email"
@@ -42,7 +42,7 @@ prefix="c"%>
         </div>
       </div>
       <div class="form-row justify-content-center h-100 mb-4">
-        <div class="col-sm-4">
+        <div class="col-lg-4 col-md-8">
           <label class="sr-only" for="pwd1">Password</label>
           <input
             type="password"
@@ -57,7 +57,7 @@ prefix="c"%>
         </div>
       </div>
       <div class="form-row justify-content-center h-100 mb-4">
-        <div class="col-sm-4">
+        <div class="col-lg-4 col-md-8">
           <button type="submit" class="btn btn-primary btn-block">
             Login
           </button>

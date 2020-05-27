@@ -26,7 +26,7 @@ prefix="c"%>
       action="RegisterController"
     >
       <div class="form-row justify-content-center h-100 mb-2">
-        <div class="form-group col-sm-2">
+        <div class="form-group col-lg-2 col-md-4">
           <label class="sr-only" for="name">First Name</label>
           <input
             type="text"
@@ -39,7 +39,7 @@ prefix="c"%>
             required
           />
         </div>
-        <div class="form-group col-sm-2">
+        <div class="form-group col-lg-2 col-md-4">
           <label class="sr-only" for="surname">Last Name</label>
           <input
             type="text"
@@ -54,8 +54,8 @@ prefix="c"%>
         </div>
       </div>
       <!-- data-parsley-pattern="^[0-9]{2}/[0-9]{2}/[0-9]{4}$" -->
-      <div class="form-row justify-content-center h-100 mb-4">
-        <div class="col-sm-2">
+      <div class="form-row justify-content-center h-100 mb-2">
+        <div class="form-group col-lg-2 col-md-4">
           <label class="control-label sr-only" for="birthday">Birthday</label>
           <input
             class="form-control"
@@ -74,7 +74,7 @@ prefix="c"%>
           />
         </div>
         <!--data-parsley-maxdate="10/10/2019"-->
-        <div class="col-sm-2">
+        <div class="form-group col-lg-2 col-md-4">
           <label class="sr-only" for="gender">Gender</label>
           <select
             id="gender"
@@ -92,7 +92,7 @@ prefix="c"%>
         </div>
       </div>
       <div class="form-row justify-content-center h-100 mb-2">
-        <div class="col-sm-4">
+        <div class="col-lg-4 col-md-8">
           <label class="sr-only" for="username">Username</label>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
@@ -112,7 +112,7 @@ prefix="c"%>
         </div>
       </div>
       <div class="form-row justify-content-center h-100 mb-4">
-        <div class="col-sm-4">
+        <div class="col-lg-4 col-md-8">
           <label for="email" class="sr-only">Email</label>
           <input
             type="email"
@@ -127,7 +127,7 @@ prefix="c"%>
         </div>
       </div>
       <div class="form-row justify-content-center h-100 mb-4">
-        <div class="col-sm-4">
+        <div class="col-lg-4 col-md-8">
           <label class="sr-only" for="pwd1">Password</label>
           <input
             type="password"
@@ -153,7 +153,7 @@ prefix="c"%>
         </div>
       </div>
       <div class="form-row justify-content-center h-100 mb-4">
-        <div class="col-sm-4">
+        <div class="col-lg-4 col-md-8">
           <label class="sr-only" for="pwd2">Confirm Password</label
           ><input
             type="password"
@@ -169,7 +169,7 @@ prefix="c"%>
         </div>
       </div>
       <div class="form-row justify-content-center h-100 mb-4">
-        <div class="col-auto">
+        <div class="col-lg-4 col-md-8">
           <div class="form-check">
             <input
               class="form-check-input"
@@ -190,7 +190,7 @@ prefix="c"%>
         </div>
       </div>
       <div class="form-row justify-content-center h-100 mb-4">
-        <div class="col-sm-4">
+        <div class="col-lg-4 col-md-8">
           <button type="submit" class="btn btn-primary btn-block">
             Sign up
           </button>
