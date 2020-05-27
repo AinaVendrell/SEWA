@@ -2,18 +2,18 @@ package models;
 
 public class Login {
 
-	private String user = "";
+	private String username = "";
 	private String email = "";
 	private String pwd = "";
 	private boolean[] error = {false, false};
 	
-	public String getUser() {
-		return user;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUser(String user) {
+	public void setUsername(String user) {
 		System.out.println(user);
-		this.user = user;
+		this.username = user;
 	}
 	
 	public String getEmail() {
