@@ -1,33 +1,68 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8" session="false"%> <%@ taglib
-uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+pageEncoding="UTF-8"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core"
+prefix="c"%>
 
-<form action="LoginController" method="POST">
-  <p>
-    <label class="w3-text-red"><b> Email </b></label>
-    <input
-      class="w3-input w3-border w3-light-grey"
-      type="text"
-      name="email"
-      value="${login.email}"
-      required
-      minlength="5"
-    />
-  </p>
+<div>
+  <ul class="server-errors-list">
+    <c:if test="${login.error[0]}">
+      <li>Wrong password</li>
+    </c:if>
+    <c:if test="${login.error[1]}">
+      <li>Email does not exist (SignUp ?)</li>
+    </c:if>
+  </ul>
 
-  <p>
-    <label class="w3-text-red"><b> Password </b></label>
-    <input
-      class="w3-input w3-border w3-light-grey"
-      type="text"
-      name="pwd"
-      value="${login.pwd}"
-      required
-      minlength="5"
-    />
-  </p>
+  <div class="description">
+    <img class="mb-4" src="images/unio.svg" alt="unio" width="72" height="72" />
 
-  <p>
-    <input class="w3-btn w3-red" type="submit" name="sumbit" value="Submit" />
-  </p>
-</form>
+    <h1>Login UNIO</h1>
+    <hr />
+    <br />
+  </div>
+  <div class="container">
+    <form
+      data-parsley-trigger="keyup"
+      data-parsley-validate
+      action="LoginController"
+      method="POST"
+    >
+      <div class="form-row justify-content-center h-100 mb-4">
+        <div class="col-lg-4 col-md-8">
+          <label for="email" class="sr-only">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            placeholder="Email"
+            required
+            data-parsley-type="email"
+            value="${login.email}"
+          />
+        </div>
+      </div>
+      <div class="form-row justify-content-center h-100 mb-4">
+        <div class="col-lg-4 col-md-8">
+          <label class="sr-only" for="pwd1">Password</label>
+          <input
+            type="password"
+            id="pwd"
+            name="pwd"
+            class="form-control"
+            placeholder="Password"
+            aria-describedby="passwordHelpBlock"
+            required
+            value="${login.pwd}"
+          />
+        </div>
+      </div>
+      <div class="form-row justify-content-center h-100 mb-4">
+        <div class="col-lg-4 col-md-8">
+          <button type="submit" class="btn btn-primary btn-block">
+            Login
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

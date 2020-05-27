@@ -44,15 +44,15 @@ public class LoginController extends HttpServlet {
 	    	if (manager.isComplete(login) && manager.isCorrect(login)) {
 	    		System.out.println("login OK, forwarding to ViewLoginDone ");
 		    	HttpSession session = request.getSession();
-		    	session.setAttribute("user",login.getUser());
-		    	RequestDispatcher dispatcher = request.getRequestDispatcher("ViewLoginDone.jsp");
+		    	session.setAttribute("user",login.getUsername());
+		    	RequestDispatcher dispatcher = request.getRequestDispatcher("ViewLoginDone.jsp"); 
 			    dispatcher.forward(request, response);
 			    
 		    } 
 			else {
 				System.out.println("login WRONG, forwarding to ViewLoginDone ");
 			    request.setAttribute("login",login);
-			    RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+			    RequestDispatcher dispatcher = request.getRequestDispatcher("ViewLoginForm.jsp");
 			    dispatcher.forward(request, response);
 		    	
 		    }
