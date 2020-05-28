@@ -1,9 +1,9 @@
 .description {
-	text-align: center;
+    text-align: center;
 }
 
 .description h1 {
-	font-size: large;
+    font-size: large;
 }
 
 .usernamediv{
@@ -15,7 +15,7 @@
   transform: translate(31%, 0%);
 }
 .wrapper{
-	padding-top: 50px;
+    padding-top: 50px;
 }
 
 input.parsley-error,
@@ -42,10 +42,17 @@ textarea.parsley-error:focus {
     color: #d16e6c;
     margin-top: 5px;
     margin-bottom: 0;
-  	padding-left: 0;
+    padding-left: 0;
 }
 
 .parsley-errors-list.filled {
     opacity: 1;
     color: #a94442;
+}
+
+.server-errors-list {
+    list-style-type: none;
+    position: relative;
+    left: -2%;
+    color: #d16e6c;
 }
