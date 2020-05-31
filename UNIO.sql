@@ -25,24 +25,18 @@ USE `unio`;
 DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
--- CREATE TABLE `users` (
---  `uid` varchar(20) NOT NULL,
- -- `name` varchar(20) DEFAULT NULL,
- -- PRIMARY KEY (`uid`)
--- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 CREATE TABLE `users`(
-    `name`  CHAR(50) NOT NULL,
-    `surname`  CHAR(50) NOT NULL,
-    `gender` CHAR(50) NOT NULL,
-    `birthday`  DATE NOT NULL,
-    `uid`  CHAR(50) NOT NULL,
-    `email`  CHAR(50) NOT NULL,
-    `pwd`  CHAR(50) NOT NULL,
+    `name`   varchar(20) NOT NULL,
+    `surname`   varchar(20) NOT NULL,
+    `gender`  varchar(20) NOT NULL,
+    `birthday`   varchar(20) NOT NULL,
+    `uid`   varchar(20) NOT NULL,
+    `email`  varchar(50) NOT NULL,
+    `pwd`   varchar(20) NOT NULL,
+    `avatar` varchar(20) DEFAULT NULL,
     PRIMARY KEY(`uid`),
     UNIQUE(`email`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -51,11 +45,11 @@ CREATE TABLE `users`(
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `Users` (`name`, `surname`, `gender`, `birthday`, `uid`, `email`, `pwd`) VALUES
-('Eva', 'Martos', 'mujer', '1999-01-01', 'evamartos', 'evamartos@gmail.com', 'EvMar1999'),
-('Aleix', 'Alonso', 'hombre', '1999-04-30', 'aleixalonso', 'aleixalonso@gmail.com', 'AleAlo1999'),
-('Mar', 'Calafato', 'mujer', '1998-03-11', 'marcalafato', 'marcalafato@gmail.com', 'MarCala1998'),
-('Aina', 'Vendrell', 'mujer', '1999-11-14', 'ainavendrell', 'ainavendrell@gmail.com', 'AiVen1999');
+INSERT INTO `users` (`name`, `surname`, `gender`, `birthday`, `uid`, `email`, `pwd`, `avatar`) VALUES
+('Eva', 'Martos', 'mujer', '1999-01-01', 'evamartos', 'evamartos@gmail.com', 'EvMar1999', 'avatar/user_12.png'),
+('Aleix', 'Alonso', 'hombre', '1999-04-30', 'aleixalonso', 'aleixalonso@gmail.com', 'AleAlo1999', 'avatar/user_2.png'),
+('Mar', 'Calafato', 'mujer', '1998-03-11', 'marcalafato', 'marcalafato@gmail.com', 'MarCala1998', 'avatar/user_15.png'),
+('Aina', 'Vendrell', 'mujer', '1999-11-14', 'ainavendrell', 'ainavendrell@gmail.com', 'AiVen1999', 'avatar/user_20.png');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -116,14 +110,13 @@ CREATE TABLE `tweets` (
   KEY `tweets_tweets_fk` (`pid`),
   CONSTRAINT `tweets_tweets_fk` FOREIGN KEY (`pid`) REFERENCES `tweets` (`tid`)
   -- CONSTRAINT `tweets_users_fk` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=282 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 
 --
 -- Dumping data for table `tweets`
 --
-ALTER TABLE tweets AUTO_INCREMENT = 1;
 LOCK TABLES `tweets` WRITE;
 /*!40000 ALTER TABLE `tweets` DISABLE KEYS */;
 INSERT INTO `tweets` (`uid`, `postdatetime`, `content`) VALUES
@@ -147,5 +140,7 @@ UNLOCK TABLES;
 SELECT * FROM users;
 SELECT * FROM followers;
 SELECT * FROM tweets;
+
+
 
 

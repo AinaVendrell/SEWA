@@ -7,6 +7,7 @@ public class Tweets implements java.io.Serializable {
 
 	 private Integer tid;
 	 private String uid;
+	 private String avatar = "";
 	 private Timestamp postDateTime;
 	 private String content;
 
@@ -42,5 +43,14 @@ public class Tweets implements java.io.Serializable {
 	 public void setContent(String content) {
 		 this.content = content;
 	 }
+	 
+	 public String getAvatar() {
+			return avatar;
+		}
+
+	public void setAvatar(String avatar) {
+		System.out.println("Avatar   " + avatar);
+		this.avatar = avatar;
+	}
 
 }

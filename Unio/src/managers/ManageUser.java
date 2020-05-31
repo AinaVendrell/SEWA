@@ -124,7 +124,7 @@ public class ManageUser {
 	
 	// Get a user given its PK
 	public User getUser(String uid) {
-		String query = "SELECT uid,name FROM users WHERE uid = ? ;";
+		String query = "SELECT name, surname, gender, birthday, uid, avatar FROM users WHERE uid = ? ;";
 		PreparedStatement statement = null;
 		ResultSet rs = null;
 		User user = null;
@@ -136,6 +136,11 @@ public class ManageUser {
 				user = new User();
 				user.setUid(rs.getString("uid"));
 				user.setName(rs.getString("name"));
+				user.setSurname(rs.getString("surname"));
+				user.setBirthday(rs.getString("birthday"));
+				user.setGender(rs.getString("gender"));
+				user.setAvatar(rs.getString("avatar"));
+
 			}
 			rs.close();
 			statement.close();
@@ -144,21 +149,6 @@ public class ManageUser {
 		}
 		
 		return user;
-	}
-	
-	// Add new user
-	public void addUser(String uid, String name) {
-		String query = "INSERT INTO users (uid,name) VALUES (?,?)";
-		PreparedStatement statement = null;
-		try {
-			statement = db.prepareStatement(query);
-			statement.setString(1,uid);
-			statement.setString(2,name);
-			statement.executeUpdate();
-			statement.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	// Update a user
@@ -193,7 +183,7 @@ public class ManageUser {
 	
 	// Get users a given user is following
 	public List<User> getUserFollows(String uid) {
-			String query = "SELECT users.uid,users.name FROM followers JOIN users ON users.uid = followers.fid WHERE followers.uid = ?;";
+			String query = "SELECT users.uid,users.name, users.avatar FROM followers JOIN users ON users.uid = followers.fid WHERE followers.uid = ?;";
 			PreparedStatement statement = null;
 			List<User> l = new ArrayList<User>();
 			try {
@@ -204,6 +194,7 @@ public class ManageUser {
 					User user = new User();
 					user.setUid(rs.getString("uid"));
 					user.setName(rs.getString("name"));
+					user.setAvatar(rs.getString("avatar"));
 					l.add(user);
 				}
 				rs.close();
@@ -215,7 +206,7 @@ public class ManageUser {
 	}
 	
 	public List<User> getUserFollows(String uid, Integer start, Integer end) {
-			String query = "SELECT users.uid,users.name FROM followers JOIN users ON users.uid = followers.fid WHERE followers.uid = ? ORDER BY users.name LIMIT ?,?;";
+			String query = "SELECT users.uid,users.name, users.avatar FROM followers JOIN users ON users.uid = followers.fid WHERE followers.uid = ? ORDER BY users.name LIMIT ?,?;";
 			PreparedStatement statement = null;
 			List<User> l = new ArrayList<User>();
 			try {
@@ -228,6 +219,7 @@ public class ManageUser {
 					User user = new User();
 					user.setUid(rs.getString("uid"));
 					user.setName(rs.getString("name"));
+					user.setAvatar(rs.getString("avatar"));
 					l.add(user);
 				}
 				rs.close();

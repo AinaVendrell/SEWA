@@ -15,6 +15,7 @@ public class User implements java.io.Serializable {
 	private String email = "";
 	private String pwd = "";
 	private String pwd2 = "";
+	private String avatar = "avatar/user_23.png";
 	
 	private boolean[] error  = {false,false,false,false,false,false,false,false};
 	
@@ -27,6 +28,7 @@ public class User implements java.io.Serializable {
 	}
 
 	public void setName(String name) {
+		System.out.println("Name   " + name);
 		this.name = name;
 	}
 
@@ -35,6 +37,7 @@ public class User implements java.io.Serializable {
 	}
 
 	public void setSurname(String surname) {
+		System.out.println("Surname   " + surname);
 		this.surname = surname;
 	}
 
@@ -94,6 +97,15 @@ public class User implements java.io.Serializable {
 
 	public void setPwd2(String pwd2) {
 		this.pwd2 = pwd2;
+	}
+	
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		System.out.println("Avatar   " + avatar);
+		this.avatar = avatar;
 	}
 
 	public boolean[] getError() {

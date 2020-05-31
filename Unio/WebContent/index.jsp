@@ -34,10 +34,10 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
       font-family: 'Open Sans', sans-serif;
     }
   </style>
-  
+
   <script type="text/javascript">
-  $('#navigation').load('MenuController')
-</script>
+    $('#navigation').load('MenuController')
+  </script>
 
   <script>
     var start = 0
@@ -164,7 +164,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
           title="My Account"
         >
           <img
-            src="w3images/avatar2.png"
+            src="avatar/user-3.png"
             class="w3-circle"
             style="height: 23px; width: 23px;"
             alt="Avatar"
