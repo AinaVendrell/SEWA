@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 
-import models.Login;
+import models.User;
 import utils.DAO;
 
 public class ManageLogin {
@@ -30,7 +30,7 @@ public class ManageLogin {
 	
 	
 	// Check if all the fields are filled correctly 
-	public boolean isComplete(Login login) {
+	public boolean isComplete(User login) {
 	    return(hasValue(login.getEmail()) &&
 	    	   hasValue(login.getPwd()));
 	}
@@ -41,10 +41,10 @@ public class ManageLogin {
 	}
 	
 	// Check if login is correct
-	public boolean isCorrect(Login login) {
+	public boolean isCorrect(User login) {
 		String user = ckeckLogin(login.getEmail(), login.getPwd());
 		if ( user != null) {
-			login.setUsername(user);
+			login.setUid(user);
 			System.out.print("\nCorrect LogIn\n");
 			return true;	
 		}
@@ -62,9 +62,9 @@ public class ManageLogin {
 	
 	// Check if there is a user with this password and email
 	private String ckeckLogin(String email, String pwd) {
-		String query ="SELECT username FROM Users WHERE email = ? AND pwd = ?";
+		String query ="SELECT uid FROM Users WHERE email = ? AND pwd = ?";
 		PreparedStatement statement = null;
-		String username = null;
+		String uid = null;
 		try {
 			statement = db.prepareStatement(query);
 			statement.setString(1, email);
@@ -74,13 +74,13 @@ public class ManageLogin {
 			    return null;
 			}
 			rs.next();
-			username = rs.getString(1);
-			System.out.print(username);
+			uid = rs.getString(1);
+			System.out.print(uid);
 			statement.close();	
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return username;
+		return uid;
 	}
 	
 	// Check if email exists

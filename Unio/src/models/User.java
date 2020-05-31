@@ -11,9 +11,9 @@ public class User implements java.io.Serializable {
 	private String surname = "";
 	private String birthday = "";
 	private String gender = ""; 
-	private String username = "";
+	private String uid = "";
 	private String email = "";
-	private String pwd1 = "";
+	private String pwd = "";
 	private String pwd2 = "";
 	
 	private boolean[] error  = {false,false,false,false,false,false,false,false};
@@ -54,13 +54,13 @@ public class User implements java.io.Serializable {
 		this.gender = gender;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getUid() {
+		return uid;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
-		System.out.println(username);
+	public void setUid(String uid) {
+		this.uid = uid;
+		System.out.println(uid);
 	}
 
 	public String getEmail() {
@@ -80,12 +80,12 @@ public class User implements java.io.Serializable {
 		}
 	}
 
-	public String getPwd1() {
-		return pwd1;
+	public String getPwd() {
+		return pwd;
 	}
 
-	public void setPwd1(String pwd1) {
-		this.pwd1 = pwd1;
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
 	}
 
 	public String getPwd2() {
