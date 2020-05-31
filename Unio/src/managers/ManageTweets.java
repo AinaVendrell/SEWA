@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import models.Tweets;
+import models.User;
 import utils.DAO;
 
 
@@ -194,7 +195,7 @@ public class ManageTweets {
 	
 	// Get tweets from a user given start and end
 	public List<Tweets> getUserTweets(String uid,Integer start, Integer end) {
-		 String query = "SELECT tweets.tid,tweets.uid,tweets.postdatetime,tweets.content FROM tweets where tweets.uid = ? ORDER BY tweets.postdatetime DESC LIMIT ?,? ;";
+		 String query = "SELECT U.avatar, T.tid,T.uid,T.postdatetime,T.content FROM tweets AS T, users AS U WHERE T.uid = ? AND T.uid = U.uid ORDER BY T.postdatetime DESC LIMIT ?,? ";
 		 PreparedStatement statement = null;
 		 List<Tweets> l = new ArrayList<Tweets>();
 		 try {
@@ -209,6 +210,8 @@ public class ManageTweets {
 				 tweet.setUid(rs.getString("uid"));
 				 tweet.setPostDateTime(rs.getTimestamp("postdatetime"));
 				 tweet.setContent(rs.getString("content"));
+				 tweet.setAvatar(rs.getString("avatar"));
+				 
 				 l.add(tweet);
 			 }
 			 rs.close();
