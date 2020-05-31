@@ -2,31 +2,30 @@ package controllers;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.sql.Timestamp;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.BeanUtils;
 
-import managers.ManageUser;
-import models.User;
+import managers.ManageTweets;
+import models.Tweets;
 
 /**
- * Servlet implementation class FormController
+ * Servlet implementation class AddTweetFromUser
  */
-@WebServlet("/RegisterController")
-public class RegisterController extends HttpServlet {
+@WebServlet("/AddTweetFromUser")
+public class AddTweetFromUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RegisterController() {
+    public AddTweetFromUser() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,34 +34,27 @@ public class RegisterController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		Tweets tweet = new Tweets();
+		
 		try {
-			User user = new User();
-			ManageUser manager = new ManageUser();
-			BeanUtils.populate(user, request.getParameterMap());
-			if (manager.isComplete(user) && manager.isCorrect(user)) {
-				manager.addUser(user.getName(), user.getSurname(), user.getGender(), user.getBirthday(), user.getUid(), user.getEmail(), user.getPwd());
-				manager.finalize();
-				HttpSession session = request.getSession();
-				session.setAttribute("user", user);
-		    	RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp"); 
-			    dispatcher.forward(request, response);
-			} 
-			else {
-				System.out.println(" forwarding to ViewRegisterForm");
-				request.setAttribute("user",user);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("ViewSignUpForm.jsp");
-				dispatcher.forward(request, response);
-			}
-		   
+			BeanUtils.populate(tweet, request.getParameterMap());
+			ManageTweets tweetManager = new ManageTweets();
+			tweetManager.addTweet(tweet.getUid(),  new Timestamp(System.currentTimeMillis()), tweet.getContent());
+			tweetManager.finalize();
+
 		} catch (IllegalAccessException | InvocationTargetException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
