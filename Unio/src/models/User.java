@@ -2,6 +2,7 @@ package models;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class User implements java.io.Serializable {
 
@@ -55,6 +56,7 @@ public class User implements java.io.Serializable {
 
 	public void setGender(String gender) {
 		this.gender = gender;
+		this.setRandomAvatar();
 	}
 
 	public String getUid() {
@@ -102,7 +104,28 @@ public class User implements java.io.Serializable {
 	public String getAvatar() {
 		return avatar;
 	}
-
+	
+	public void setRandomAvatar() {
+		System.out.println("Gender   " + this.gender);
+		int randomNum = 23;
+		if (this.gender.equals("male")) {
+			System.out.println("\nIS MALE\n");
+			randomNum = ThreadLocalRandom.current().nextInt(0, 10 + 1);
+			System.out.println(randomNum);
+		} else if (this.gender.equals("female")) {
+			System.out.println("\nIS FEMALE\n");
+			randomNum = ThreadLocalRandom.current().nextInt(11, 22 + 1);
+			System.out.println(randomNum);
+		} 
+		String s1="avatar/user_";  
+		String s3=".png";  
+		String s2 = String.valueOf(randomNum);
+		String avatar=s1.concat(s2).concat(s3);  
+		System.out.println(avatar);
+		
+		this.avatar = avatar;
+	}
+	
 	public void setAvatar(String avatar) {
 		System.out.println("Avatar   " + avatar);
 		this.avatar = avatar;

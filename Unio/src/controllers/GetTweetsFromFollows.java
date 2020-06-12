@@ -44,7 +44,8 @@ public class GetTweetsFromFollows extends HttpServlet {
 		try {
 			BeanUtils.populate(dt, request.getParameterMap());
 			ManageTweets tweetManager = new ManageTweets();
-			tweets = tweetManager.getFollowsTweets(dt.getUid(),dt.getStart(),dt.getEnd());
+			//tweets = tweetManager.getFollowsTweets(dt.getUid(),dt.getStart(),dt.getEnd());
+			tweets = tweetManager.getFollowsTweets(dt.getUid());
 			tweetManager.finalize();
 		
 		} catch (IllegalAccessException | InvocationTargetException e) {

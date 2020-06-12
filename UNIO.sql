@@ -140,7 +140,3 @@ UNLOCK TABLES;
 SELECT * FROM users;
 SELECT * FROM followers;
 SELECT * FROM tweets;
-
-
-
-

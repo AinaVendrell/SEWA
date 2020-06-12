@@ -35,7 +35,7 @@ public class ManageTweets {
 	
 	/* Get a tweet given its PK */
 	public Tweets getTweet(Integer tid) {
-		String query = "SELECT tid,uid,postDateTime,content FROM tweets WHERE tid = ? ;";
+		String query = "SELECT U.avatar,T.tid,T.uid,T.postDateTime,T.content FROM tweets AS T, users AS U WHERE tid = ? AND T.uid = U.uid;";
 		PreparedStatement statement = null;
 		ResultSet rs = null;
 		Tweets tweet = null;
@@ -49,6 +49,7 @@ public class ManageTweets {
 				tweet.setUid(rs.getString("uid"));
 				tweet.setPostDateTime(rs.getTimestamp("postDateTime"));
 				tweet.setContent(rs.getString("content"));
+				tweet.setAvatar(rs.getString("avatar"));
 			}
 			rs.close();
 			statement.close();
@@ -144,7 +145,7 @@ public class ManageTweets {
 	
 	/* Get tweet comments */
 	public Tweets getTweetComments(Integer tid) {
-		String query = "SELECT tid,uid,postDateTime,content FROM tweets WHERE pid = ? ;";
+		String query = "SELECT U.avatar,T.tid,T.uid,T.postDateTime,T.content FROM tweets AS T, users AS U WHERE pid = ? AND T.uid = U.uid;";
 		PreparedStatement statement = null;
 		ResultSet rs = null;
 		Tweets tweet = null;
@@ -158,6 +159,7 @@ public class ManageTweets {
 				tweet.setUid(rs.getString("uid"));
 				tweet.setPostDateTime(rs.getTimestamp("postDateTime"));
 				tweet.setContent(rs.getString("content"));
+				tweet.setAvatar(rs.getString("avatar"));
 			}
 			rs.close();
 			statement.close();
@@ -170,7 +172,7 @@ public class ManageTweets {
 	
 	// Get tweets from a user
 	public List<Tweets> getUserTweets(String uid) {
-		 String query = "SELECT tweets.tid,tweets.uid,tweets.postdatetime,tweets.content FROM tweets where tweets.uid = ? ;";
+		 String query = "SELECT U.avatar, T.tid,T.uid,T.postdatetime,T.content FROM tweets AS T, users AS U WHERE T.uid = ? AND T.uid = U.uid";
 		 PreparedStatement statement = null;
 		 List<Tweets> l = new ArrayList<Tweets>();
 		 try {
@@ -183,6 +185,7 @@ public class ManageTweets {
 				 tweet.setUid(rs.getString("uid"));
 				 tweet.setPostDateTime(rs.getTimestamp("postdatetime"));
 				 tweet.setContent(rs.getString("content"));
+				 tweet.setAvatar(rs.getString("avatar"));
 				 l.add(tweet);
 			 }
 			 rs.close();
@@ -224,7 +227,7 @@ public class ManageTweets {
 	
 	// Get tweets from user follows
 	public List<Tweets> getFollowsTweets(String uid) {
-		 String query = "SELECT tweets.tid,tweets.uid,tweets.postdatetime,tweets.content FROM tweets JOIN followers ON followers.fid = tweets.uid WHERE followers.uid = ? ;";
+		 String query = "SELECT U.avatar, T.tid,T.uid,T.postdatetime,T.content FROM users AS U, tweets AS T JOIN followers ON followers.fid = T.uid WHERE followers.uid = ? AND  T.uid = U.uid;";
 		 PreparedStatement statement = null;
 		 List<Tweets> l = new ArrayList<Tweets>();
 		 try {
@@ -237,6 +240,7 @@ public class ManageTweets {
 				 tweet.setUid(rs.getString("uid"));
 				 tweet.setPostDateTime(rs.getTimestamp("postdatetime"));
 				 tweet.setContent(rs.getString("content"));
+				 tweet.setAvatar(rs.getString("avatar"));
 				 l.add(tweet);
 			 }
 			 rs.close();
@@ -249,7 +253,7 @@ public class ManageTweets {
 	
 	// Get tweets from user follows start and end
 	public List<Tweets> getFollowsTweets(String uid, Integer start, Integer end) {
-		 String query = "SELECT tweets.tid,tweets.uid,tweets.postdatetime,tweets.content FROM tweets JOIN followers ON followers.fid = tweets.uid WHERE followers.uid = ? ORDER BY tweets.postdatetime DESC LIMIT ?,? ;";
+		 String query = "SELECT U.avatar,T.tid,T.uid,T.postdatetime,T.content FROM users AS U, tweets AS T JOIN followers ON followers.fid = T.uid WHERE followers.uid = ? AND T.uid = U.uid ORDER BY tweets.postdatetime DESC LIMIT ?,? ;";
 		 PreparedStatement statement = null;
 		 List<Tweets> l = new ArrayList<Tweets>();
 		 try {
@@ -264,6 +268,7 @@ public class ManageTweets {
 				 tweet.setUid(rs.getString("uid"));
 				 tweet.setPostDateTime(rs.getTimestamp("postdatetime"));
 				 tweet.setContent(rs.getString("content"));
+				 tweet.setAvatar(rs.getString("avatar"));
 				 l.add(tweet);
 			 }
 			 rs.close();
@@ -276,7 +281,7 @@ public class ManageTweets {
 	
 	// Get all the tweets
 	public List<Tweets> getTweets() {
-		 String query = "SELECT tid,uid,postdatetime,content FROM tweets;";
+		 String query = "SELECT U.avatar,T.tid,T.uid,T.postdatetime,T.content FROM tweets AS T, users AS U WHERE T.uid = U.uid;";
 		 PreparedStatement statement = null;
 		 List<Tweets> l = new ArrayList<Tweets>();
 		 try {
@@ -288,6 +293,7 @@ public class ManageTweets {
 				 tweet.setUid(rs.getString("uid"));
 				 tweet.setPostDateTime(rs.getTimestamp("postdatetime"));
 				 tweet.setContent(rs.getString("content"));
+				 tweet.setAvatar(rs.getString("avatar"));
 				 l.add(tweet);
 			 }
 			 rs.close();
