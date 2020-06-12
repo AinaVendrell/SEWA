@@ -32,8 +32,8 @@ public class ManageUser {
 	
 	
     // Add new user
-    public void addUser(String name, String surname, String gender, String birthday, String uid, String email, String pwd) {
-        String query = "INSERT INTO users (name,surname,gender,birthday,uid,email,pwd) VALUES (?,?,?,?,?,?,?)";
+    public void addUser(String name, String surname, String gender, String birthday, String uid, String email, String pwd, String avatar) {
+        String query = "INSERT INTO users VALUES (?,?,?,?,?,?,?,?)";
         PreparedStatement statement = null;
         try {
             statement = db.prepareStatement(query);
@@ -44,6 +44,7 @@ public class ManageUser {
             statement.setString(5,uid);
             statement.setString(6,email);
             statement.setString(7,pwd);
+            statement.setString(8,avatar);
             statement.executeUpdate();
             statement.close();
         } catch (SQLException e) {

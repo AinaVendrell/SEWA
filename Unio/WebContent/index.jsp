@@ -42,17 +42,17 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
   <script>
     var start = 0
     var nt = 4
-    var cview = 'GetTweetsFromUser'
+    var cview = 'GetTweetsFromFollows'
     var uid = '${user.uid}'
 
     $(document).ready(function () {
       $('#duser').load('GetUserInfo', { uid: uid }, function () {})
       $('#dtweets').load(
-        'GetTweetsFromUser',
+        'GetTweetsFromFollows',
         { uid: uid, start: start, end: start + nt },
         function () {
           start = nt
-          cview = 'GetTweetsFromUser'
+          cview = 'GetTweetsFromFollows'
         }
       )
 
