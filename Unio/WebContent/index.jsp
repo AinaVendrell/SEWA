@@ -141,7 +141,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
   <body class="w3-theme-l5">
     <!-- Navbar -->
-    <div class="w3-top">
+    <!-- <div class="w3-top">
       <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
         <a
           class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2"
@@ -171,17 +171,17 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
           />
         </a>
       </div>
-    </div>
+    </div> -->
 
     <!-- Navbar on small screens -->
-    <div
+    <!-- <div
       id="navDemo"
       class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large"
     >
       <a href="#" class="w3-bar-item w3-button w3-padding-large">Item1</a>
       <a class="vF w3-bar-item w3-button w3-padding-large">Friends</a>
       <a class="vT w3-bar-item w3-button w3-padding-large">My Profile</a>
-    </div>
+    </div> -->
 
     <!-- Page Container -->
     <div
