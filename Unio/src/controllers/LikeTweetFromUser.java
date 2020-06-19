@@ -3,7 +3,6 @@ package controllers;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,20 +12,21 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.BeanUtils;
 
-import managers.ManageLogin;
+import managers.ManageTweets;
+import models.Tweets;
 import models.User;
 
 /**
- * Servlet implementation class LoginController
+ * Servlet implementation class DelTweetFromUser
  */
-@WebServlet("/LoginController")
-public class LoginController extends HttpServlet {
+@WebServlet("/LikeTweetFromUser")
+public class LikeTweetFromUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginController() {
+    public LikeTweetFromUser() {
         super();
     }
 
@@ -34,36 +34,31 @@ public class LoginController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		System.out.print("LoginController: ");
 		
-		User login = new User();
-		ManageLogin manager = new ManageLogin();
+		Tweets tweet = new Tweets();
 		
-	    try {
-	    		    
-	    	BeanUtils.populate(login, request.getParameterMap());
-	    	if (manager.isComplete(login) && manager.isCorrect(login)) {
-	    		System.out.println("login OK, forwarding to ViewLoginDone ");
-		    	HttpSession session = request.getSession();
-				session.setAttribute("user", login);
-		    	RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp"); 
-			    dispatcher.forward(request, response);
-			    
-		    } 
-			else {
-				System.out.println("login WRONG, forwarding to ViewLoginDone ");
-			    request.setAttribute("login",login);
-			    RequestDispatcher dispatcher = request.getRequestDispatcher("ViewLoginForm.jsp");
-			    dispatcher.forward(request, response);
-		    	
-		    }
+		
+		HttpSession session = request.getSession(false);
+		User user = (User) session.getAttribute("user");
+		
+		try {
+			BeanUtils.populate(tweet, request.getParameterMap());
+			ManageTweets tweetManager = new ManageTweets();
+			tweet = tweetManager.getTweet(tweet.getTid());
+			
+			boolean result = tweetManager.checkLike(user.getUid(), tweet.getTid());
+			
+			if(result == false) {
+				tweetManager.likeTweet(tweet.getTid(), tweet.getLikes(), user.getUid());
+			}
+			
+			tweetManager.finalize();
 		} catch (IllegalAccessException | InvocationTargetException e) {
 			e.printStackTrace();
 		}
-	    
-	}
 		
+	}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -72,4 +67,3 @@ public class LoginController extends HttpServlet {
 	}
 
 }
-

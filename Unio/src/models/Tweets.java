@@ -10,6 +10,7 @@ public class Tweets implements java.io.Serializable {
 	 private String avatar = "";
 	 private Timestamp postDateTime;
 	 private String content;
+	 private Integer likes;
 
 	 public Tweets() {
 	 }
@@ -20,6 +21,14 @@ public class Tweets implements java.io.Serializable {
 	 
 	 public void setTid(Integer tid) {
 		 this.tid = tid;
+	 }
+	 
+	 public Integer getLikes() {
+		 return this.likes;
+	 }
+	 
+	 public void setLikes(Integer likes) {
+		 this.likes = likes;
 	 }
 
 	 public String getUid() {

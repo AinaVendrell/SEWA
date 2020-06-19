@@ -2,6 +2,8 @@ package controllers;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collections;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,20 +15,20 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.BeanUtils;
 
-import managers.ManageLogin;
+import managers.ManageUser;
 import models.User;
 
 /**
- * Servlet implementation class LoginController
+ * Servlet implementation class FollowUser
  */
-@WebServlet("/LoginController")
-public class LoginController extends HttpServlet {
+@WebServlet("/FollowUser")
+public class FollowUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginController() {
+    public FollowUser() {
         super();
     }
 
@@ -34,42 +36,30 @@ public class LoginController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		System.out.print("LoginController: ");
+	
+		User userFollowing = new User();
 		
-		User login = new User();
-		ManageLogin manager = new ManageLogin();
+		HttpSession session = request.getSession(false);
+		User user = (User) session.getAttribute("user");
 		
-	    try {
-	    		    
-	    	BeanUtils.populate(login, request.getParameterMap());
-	    	if (manager.isComplete(login) && manager.isCorrect(login)) {
-	    		System.out.println("login OK, forwarding to ViewLoginDone ");
-		    	HttpSession session = request.getSession();
-				session.setAttribute("user", login);
-		    	RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp"); 
-			    dispatcher.forward(request, response);
-			    
-		    } 
-			else {
-				System.out.println("login WRONG, forwarding to ViewLoginDone ");
-			    request.setAttribute("login",login);
-			    RequestDispatcher dispatcher = request.getRequestDispatcher("ViewLoginForm.jsp");
-			    dispatcher.forward(request, response);
-		    	
-		    }
+		try {
+			System.out.println("Follow");
+			BeanUtils.populate(userFollowing, request.getParameterMap());
+			ManageUser userManager = new ManageUser();
+			userManager.followUser(user.getUid(), userFollowing.getUid());
+			userManager.finalize();
+		
 		} catch (IllegalAccessException | InvocationTargetException e) {
 			e.printStackTrace();
 		}
-	    
 	}
-		
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
 }
-
