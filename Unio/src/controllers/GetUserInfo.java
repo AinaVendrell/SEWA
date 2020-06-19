@@ -47,7 +47,6 @@ public class GetUserInfo extends HttpServlet {
 		}
 		
 		request.setAttribute("user",user);
-		System.out.println("bfshjvehvthvh   " + user.getAvatar());
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/viewUserInfo.jsp"); 
 		dispatcher.include(request,response);
 

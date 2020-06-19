@@ -7,6 +7,7 @@ public class dTmodel implements java.io.Serializable {
 	 private String uid;
 	 private Integer start;
 	 private Integer end;
+	 private Integer global;
 	 
 	 public dTmodel() {
 		 this.start = 0;
@@ -37,4 +38,11 @@ public class dTmodel implements java.io.Serializable {
 		 this.end = end;
 	 }
 
+	 public Integer getGlobal() {
+		 return this.global;
+	 }
+	 
+	 public void setGlobal(Integer global) {
+		 this.global = global;
+	 }
 }

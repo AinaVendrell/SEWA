@@ -21,15 +21,15 @@ import models.dTmodel;
 /**
  * Servlet implementation class GetTweetsFromFollowing
  */
-@WebServlet("/GetTweetsFromFollows")
-public class GetTweetsFromFollows extends HttpServlet {
+@WebServlet("/GetTweets")
+public class GetTweets extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetTweetsFromFollows() {
+    public GetTweets() {
         super();
     }
 
@@ -44,9 +44,18 @@ public class GetTweetsFromFollows extends HttpServlet {
 		try {
 			BeanUtils.populate(dt, request.getParameterMap());
 			ManageTweets tweetManager = new ManageTweets();
-			//tweets = tweetManager.getFollowsTweets(dt.getUid(),dt.getStart(),dt.getEnd());
-			tweets = tweetManager.getFollowsTweets(dt.getUid());
+			if (dt.getGlobal() == 1) {
+				//tweets = tweetManager.getFollowsTweets(dt.getUid(),dt.getStart(),dt.getEnd());
+				tweets = tweetManager.getFollowsTweets(dt.getUid());
+			}
+			else if (dt.getGlobal() == 2) {
+				tweets = tweetManager.getUserTweets(dt.getUid(),dt.getStart(),dt.getEnd());
+			}
+			else {
+				tweets = tweetManager.getOthersTweets(dt.getUid());		
+			}
 			tweetManager.finalize();
+			
 		
 		} catch (IllegalAccessException | InvocationTargetException e) {
 			e.printStackTrace();

@@ -65,14 +65,14 @@ public class ManageUser {
 
 	// Check if the uid and email doesn't exist yet
 	public boolean isCorrect(User user) {
-		/*
-		 * if(uidExists(user.getUid())){ user.setError(0);
-		 * System.out.print("User already exists\n"); }
-		 */
-		/*
-		 * if(emailExists(user.getEmail())){ user.setError(1);
-		 * System.out.print("Email already exists\n"); }
-		 */
+		if(uidExists(user.getUid())){ 
+			user.setError(0);
+			System.out.print("User already exists	" + user.getUid() + "\n");
+		}
+		if(emailExists(user.getEmail())){ 
+			user.setError(1);
+			System.out.print("Email already exists	"+ user.getEmail()+ "\n"); 
+		} 
 		if (user.getError()[0] || user.getError()[1]) {
 			System.out.print("user or email already exists\n");
 			return false;
@@ -82,13 +82,13 @@ public class ManageUser {
 
 	// Check if the uid doesn't exist yet
 	private boolean uidExists(String uid) {
-		String query = "SELECT * FROM User WHERE uid = ?";
+		String query = "SELECT * FROM users WHERE uid = ?";
 		PreparedStatement statement = null;
 		try {
 			statement = db.prepareStatement(query);
 			statement.setString(1, uid);
 			ResultSet rs = statement.executeQuery();
-			if (!rs.isBeforeFirst()) {
+			if (!rs.next()) {
 				return false;
 			}
 			statement.close();
@@ -100,13 +100,13 @@ public class ManageUser {
 
 	// Check if the email doesn't exist yet
 	private boolean emailExists(String email) {
-		String query = "SELECT * FROM User WHERE email = ?";
+		String query = "SELECT * FROM users WHERE email = ?";
 		PreparedStatement statement = null;
 		try {
 			statement = db.prepareStatement(query);
 			statement.setString(1, email);
 			ResultSet rs = statement.executeQuery();
-			if (!rs.isBeforeFirst()) {
+			if (!rs.next()) {
 				System.out.print("No mail\n");
 				return false;
 			}
