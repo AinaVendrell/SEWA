@@ -43,7 +43,6 @@ public class FollowUser extends HttpServlet {
 		User user = (User) session.getAttribute("user");
 		
 		try {
-			System.out.println("Follow");
 			BeanUtils.populate(userFollowing, request.getParameterMap());
 			ManageUser userManager = new ManageUser();
 			userManager.followUser(user.getUid(), userFollowing.getUid());

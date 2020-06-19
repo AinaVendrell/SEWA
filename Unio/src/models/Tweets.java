@@ -58,7 +58,6 @@ public class Tweets implements java.io.Serializable {
 		}
 
 	public void setAvatar(String avatar) {
-		System.out.println("Avatar   " + avatar);
 		this.avatar = avatar;
 	}
 

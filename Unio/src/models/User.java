@@ -101,11 +101,9 @@ public class User implements java.io.Serializable {
 	}
 	
 	public void setRandomAvatar() {
-		System.out.println("Gender   " + this.gender);
 		int randomNum = 23;
 		if (this.gender.equals("male")) {
 			randomNum = ThreadLocalRandom.current().nextInt(0, 10 + 1);
-			System.out.println(randomNum);
 		} else if (this.gender.equals("female")) {
 			randomNum = ThreadLocalRandom.current().nextInt(11, 22 + 1);
 		} 

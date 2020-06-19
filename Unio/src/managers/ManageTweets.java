@@ -331,6 +331,33 @@ public class ManageTweets {
 	}
 	
 	// Get all the tweets
+		public List<Tweets> getOthersTweets(String uid) {
+			 String query = "SELECT U.avatar,T.tid,T.uid,T.postdatetime,T.content,T.likes FROM tweets AS T, users AS U WHERE T.uid = U.uid AND U.uid != ?;";
+			 PreparedStatement statement = null;
+			 List<Tweets> l = new ArrayList<Tweets>();
+			 try {
+				 statement = db.prepareStatement(query);
+				 statement.setString(1,uid);
+				 ResultSet rs = statement.executeQuery();
+				 while (rs.next()) {
+					 Tweets tweet = new Tweets();
+	     			 tweet.setTid(rs.getInt("tid"));
+					 tweet.setUid(rs.getString("uid"));
+					 tweet.setPostDateTime(rs.getTimestamp("postdatetime"));
+					 tweet.setContent(rs.getString("content"));
+					 tweet.setAvatar(rs.getString("avatar"));
+					 tweet.setLikes(rs.getInt("likes"));
+					 l.add(tweet);
+				 }
+				 rs.close();
+				 statement.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} 
+			return  l;
+		}
+		
+	// Get all the tweets
 	public List<Tweets> getTweets() {
 		 String query = "SELECT U.avatar,T.tid,T.uid,T.postdatetime,T.content,T.likes FROM tweets AS T, users AS U WHERE T.uid = U.uid;";
 		 PreparedStatement statement = null;
