@@ -29,7 +29,6 @@ public class User implements java.io.Serializable {
 	}
 
 	public void setName(String name) {
-		System.out.println("Name   " + name);
 		this.name = name;
 	}
 
@@ -38,7 +37,6 @@ public class User implements java.io.Serializable {
 	}
 
 	public void setSurname(String surname) {
-		System.out.println("Surname   " + surname);
 		this.surname = surname;
 	}
 
@@ -65,7 +63,6 @@ public class User implements java.io.Serializable {
 
 	public void setUid(String uid) {
 		this.uid = uid;
-		System.out.println(uid);
 	}
 
 	public String getEmail() {
@@ -78,10 +75,8 @@ public class User implements java.io.Serializable {
 		Matcher matcher = pattern.matcher(mail);
 		if (matcher.matches()) {
 			this.email = mail;
-			System.out.println(mail);
 		} else {
 			error[1]=true;
-			System.out.println(mail);
 		}
 	}
 
@@ -109,25 +104,20 @@ public class User implements java.io.Serializable {
 		System.out.println("Gender   " + this.gender);
 		int randomNum = 23;
 		if (this.gender.equals("male")) {
-			System.out.println("\nIS MALE\n");
 			randomNum = ThreadLocalRandom.current().nextInt(0, 10 + 1);
 			System.out.println(randomNum);
 		} else if (this.gender.equals("female")) {
-			System.out.println("\nIS FEMALE\n");
 			randomNum = ThreadLocalRandom.current().nextInt(11, 22 + 1);
-			System.out.println(randomNum);
 		} 
 		String s1="avatar/user_";  
 		String s3=".png";  
 		String s2 = String.valueOf(randomNum);
-		String avatar=s1.concat(s2).concat(s3);  
-		System.out.println(avatar);
+		String avatar=s1.concat(s2).concat(s3);
 		
 		this.avatar = avatar;
 	}
 	
 	public void setAvatar(String avatar) {
-		System.out.println("Avatar   " + avatar);
 		this.avatar = avatar;
 	}
 

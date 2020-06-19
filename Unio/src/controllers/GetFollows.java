@@ -49,7 +49,6 @@ public class GetFollows extends HttpServlet {
 			ManageUser userManager = new ManageUser();
 			users = userManager.getUserFollows(user.getUid(),dt.getStart(),dt.getEnd());
 			userManager.finalize();
-			System.out.println("AVATdfgh   " + user.getAvatar());
 		
 		} catch (IllegalAccessException | InvocationTargetException e) {
 			e.printStackTrace();

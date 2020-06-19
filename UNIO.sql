@@ -105,6 +105,7 @@ CREATE TABLE `tweets` (
   `postdatetime` timestamp NULL DEFAULT NULL,
   `content` varchar(100) DEFAULT NULL,
   `pid` int(11) DEFAULT NULL,
+  `likes` int(11) DEFAULT 0,
   PRIMARY KEY (`tid`),
   -- KEY `tweets_users_fk` (`uid`),
   KEY `tweets_tweets_fk` (`pid`),
@@ -127,6 +128,36 @@ INSERT INTO `tweets` (`uid`, `postdatetime`, `content`) VALUES
 /*!40000 ALTER TABLE `tweets` ENABLE KEYS */;
 UNLOCK TABLES;
 
+--
+-- Table structure for table `likes`
+--
+
+DROP TABLE IF EXISTS `likes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `likes` (
+  `uid` varchar(20) NOT NULL,
+  `tid` int(11) NOT NULL,
+  PRIMARY KEY (`uid`,`tid`),
+  KEY `tid_users_fk` (`tid`),
+  CONSTRAINT `tid_users_fk` FOREIGN KEY (`tid`) REFERENCES `tweets` (`tid`),
+  CONSTRAINT `uid_users_tweet_fk` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `likes`
+--
+
+LOCK TABLES `likes` WRITE;
+/*!40000 ALTER TABLE `likes` DISABLE KEYS */;
+INSERT INTO `likes` VALUES 
+('evamartos',2),
+('evamartos',3),
+('aleixalonso',1);
+/*!40000 ALTER TABLE `likes` ENABLE KEYS */;
+UNLOCK TABLES;
+
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
@@ -140,3 +171,7 @@ UNLOCK TABLES;
 SELECT * FROM users;
 SELECT * FROM followers;
 SELECT * FROM tweets;
+SELECT * FROM likes;
+
+
+

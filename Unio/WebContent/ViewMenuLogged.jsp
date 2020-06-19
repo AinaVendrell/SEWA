@@ -24,17 +24,22 @@ pageEncoding="UTF-8" session="false"%>
       onclick="openNav()"
       ><i class="fa fa-bars"></i
     ></a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"
+    <a class="gF w3-bar-item w3-button w3-padding-large w3-theme-d4"
       ><i class="fa fa-home w3-margin-right"></i> EPAW
     </a>
     <a
-      href="#"
       class="vF w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"
       title="Friends"
       ><i class="fa fa-users"></i
     ></a>
+    
     <a
-      href="#"
+      class="vU w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"
+      title="Users"
+      ><i class="fa fa-user-plus"></i
+    ></a>
+    
+    <a
       class="vT w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white"
       title="My Account"
     >
@@ -45,7 +50,7 @@ pageEncoding="UTF-8" session="false"%>
         alt="Avatar"
       />
     </a>
-    <a class="menu nav-link" id="LogoutController" href="#">
+    <a class="menu nav-link" id="LogoutController">
       <i class="fa fa-times"></i>
     </a>
   </div>
@@ -56,7 +61,7 @@ pageEncoding="UTF-8" session="false"%>
   id="navDemo"
   class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large"
 >
-  <a href="#" class="w3-bar-item w3-button w3-padding-large">Item1</a>
+  <a class="w3-bar-item w3-button w3-padding-large">Item1</a>
   <a class="vF w3-bar-item w3-button w3-padding-large">Friends</a>
   <a class="vT w3-bar-item w3-button w3-padding-large">My Profile</a>
 </nav>
