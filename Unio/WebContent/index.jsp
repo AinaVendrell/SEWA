@@ -13,7 +13,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
   <link
     rel="stylesheet"
-    href="https://www.w3schools.com/lib/w3-theme-red.css"
+    href="https://www.w3schools.com/lib/w3-theme-grey.css"
   />
   <link
     rel="stylesheet"
@@ -298,7 +298,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     })
   </script>
 
-  <body class="w3-theme-l5">
+  <body class="">
     <!-- Page Container -->
     <div
       class="w3-container w3-content"
