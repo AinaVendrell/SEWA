@@ -47,6 +47,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     var uid = '${user.uid}'
 
     $(document).ready(function () {
+      document.getElementById('avatar_pic').src = '${user.avatar}'
       $('#duser').load(
         'GetUserInfo',
         {
@@ -99,6 +100,13 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
       /* Get and visualize user follows*/
       $('.vF').click(function (event) {
         event.preventDefault()
+        $('#duser').load(
+          'GetUserInfo',
+          {
+            uid: uid,
+          },
+          function () {}
+        )
         $('#dtweets').load(
           'GetFollows',
           {
@@ -116,6 +124,13 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
       /* Get and visualize all users*/
       $('.vU').click(function (event) {
         event.preventDefault()
+        $('#duser').load(
+          'GetUserInfo',
+          {
+            uid: uid,
+          },
+          function () {}
+        )
         $('#dtweets').load(
           'GetUsers',
           {
@@ -134,6 +149,13 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
       $('.vT').click(function (event) {
         global = 2
         event.preventDefault()
+        $('#duser').load(
+          'GetUserInfo',
+          {
+            uid: uid,
+          },
+          function () {}
+        )
         $('#dtweets').load(
           'GetTweets',
           {
@@ -216,24 +238,31 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
         )
       })
 
-      //   /* Get and visualize Tweets from a given user */
-      //   $('body').on('click', '.vP', function (event) {
-      //     global = 2
-      //     event.preventDefault()
-      //     $('#dtweets').load(
-      //       'GetTweets',
-      //       {
-      //         uid: $(this).parent().attr('id'),
-      //         start: 0,
-      //         end: nt,
-      //         global: 2,
-      //       },
-      //       function (data) {
-      //         start = nt
-      //         cview = 'GetTweets'
-      //       }
-      //     )
-      //   })
+      /* Get and visualize Tweets from a given user */
+      $('body').on('click', '.vP', function (event) {
+        global = 2
+        event.preventDefault()
+        $('#duser').load(
+          'GetUserInfo',
+          {
+            uid: $(this).parent().attr('uid'),
+          },
+          function () {}
+        )
+        $('#dtweets').load(
+          'GetTweets',
+          {
+            uid: $(this).parent().attr('uid'),
+            start: 0,
+            end: nt,
+            global: 2,
+          },
+          function (data) {
+            start = nt
+            cview = 'GetTweets'
+          }
+        )
+      })
 
       /* Unfollow user */
       $('body').on('click', '.uU', function (event) {
@@ -242,7 +271,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
         $.post(
           'UnfollowUser',
           {
-            uid: $(this).parent().attr('id'),
+            uid: $(this).parent().attr('uid'),
           },
           function (data) {
             $('#dtweets').load('GetFollows', {
@@ -259,7 +288,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
         $.post(
           'FollowUser',
           {
-            uid: $(this).parent().attr('id'),
+            uid: $(this).parent().attr('uid'),
           },
           function (data) {
             $('#dtweets').load('GetUsers', {
@@ -271,6 +300,10 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
       /* Like tweet from user */
       $('body').on('click', '.lT', function (event) {
+        var aux_uid = uid
+        if (global == 2) {
+          aux_uid = $(this).parent().attr('uid')
+        }
         event.preventDefault()
         var tweet = $(this).parent()
         $.post(
@@ -282,7 +315,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
             $('#dtweets').load(
               'GetTweets',
               {
-                uid: uid,
+                uid: aux_uid,
                 start: 0,
                 end: nt,
                 global: global,

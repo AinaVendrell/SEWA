@@ -46,6 +46,7 @@ public class GetTweets extends HttpServlet {
 		try {
 			BeanUtils.populate(dt, request.getParameterMap());
 			ManageTweets tweetManager = new ManageTweets();
+			System.out.println("GLOBAL" + dt.getGlobal());
 			if (dt.getGlobal() == 1) {
 				//tweets = tweetManager.getFollowsTweets(dt.getUid(),dt.getStart(),dt.getEnd());
 				tweets = tweetManager.getFollowsTweets(dt.getUid());
