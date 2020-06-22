@@ -10,6 +10,8 @@
    <p> ${t.content} </p>
    <p> ${t.likes} </p>
    <button type="button" class="lT w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-o-up"></i> &nbsp;Like</button>
+   <c:if test="${sessionScope.roll == 1}">
    <button type="button" class="dT w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-trash"></i> &nbsp;Delete</button> 
+   </c:if>
  </div>
 </c:forEach>

@@ -12,3 +12,10 @@
   </div>
 </div>
 <br>
+
+<!-- script para que aparezca foto de perfil en nav bar -->
+<script>
+	$(document).ready(function() {
+		document.getElementById('avatar_pic').src="${user.avatar}"
+	});
+</script>

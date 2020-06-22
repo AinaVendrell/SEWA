@@ -207,7 +207,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
         $.post(
           'DelTweetFromUser',
           {
-            tid: $(this).parent().attr('uid'),
+            tid: $(this).parent().attr('id'),
           },
           function (data) {
             tweet.remove()

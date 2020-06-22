@@ -33,7 +33,7 @@ public class ManageUser {
 	// Add new user
 	public void addUser(String name, String surname, String gender, String birthday, String uid, String email,
 			String pwd, String avatar) {
-		String query = "INSERT INTO users VALUES (?,?,?,?,?,?,?,?)";
+		String query = "INSERT INTO `users` (`name`, `surname`, `gender`, `birthday`, `uid`, `email`, `pwd`, `avatar`) VALUES (?,?,?,?,?,?,?,?)";
 		PreparedStatement statement = null;
 		try {
 			statement = db.prepareStatement(query);
@@ -120,7 +120,7 @@ public class ManageUser {
 
 	// Get a user given its PK
 	public User getUser(String uid) {
-		String query = "SELECT name, surname, gender, birthday, uid, avatar FROM users WHERE uid = ? ;";
+		String query = "SELECT name, surname, gender, birthday, uid, avatar, roll FROM users WHERE uid = ? ;";
 		PreparedStatement statement = null;
 		ResultSet rs = null;
 		User user = null;
@@ -136,6 +136,7 @@ public class ManageUser {
 				user.setBirthday(rs.getString("birthday"));
 				user.setGender(rs.getString("gender"));
 				user.setAvatar(rs.getString("avatar"));
+				user.setRoll(rs.getInt("roll"));
 
 			}
 			rs.close();
@@ -146,7 +147,7 @@ public class ManageUser {
 
 		return user;
 	}
-
+	
 	// Update a user
 	public void updateUser(String uid, String name) {
 		String query = "UPDATE users SET uid = ? , name = ? WHERE uid = ? ;";

@@ -16,7 +16,7 @@ pageEncoding="UTF-8" session="false"%>
 		</ul>
 		<ul class="navbar-nav my-2 my-md-0 mr-md-3">
 			<li class="nav-item"><a class="menu nav-link" id="LogoutController" href=#> LogOut </a></li>
-			<li class="nav-item"><a class="vT menu nav-link" title="My Profile"><img src="images/unio.svg" class="w3-circle" style="height: 23px; width: 23px;" alt="Avatar"/></a></li>
+			<li class="nav-item"><a class="vT menu nav-link" title="My Profile"><img id="avatar_pic" src="" class="w3-circle" style="height: 23px; width: 23px;" alt="Avatar"/></a></li>
 		</ul>
 		
 	</div>
