@@ -40,7 +40,8 @@ public class RegisterController extends HttpServlet {
 			ManageUser manager = new ManageUser();
 			BeanUtils.populate(user, request.getParameterMap());
 			if (manager.isComplete(user) && manager.isCorrect(user)) {
-				manager.addUser(user.getName(), user.getSurname(), user.getGender(), user.getBirthday(), user.getUid(), user.getEmail(), user.getPwd(), user.getAvatar());
+				manager.addUser(user.getName(), user.getSurname(), user.getGender(), user.getBirthday(), user.getUsername(), user.getEmail(), user.getPwd(), user.getAvatar());
+				user.setUid(manager.getUid(user.getUsername()));
 				manager.finalize();
 				HttpSession session = request.getSession();
 				session.setAttribute("user", user);

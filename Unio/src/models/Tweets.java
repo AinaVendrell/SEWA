@@ -6,7 +6,8 @@ public class Tweets implements java.io.Serializable {
 	 private static final long serialVersionUID = 1L;
 
 	 private Integer tid;
-	 private String uid;
+	 private String username;
+	 private Integer uid;
 	 private String avatar = "";
 	 private Timestamp postDateTime;
 	 private String content;
@@ -31,11 +32,19 @@ public class Tweets implements java.io.Serializable {
 		 this.likes = likes;
 	 }
 
-	 public String getUid() {
+	 public String getUsername() {
+		 return this.username;
+	 }
+	 
+	 public void setUsername(String username) {
+		 this.username = username;
+	 }
+	 
+	 public Integer getUid() {
 		 return this.uid;
 	 }
 	 
-	 public void setUid(String uid) {
+	 public void setUid(Integer uid) {
 		 this.uid = uid;
 	 }
 	 

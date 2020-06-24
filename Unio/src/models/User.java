@@ -12,13 +12,15 @@ public class User implements java.io.Serializable {
 	private String surname = "";
 	private String birthday = "";
 	private String gender = ""; 
-	private String uid = "";
+	private String username = "";
+	private Integer uid;
 	private String email = "";
 	private String pwd = "";
 	private String pwd2 = "";
 	private String avatar = "avatar/user_23.png";
+	private Integer roll = 0;
 	
-	private boolean[] error  = {false,false,false,false,false,false,false,false};
+	private boolean[] error  = {false,false,false,false,false,false,false,false,false};
 	
 	public User() {
 		
@@ -57,12 +59,20 @@ public class User implements java.io.Serializable {
 		this.setRandomAvatar();
 	}
 
-	public String getUid() {
+	public Integer getUid() {
 		return uid;
 	}
 
-	public void setUid(String uid) {
+	public void setUid(Integer uid) {
 		this.uid = uid;
+	}
+	
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getEmail() {
@@ -117,6 +127,14 @@ public class User implements java.io.Serializable {
 	
 	public void setAvatar(String avatar) {
 		this.avatar = avatar;
+	}
+	
+	public Integer getRoll() {
+		return roll;
+	}
+
+	public void setRoll(Integer roll) {
+		this.roll = roll;
 	}
 
 	public boolean[] getError() {

@@ -2,8 +2,6 @@ package controllers;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Collections;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,53 +15,52 @@ import org.apache.commons.beanutils.BeanUtils;
 
 import managers.ManageUser;
 import models.User;
-import models.dTmodel;
 
 /**
- * Servlet implementation class GetUsers
+ * Servlet implementation class FormController
  */
-@WebServlet("/GetUsers")
-public class GetUsers extends HttpServlet {
+@WebServlet("/DeleteUser")
+public class DeleteUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetUsers() {
+    public DeleteUser() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		dTmodel dt = new dTmodel();
-		List<User> users = Collections.emptyList();
-		
-		HttpSession session = request.getSession(false);
-		User user = (User) session.getAttribute("user");
-		
+		User user = new User();
+		HttpSession session = request.getSession();
 		try {
-			BeanUtils.populate(dt, request.getParameterMap());
+			BeanUtils.populate(user, request.getParameterMap());
 			ManageUser userManager = new ManageUser();
-			users = userManager.getUnfollowingUsers(dt.getUid());
+			userManager.deleteUser(user.getUid());
 			userManager.finalize();
-		
 		} catch (IllegalAccessException | InvocationTargetException e) {
 			e.printStackTrace();
 		}
-
-		request.setAttribute("users",users);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/viewUsers.jsp"); 
-		dispatcher.forward(request,response);
+		if (session==null || session.getAttribute("user")==null) {
+			request.setAttribute("menu","ViewMenuNotLogged.jsp");
+			request.setAttribute("content","ViewLoginForm.jsp");			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("ViewLogoutDone.jsp");
+		    if (dispatcher != null) dispatcher.forward(request, response);
+			dispatcher.forward(request, response);
+		}
+		request.setAttribute("user",user);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp"); 
+		dispatcher.include(request,response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

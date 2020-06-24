@@ -2,19 +2,12 @@
 pageEncoding="UTF-8"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core"
 prefix="c"%>
 
-<div>
-  <div class="description">
-    <img class="mb-4" src="images/unio.svg" alt="unio" width="72" height="72" />
-
-    <h1>SignUp UNIO</h1>
-    <hr />
-    <br />
-  </div>
-  <div class="container">
+<div username="${user.username}" name="${user.name}" surname="${user.surname}" gender="${user.gender}" pwd="${user.pwd}">
+  <div  class="description">
     <form
       data-parsley-trigger="keyup"
       data-parsley-validate
-      action="RegisterController"
+      action="EditProfile"
     >
       <div class="form-row justify-content-center h-100 mb-2">
         <div class="form-group col-lg-2 col-md-4">
@@ -46,24 +39,6 @@ prefix="c"%>
       </div>
       <!-- data-parsley-pattern="^[0-9]{2}/[0-9]{2}/[0-9]{4}$" -->
       <div class="form-row justify-content-center h-100 mb-2">
-        <div class="form-group col-lg-2 col-md-4">
-          <label class="control-label sr-only" for="birthday">Birthday</label>
-          <input
-            class="form-control"
-            id="birthday"
-            name="birthday"
-            type="text"
-            onfocus="(this.type='date')"
-            onblur="if(!this.value)this.type='text'"
-            placeholder="Birthday"
-            required
-            data-parsley-pattern-message="Invalid Date."
-            data-date-format="DD/MM/YYYY"
-            data-parsley-minimumage="13"
-            data-parsley-minimumage-message="Minimum age is 13"
-            value="${user.birthday}"
-          />
-        </div>
         <!--data-parsley-maxdate="10/10/2019"-->
         <div class="form-group col-lg-2 col-md-4">
           <label class="sr-only" for="gender">Gender</label>
@@ -84,7 +59,7 @@ prefix="c"%>
       </div>
       <div class="form-row justify-content-center h-100 mb-2">
         <div class="col-lg-4 col-md-8">
-          <label class="sr-only" for="username">Username</label>
+          <label class="sr-only" for="uid">Username</label>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <div class="input-group-text">@</div>
@@ -92,9 +67,9 @@ prefix="c"%>
             <input
               type="text"
               class="form-control"
-              id="username"
-              name="username"
-              placeholder="Username"
+              id="uid"
+              name="uid"
+              placeholder="Uid"
               required
               data-parsley-type="alphanum"
               value="${user.username}"
@@ -161,29 +136,8 @@ prefix="c"%>
       </div>
       <div class="form-row justify-content-center h-100 mb-4">
         <div class="col-lg-4 col-md-8">
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              id="termCheck"
-              required
-            />
-            <label class="form-check-label" for="termCheck">
-              I have read an agree to the
-              <a
-                href="PrivacyPolicy.html"
-                target="popup"
-                onclick="window.open('PrivacyPolicy.html','popup','width=600,height=600'); return false;"
-                >Terms of Use</a
-              >
-            </label>
-          </div>
-        </div>
-      </div>
-      <div class="form-row justify-content-center h-100 mb-4">
-        <div class="col-lg-4 col-md-8">
-          <button type="submit" class="btn btn-primary btn-block">
-            Sign up
+          <button type="submit" class="uP btn-primary btn-block">
+            Confirm
           </button>
         </div>
       </div>

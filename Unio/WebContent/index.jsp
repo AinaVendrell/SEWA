@@ -47,6 +47,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     var uid = '${user.uid}'
 
     $(document).ready(function () {
+      document.getElementById('avatar_pic').src = '${user.avatar}'
       $('#duser').load(
         'GetUserInfo',
         {
@@ -69,7 +70,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
       )
 
       /* Infinite scrolling */
-      $(window).scroll(function (event) {
+      /* $(window).scroll(function (event) {
         event.preventDefault()
         if (
           Math.ceil($(window).scrollTop()) ==
@@ -90,7 +91,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
             }
           )
         }
-      })
+      })*/
 
       // *******************************************************************************************//
       // Elements $("#id").click(...)  caputure clicks of elements that have been statically loaded //
@@ -99,6 +100,13 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
       /* Get and visualize user follows*/
       $('.vF').click(function (event) {
         event.preventDefault()
+        $('#duser').load(
+          'GetUserInfo',
+          {
+            uid: uid,
+          },
+          function () {}
+        )
         $('#dtweets').load(
           'GetFollows',
           {
@@ -116,6 +124,13 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
       /* Get and visualize all users*/
       $('.vU').click(function (event) {
         event.preventDefault()
+        $('#duser').load(
+          'GetUserInfo',
+          {
+            uid: uid,
+          },
+          function () {}
+        )
         $('#dtweets').load(
           'GetUsers',
           {
@@ -134,6 +149,13 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
       $('.vT').click(function (event) {
         global = 2
         event.preventDefault()
+        $('#duser').load(
+          'GetUserInfo',
+          {
+            uid: uid,
+          },
+          function () {}
+        )
         $('#dtweets').load(
           'GetTweets',
           {
@@ -207,7 +229,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
         $.post(
           'DelTweetFromUser',
           {
-            tid: $(this).parent().attr('uid'),
+            tid: $(this).parent().attr('id'),
           },
           function (data) {
             tweet.remove()
@@ -216,24 +238,84 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
         )
       })
 
-      //   /* Get and visualize Tweets from a given user */
-      //   $('body').on('click', '.vP', function (event) {
-      //     global = 2
-      //     event.preventDefault()
-      //     $('#dtweets').load(
-      //       'GetTweets',
-      //       {
-      //         uid: $(this).parent().attr('id'),
-      //         start: 0,
-      //         end: nt,
-      //         global: 2,
-      //       },
-      //       function (data) {
-      //         start = nt
-      //         cview = 'GetTweets'
-      //       }
-      //     )
-      //   })
+      /* Edit profile */
+      $('body').on('click', '.eP', function (event) {
+        event.preventDefault()
+        $('#dtweets').load(
+          'EditProfile',
+          {
+            uid: uid,
+          },
+          function (data) {}
+        )
+      })
+      
+
+      /* Update profile */
+      $('body').on('click', '.uP', function (event) {
+        event.preventDefault()
+        $.post('UpdateUser', {
+          uid: uid,
+          username: $(this).parent().attr('username'),
+          name: $(this).parent().attr('name'),
+          surname: $(this).parent().attr('surname'),
+          email: $(this).parent().attr('email'),
+          gender: $(this).parent().attr('gender'),
+          pwd: $(this).parent().attr('pwd'),
+        })
+      })
+      
+       /* Delete profile */
+      $('body').on('click', '.dP', function (event) {
+    	global = 0
+        event.preventDefault()
+        $.post(
+          'DeleteUser',
+          {
+            uid: $(this).parent().attr('uid'),
+          }
+        ),
+        $('#dtweets').load(
+          'GetTweets',
+          {
+            start: 0,
+            end: nt,
+            global: 0,
+          },
+          function (data) {
+            start = nt
+            cview = 'GetTweets'
+          }
+        )
+      })
+      
+      
+
+      /* Get and visualize Profile from a given user */
+      $('body').on('click', '.vP', function (event) {
+        global = 2
+        event.preventDefault()
+        $('#duser').load(
+          'GetUserInfo',
+          {
+            uid: $(this).parent().attr('uid'),
+          },
+          function () {}
+        )
+        $('#dtweets').load(
+          'GetTweets',
+          {
+            uid: $(this).parent().attr('uid'),
+            start: 0,
+            end: nt,
+            global: 2,
+          },
+          function (data) {
+            start = nt
+            cview = 'GetTweets'
+          }
+        )
+      })
 
       /* Unfollow user */
       $('body').on('click', '.uU', function (event) {
@@ -242,7 +324,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
         $.post(
           'UnfollowUser',
           {
-            uid: $(this).parent().attr('id'),
+            uid: $(this).parent().attr('uid'),
           },
           function (data) {
             $('#dtweets').load('GetFollows', {
@@ -259,7 +341,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
         $.post(
           'FollowUser',
           {
-            uid: $(this).parent().attr('id'),
+            uid: $(this).parent().attr('uid'),
           },
           function (data) {
             $('#dtweets').load('GetUsers', {
@@ -271,6 +353,10 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
       /* Like tweet from user */
       $('body').on('click', '.lT', function (event) {
+        var aux_uid = uid
+        if (global == 2) {
+          aux_uid = $(this).parent().attr('uid')
+        }
         event.preventDefault()
         var tweet = $(this).parent()
         $.post(
@@ -282,7 +368,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
             $('#dtweets').load(
               'GetTweets',
               {
-                uid: uid,
+                uid: aux_uid,
                 start: 0,
                 end: nt,
                 global: global,
@@ -325,9 +411,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
                     id="cT"
                     contenteditable="true"
                     class="w3-border w3-padding"
-                  >
-                    Status: Feeling EPAW
-                  </p>
+                  ></p>
                   <button id="aT" type="button" class="w3-button w3-theme">
                     <i class="fa fa-pencil"></i> &nbsp;Post
                   </button>
@@ -337,6 +421,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
           </div>
 
           <div id="dtweets"></div>
+          <div id="editProfile"></div>
 
           <!-- End Middle Column -->
         </div>
