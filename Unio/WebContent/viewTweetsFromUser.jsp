@@ -7,7 +7,7 @@
    	<img src="${t.avatar}" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px"/>
    </a>
    <span class="w3-right w3-opacity"> ${t.postDateTime} </span>
-   <h4 class="vP"> ${t.uid} </h4><br>
+   <h4 class="vP"> ${t.username} </h4><br>
    <hr class="w3-clear">
    <p> ${t.content} </p>
    <p> ${t.likes} </p>
@@ -22,6 +22,9 @@
    </c:choose>
    <!-- <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-comment"></i> &nbsp;Algo</button> -->
    <c:if test="${user.roll == 1}">
+   <button type="button" class="dT w3-button w3-theme-d1 w3-right"><i class="fa fa-trash"></i> &nbsp;Delete</button> 
+   </c:if>
+   <c:if test="${user.roll == 0 && user.uid == t.uid}">
    <button type="button" class="dT w3-button w3-theme-d1 w3-right"><i class="fa fa-trash"></i> &nbsp;Delete</button> 
    </c:if>
  </div>

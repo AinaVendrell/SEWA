@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.BeanUtils;
 
@@ -36,7 +37,8 @@ public class GetUserInfo extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		User user = new User();
-		
+		HttpSession session = request.getSession();
+		User realUser = (User) session.getAttribute("user");
 		try {
 			BeanUtils.populate(user, request.getParameterMap());
 			ManageUser userManager = new ManageUser();
@@ -46,7 +48,10 @@ public class GetUserInfo extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		System.out.println("SESSION11  " + realUser.getUid());
+		System.out.println("SESSION22  " + realUser.getUsername());
 		request.setAttribute("user",user);
+		request.setAttribute("real", realUser);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/viewUserInfo.jsp"); 
 		dispatcher.include(request,response);
 

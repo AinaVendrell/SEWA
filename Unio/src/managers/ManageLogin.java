@@ -44,7 +44,7 @@ public class ManageLogin {
 	public boolean isCorrect(User login) {
 		String user = ckeckLogin(login.getEmail(), login.getPwd());
 		if ( user != null) {
-			login.setUid(user);
+			login.setUsername(user);
 			System.out.print("\nCorrect LogIn\n");
 			return true;	
 		}

@@ -3,6 +3,7 @@ package controllers;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,53 +13,47 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.BeanUtils;
 
-import managers.ManageTweets;
-import models.Tweets;
+import managers.ManageUser;
 import models.User;
 
 /**
- * Servlet implementation class DelTweetFromUser
+ * Servlet implementation class FormController
  */
-@WebServlet("/LikeTweetFromUser")
-public class LikeTweetFromUser extends HttpServlet {
+@WebServlet("/EditProfile")
+public class EditProfile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LikeTweetFromUser() {
+    public EditProfile() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		Tweets tweet = new Tweets();
-		
-		
-		HttpSession session = request.getSession(false);
-		User user = (User) session.getAttribute("user");
+		User user = new User();
+		HttpSession session = request.getSession();
+		User realUser = (User) session.getAttribute("user");
 		
 		try {
-			BeanUtils.populate(tweet, request.getParameterMap());
-			ManageTweets tweetManager = new ManageTweets();
-			tweet = tweetManager.getTweet(tweet.getTid());
-			
-			boolean result = tweetManager.checkLike(Integer.valueOf(user.getUsername()), tweet.getTid());
-			
-			if(result == false) {
-				tweetManager.likeTweet(tweet.getTid(), tweet.getLikes(), Integer.valueOf(user.getUsername()));
-			}else {
-				tweetManager.dislikeTweet(tweet.getTid(), tweet.getLikes(), Integer.valueOf(user.getUsername()));
-			}
-			
-			tweetManager.finalize();
+			BeanUtils.populate(user, request.getParameterMap());
+			ManageUser userManager = new ManageUser();
+			user = userManager.getUser(user.getUid());
+			userManager.finalize();
 		} catch (IllegalAccessException | InvocationTargetException e) {
 			e.printStackTrace();
 		}
 		
+		System.out.println("SESSION11  " + realUser.getUid());
+		System.out.println("SESSION22  " + realUser.getUsername());
+		request.setAttribute("user",user);
+		request.setAttribute("real", realUser);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/ViewEditProfile.jsp"); 
+		dispatcher.include(request,response);
 	}
 
 	/**

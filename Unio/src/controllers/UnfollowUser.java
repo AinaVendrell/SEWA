@@ -46,7 +46,7 @@ public class UnfollowUser extends HttpServlet {
 			System.out.println("Unfollow");
 			BeanUtils.populate(userFollowing, request.getParameterMap());
 			ManageUser userManager = new ManageUser();
-			userManager.unfollowUser(user.getUid(), userFollowing.getUid());
+			userManager.unfollowUser(Integer.valueOf(user.getUsername()), userFollowing.getUid());
 			userManager.finalize();
 		
 		} catch (IllegalAccessException | InvocationTargetException e) {

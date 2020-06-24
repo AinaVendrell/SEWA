@@ -47,7 +47,8 @@ public class GetFollows extends HttpServlet {
 		try {
 			BeanUtils.populate(dt, request.getParameterMap());
 			ManageUser userManager = new ManageUser();
-			users = userManager.getUserFollows(user.getUid(),dt.getStart(),dt.getEnd());
+			users = userManager.getUserFollows(dt.getUid(),dt.getStart(),dt.getEnd());
+			//users = userManager.getUserFollows(4,dt.getStart(),dt.getEnd());
 			userManager.finalize();
 		
 		} catch (IllegalAccessException | InvocationTargetException e) {

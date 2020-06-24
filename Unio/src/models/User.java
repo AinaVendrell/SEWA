@@ -12,7 +12,8 @@ public class User implements java.io.Serializable {
 	private String surname = "";
 	private String birthday = "";
 	private String gender = ""; 
-	private String uid = "";
+	private String username = "";
+	private Integer uid;
 	private String email = "";
 	private String pwd = "";
 	private String pwd2 = "";
@@ -58,12 +59,20 @@ public class User implements java.io.Serializable {
 		this.setRandomAvatar();
 	}
 
-	public String getUid() {
+	public Integer getUid() {
 		return uid;
 	}
 
-	public void setUid(String uid) {
+	public void setUid(Integer uid) {
 		this.uid = uid;
+	}
+	
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getEmail() {

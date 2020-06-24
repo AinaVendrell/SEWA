@@ -34,13 +34,12 @@ public class EpawLauncher extends HttpServlet {
 		
 		/* START servlet: simulates a user has been logged in*/
 		HttpSession session = request.getSession();
-		String uid = "oriol";
+		Integer uid = 1;
 		
 		ManageUser userManager = new ManageUser();
-		User user = userManager.getUser(uid);
 		userManager.finalize();
 		
-		session.setAttribute("user", user);
+		//session.setAttribute("user", user);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp"); 
 		dispatcher.forward(request,response);
 			
