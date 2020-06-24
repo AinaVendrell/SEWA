@@ -46,12 +46,12 @@ public class LikeTweetFromUser extends HttpServlet {
 			ManageTweets tweetManager = new ManageTweets();
 			tweet = tweetManager.getTweet(tweet.getTid());
 			
-			boolean result = tweetManager.checkLike(Integer.valueOf(user.getUsername()), tweet.getTid());
+			boolean result = tweetManager.checkLike(user.getUid(), tweet.getTid());
 			
 			if(result == false) {
-				tweetManager.likeTweet(tweet.getTid(), tweet.getLikes(), Integer.valueOf(user.getUsername()));
+				tweetManager.likeTweet(tweet.getTid(), tweet.getLikes(), user.getUid());
 			}else {
-				tweetManager.dislikeTweet(tweet.getTid(), tweet.getLikes(), Integer.valueOf(user.getUsername()));
+				tweetManager.dislikeTweet(tweet.getTid(), tweet.getLikes(), user.getUid());
 			}
 			
 			tweetManager.finalize();

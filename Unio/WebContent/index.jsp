@@ -44,7 +44,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     var nt = 4
     var global = 0
     var cview = 'GetTweets'
-    var uid = '${user.username}'
+    var uid = '${user.uid}'
 
     $(document).ready(function () {
       document.getElementById('avatar_pic').src = '${user.avatar}'
@@ -249,33 +249,38 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
           function (data) {}
         )
       })
+      
 
       /* Update profile */
       $('body').on('click', '.uP', function (event) {
-    	global=2
         event.preventDefault()
-        $.post('EditProfile', {
-          uid: $(this).parent().attr('id'),
+        $.post('UpdateUser', {
+          uid: uid,
+          username: $(this).parent().attr('username'),
           name: $(this).parent().attr('name'),
           surname: $(this).parent().attr('surname'),
           email: $(this).parent().attr('email'),
           gender: $(this).parent().attr('gender'),
           pwd: $(this).parent().attr('pwd'),
         })
-        $('#duser').load(
-          'GetUserInfo',
+      })
+      
+       /* Delete profile */
+      $('body').on('click', '.dP', function (event) {
+    	global = 0
+        event.preventDefault()
+        $.post(
+          'DeleteUser',
           {
-            uid: uid,
-          },
-          function () {}
-        )
+            uid: $(this).parent().attr('uid'),
+          }
+        ),
         $('#dtweets').load(
           'GetTweets',
           {
-            uid: uid,
             start: 0,
             end: nt,
-            global: 2,
+            global: 0,
           },
           function (data) {
             start = nt
@@ -283,6 +288,8 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
           }
         )
       })
+      
+      
 
       /* Get and visualize Profile from a given user */
       $('body').on('click', '.vP', function (event) {

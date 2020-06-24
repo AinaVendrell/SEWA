@@ -45,7 +45,6 @@ public class GetTweets extends HttpServlet {
 		
 		try {
 			BeanUtils.populate(dt, request.getParameterMap());
-			System.out.println("GET TWEETS  " + dt.getUid());
 			ManageTweets tweetManager = new ManageTweets();
 			if (dt.getGlobal() == 1) {
 				//tweets = tweetManager.getFollowsTweets(dt.getUid(),dt.getStart(),dt.getEnd());
@@ -69,7 +68,6 @@ public class GetTweets extends HttpServlet {
 		try {
 			BeanUtils.populate(user, request.getParameterMap());
 			ManageUser userManager = new ManageUser();
-			System.out.println("USEEEEERTWE  " + user.getUid());
 			user = userManager.getUser(user.getUid());
 			userManager.finalize();
 		} catch (IllegalAccessException | InvocationTargetException e) {

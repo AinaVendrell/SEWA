@@ -19,14 +19,14 @@ import models.User;
 /**
  * Servlet implementation class FormController
  */
-@WebServlet("/EditProfile")
-public class EditProfile extends HttpServlet {
+@WebServlet("/UpdateUser")
+public class UpdateUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EditProfile() {
+    public UpdateUser() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,17 +36,43 @@ public class EditProfile extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User user = new User();
+		HttpSession session = request.getSession();
+		User realUser = (User) session.getAttribute("user");
 		
 		try {
 			BeanUtils.populate(user, request.getParameterMap());
 			ManageUser userManager = new ManageUser();
-			user = userManager.getUser(user.getUid());
+			realUser = userManager.getUser(realUser.getUid());
+			/*if (realUser.getEmail() != user.getEmail()) {
+				userManager.updateEmail(user.getUid(), user.getEmail());
+			}
+			if (realUser.getName() != user.getName()) {
+				userManager.updateName(user.getUid(), user.getName());
+			}
+			if (realUser.getSurname() != user.getSurname()) {
+				userManager.updateSurname(user.getUid(), user.getSurname());
+			}
+			if (realUser.getGender() != user.getGender()) {
+				userManager.updateGender(user.getUid(), user.getGender());
+			}*/
+			System.out.println("CANVI USERNAME	" + user.getUsername());
+			System.out.println("CANVI NAME	" + user.getName());
+			System.out.println("CANVI SURNAME	" + user.getSurname());
+			System.out.println("CANVI EMAIL	" + user.getEmail());
+			System.out.println("CANVI PWD	" + user.getPwd());
+			
+			System.out.println("\n\n\n2CANVI USERNAME	" + realUser.getUsername());
+			System.out.println("2CANVI NAME	" + realUser.getName());
+			System.out.println("2CANVI SURNAME	" + realUser.getSurname());
+			System.out.println("2CANVI EMAIL	" + realUser.getEmail());
+			System.out.println("2CANVI PWD	" + realUser.getPwd());
 			userManager.finalize();
 		} catch (IllegalAccessException | InvocationTargetException e) {
 			e.printStackTrace();
 		}
 		request.setAttribute("user",user);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("ViewEditProfile.jsp"); 
+		request.setAttribute("real", realUser);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/ViewEditProfile.jsp"); 
 		dispatcher.include(request,response);
 	}
 

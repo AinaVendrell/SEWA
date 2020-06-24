@@ -187,14 +187,12 @@ public class ManageTweets {
 			ResultSet rs = statement.executeQuery();
 			boolean val = rs.next();
 			if (!val) { 
-				System.out.println("No like");
 			    return false;
 			}
 			statement.close();			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println("Yes like");
 		return true;
 	}
 	

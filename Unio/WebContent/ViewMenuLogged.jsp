@@ -26,6 +26,9 @@ pageEncoding="UTF-8" session="false"%>
       <li class="nav-item">
         <a class="vU menu nav-link" title="Users">Users</a>
       </li>
+      <li class="nav-item">
+        <a class="gF menu nav-link" title="Users">TweetsFrined</a>
+      </li>
     </ul>
     <ul class="navbar-nav my-2 my-md-0 mr-md-3">
       <li class="nav-item">

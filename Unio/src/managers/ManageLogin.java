@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 
+import models.Tweets;
 import models.User;
 import utils.DAO;
 
@@ -42,18 +43,18 @@ public class ManageLogin {
 	
 	// Check if login is correct
 	public boolean isCorrect(User login) {
-		String user = ckeckLogin(login.getEmail(), login.getPwd());
-		if ( user != null) {
-			login.setUsername(user);
-			System.out.print("\nCorrect LogIn\n");
+		Integer user = ckeckLogin(login.getEmail(), login.getPwd());
+		if ( user != 0) {
+			login.setUid(user);
+			System.out.println("Correct LogIn");
 			return true;	
 		}
 		else {
 			if(emailExists(login.getEmail())) {
-				System.out.print("\nWrong password\n");
+				System.out.println("Wrong password");
 				login.setError(0);
 			} else {
-				System.out.print("\nEmail doesn't exist\n");
+				System.out.println("Email doesn't exist");
 				login.setError(1);
 			}
 			return false;
@@ -61,22 +62,21 @@ public class ManageLogin {
 	}
 	
 	// Check if there is a user with this password and email
-	private String ckeckLogin(String email, String pwd) {
-		String query ="SELECT uid FROM Users WHERE email = ? AND pwd = ?";
+	private Integer ckeckLogin(String email, String pwd) {
+		String query ="SELECT uid FROM users WHERE email = ? AND pwd = ?";
 		PreparedStatement statement = null;
-		String uid = null;
+		ResultSet rs = null;
+		Integer uid = 0;
 		try {
 			statement = db.prepareStatement(query);
 			statement.setString(1, email);
 			statement.setString(2, pwd);
-			ResultSet rs = statement.executeQuery();	
-			if (!rs.isBeforeFirst() ) {    
-			    return null;
+			rs = statement.executeQuery();
+			if (rs.next()) {
+				uid = rs.getInt("uid");
 			}
-			rs.next();
-			uid = rs.getString(1);
-			System.out.print(uid);
-			statement.close();	
+			rs.close();
+			statement.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

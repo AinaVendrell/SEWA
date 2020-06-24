@@ -84,7 +84,7 @@ prefix="c"%>
       </div>
       <div class="form-row justify-content-center h-100 mb-2">
         <div class="col-lg-4 col-md-8">
-          <label class="sr-only" for="uid">Uid</label>
+          <label class="sr-only" for="username">Username</label>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <div class="input-group-text">@</div>
@@ -92,9 +92,9 @@ prefix="c"%>
             <input
               type="text"
               class="form-control"
-              id="uid"
-              name="uid"
-              placeholder="Uid"
+              id="username"
+              name="username"
+              placeholder="Username"
               required
               data-parsley-type="alphanum"
               value="${user.username}"

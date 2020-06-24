@@ -65,16 +65,17 @@ public class ManageUser {
 
 	// Check if the uid and email doesn't exist yet
 	public boolean isCorrect(User user) {
-		if(uidExists(user.getUsername())){ 
+		System.out.println("user " + uidExists(user.getUsername()));
+		if (uidExists(user.getUsername())) {
 			user.setError(0);
-			System.out.print("User already exists	" + user.getUsername() + "\n");
+			System.out.println("User already exists	" + user.getUsername());
 		}
-		if(emailExists(user.getEmail())){ 
+		if (emailExists(user.getEmail())) {
 			user.setError(1);
-			System.out.print("Email already exists	"+ user.getEmail()+ "\n"); 
-		} 
+			System.out.println("Email already exists	" + user.getEmail());
+		}
 		if (user.getError()[0] || user.getError()[1]) {
-			System.out.print("user or email already exists\n");
+			System.out.println("user or email already exists");
 			return false;
 		}
 		return true;
@@ -118,6 +119,25 @@ public class ManageUser {
 		return true;
 	}
 
+	// Check if the email doesn't exist yet
+	public Integer getUid(String username) {
+		String query = "SELECT uid FROM users WHERE uuid = ?";
+		PreparedStatement statement = null;
+		try {
+			statement = db.prepareStatement(query);
+			statement.setString(1, username);
+			ResultSet rs = statement.executeQuery();
+			if (rs.next()) {
+				return rs.getInt("uid");
+			}
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		System.out.print("MAIL\n");
+		return 0;
+	}
+
 	// Get a user given its PK
 	public User getUser(Integer uid) {
 		String query = "SELECT name, surname, email, gender, birthday, uuid, uid, avatar, pwd, roll FROM users WHERE uid = ? ;";
@@ -150,40 +170,40 @@ public class ManageUser {
 
 		return user;
 	}
-	
+
 	// Get a user given its PK
-		public User getUser(String username) {
-			String query = "SELECT name, surname, email, gender, birthday, uuid, uid, avatar, pwd, roll FROM users WHERE uuid = ? ;";
-			PreparedStatement statement = null;
-			ResultSet rs = null;
-			User user = null;
-			try {
-				statement = db.prepareStatement(query);
-				statement.setString(1, username);
-				rs = statement.executeQuery();
-				if (rs.next()) {
-					user = new User();
-					user.setUid(rs.getInt("uid"));
-					user.setUsername(rs.getString("uuid"));
-					user.setName(rs.getString("name"));
-					user.setSurname(rs.getString("surname"));
-					user.setEmail(rs.getString("email"));
-					user.setBirthday(rs.getString("birthday"));
-					user.setPwd(rs.getString("pwd"));
-					user.setGender(rs.getString("gender"));
-					user.setAvatar(rs.getString("avatar"));
-					user.setRoll(rs.getInt("roll"));
+	public User getUser(String username) {
+		String query = "SELECT name, surname, email, gender, birthday, uuid, uid, avatar, pwd, roll FROM users WHERE uuid = ? ;";
+		PreparedStatement statement = null;
+		ResultSet rs = null;
+		User user = null;
+		try {
+			statement = db.prepareStatement(query);
+			statement.setString(1, username);
+			rs = statement.executeQuery();
+			if (rs.next()) {
+				user = new User();
+				user.setUid(rs.getInt("uid"));
+				user.setUsername(rs.getString("uuid"));
+				user.setName(rs.getString("name"));
+				user.setSurname(rs.getString("surname"));
+				user.setEmail(rs.getString("email"));
+				user.setBirthday(rs.getString("birthday"));
+				user.setPwd(rs.getString("pwd"));
+				user.setGender(rs.getString("gender"));
+				user.setAvatar(rs.getString("avatar"));
+				user.setRoll(rs.getInt("roll"));
 
-				}
-				rs.close();
-				statement.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
 			}
-
-			return user;
+			rs.close();
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-	
+
+		return user;
+	}
+
 	// Update a user
 	public void updateUser(Integer uid, String username, String name) {
 		String query = "UPDATE users SET uuid = ? , name = ? WHERE uid = ? ;";
@@ -200,12 +220,120 @@ public class ManageUser {
 		}
 	}
 
-	// Delete existing user
-	public void deleteUser(Integer uid) {
-		String query = "DELETE FROM users WHERE uid = ?";
+	// Check if the email doesn't exist yet
+	private boolean emailExistsOther(Integer uid, String email) {
+		String query = "SELECT * FROM users WHERE email = ? AND uid != ?;";
 		PreparedStatement statement = null;
 		try {
 			statement = db.prepareStatement(query);
+			statement.setString(1, email);
+			statement.setInt(1, uid);
+			ResultSet rs = statement.executeQuery();
+			if (!rs.next()) {
+				System.out.print("No mail\n");
+				return false;
+			}
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		System.out.print("MAIL\n");
+		return true;
+	}
+
+	// Update a email
+	public boolean updateEmail(Integer uid, String email) {
+		if (!emailExistsOther(uid, email)) {
+			String query = "UPDATE users SET email = ? WHERE uid = ? ;";
+			PreparedStatement statement = null;
+			try {
+				statement = db.prepareStatement(query);
+				statement.setString(1, email);
+				statement.setInt(3, uid);
+				statement.executeUpdate();
+				statement.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return true;
+		}
+		return false;
+	}
+
+	// Update a name
+	public boolean updateName(Integer uid, String name) {
+		String query = "UPDATE users SET name = ? WHERE uid = ? ;";
+		PreparedStatement statement = null;
+		try {
+			statement = db.prepareStatement(query);
+			statement.setString(1, name);
+			statement.setInt(3, uid);
+			statement.executeUpdate();
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return true;
+
+	}
+
+	// Update a user
+	public boolean updateSurname(Integer uid, String surname) {
+		String query = "UPDATE users SET surname = ? WHERE uid = ? ;";
+		PreparedStatement statement = null;
+		try {
+			statement = db.prepareStatement(query);
+			statement.setString(1, surname);
+			statement.setInt(3, uid);
+			statement.executeUpdate();
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return true;
+
+	}
+
+	// Update a user
+	public boolean updateGender(Integer uid, String gender) {
+		String query = "UPDATE users SET gender = ? WHERE uid = ? ;";
+		PreparedStatement statement = null;
+		try {
+			statement = db.prepareStatement(query);
+			statement.setString(1, gender);
+			statement.setInt(3, uid);
+			statement.executeUpdate();
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
+
+	// Delete existing user
+	public void deleteUser(Integer uid) {
+		System.out.println(uid);
+		String query1 = "DELETE FROM likes WHERE uid = ?";
+		String query2 = "DELETE FROM tweets WHERE uid = ?";
+		String query3 = "DELETE FROM followers WHERE uid = ? OR fid = ?";
+		String query4 = "DELETE FROM users WHERE uid = ?";
+
+		PreparedStatement statement = null;
+		try {
+			statement = db.prepareStatement(query1);
+			statement.setInt(1, uid);
+			statement.executeUpdate();
+			statement.close();
+			statement = db.prepareStatement(query2);
+			statement.setInt(1, uid);
+			statement.executeUpdate();
+			statement.close();
+			statement = db.prepareStatement(query3);
+			statement.setInt(1, uid);
+			statement.setInt(2, uid);
+			statement.executeUpdate();
+			statement.close();
+			statement = db.prepareStatement(query4);
 			statement.setInt(1, uid);
 			statement.executeUpdate();
 			statement.close();

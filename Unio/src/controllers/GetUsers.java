@@ -43,7 +43,6 @@ public class GetUsers extends HttpServlet {
 		
 		HttpSession session = request.getSession(false);
 		User user = (User) session.getAttribute("user");
-		System.out.println("UNFOLL  " + session.getAttribute("user"));
 		
 		try {
 			BeanUtils.populate(dt, request.getParameterMap());

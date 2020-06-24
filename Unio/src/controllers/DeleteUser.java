@@ -19,14 +19,14 @@ import models.User;
 /**
  * Servlet implementation class FormController
  */
-@WebServlet("/EditProfile")
-public class EditProfile extends HttpServlet {
+@WebServlet("/DeleteUser")
+public class DeleteUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EditProfile() {
+    public DeleteUser() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,17 +36,24 @@ public class EditProfile extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User user = new User();
-		
+		HttpSession session = request.getSession();
 		try {
 			BeanUtils.populate(user, request.getParameterMap());
 			ManageUser userManager = new ManageUser();
-			user = userManager.getUser(user.getUid());
+			userManager.deleteUser(user.getUid());
 			userManager.finalize();
 		} catch (IllegalAccessException | InvocationTargetException e) {
 			e.printStackTrace();
 		}
+		if (session==null || session.getAttribute("user")==null) {
+			request.setAttribute("menu","ViewMenuNotLogged.jsp");
+			request.setAttribute("content","ViewLoginForm.jsp");			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("ViewLogoutDone.jsp");
+		    if (dispatcher != null) dispatcher.forward(request, response);
+			dispatcher.forward(request, response);
+		}
 		request.setAttribute("user",user);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("ViewEditProfile.jsp"); 
+		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp"); 
 		dispatcher.include(request,response);
 	}
 

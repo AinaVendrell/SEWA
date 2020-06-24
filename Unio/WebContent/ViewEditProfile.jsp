@@ -2,8 +2,8 @@
 pageEncoding="UTF-8"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core"
 prefix="c"%>
 
-<div>
-  <div class="description">
+<div username="${user.username}" name="${user.name}" surname="${user.surname}" gender="${user.gender}" pwd="${user.pwd}">
+  <div  class="description">
     <form
       data-parsley-trigger="keyup"
       data-parsley-validate

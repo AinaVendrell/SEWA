@@ -45,9 +45,7 @@ public class FollowUser extends HttpServlet {
 		try {
 			BeanUtils.populate(userFollowing, request.getParameterMap());
 			ManageUser userManager = new ManageUser();
-			System.out.println("FOLLLL_UID  " + user.getUid());
-			System.out.println("FOLLLL_USERNAME " + user.getUsername());
-			userManager.followUser(Integer.valueOf(user.getUsername()), userFollowing.getUid());
+			userManager.followUser(user.getUid(), userFollowing.getUid());
 			userManager.finalize();
 		
 		} catch (IllegalAccessException | InvocationTargetException e) {
