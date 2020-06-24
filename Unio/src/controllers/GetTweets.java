@@ -15,7 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.beanutils.BeanUtils;
 
 import managers.ManageTweets;
+import managers.ManageUser;
 import models.Tweets;
+import models.User;
 import models.dTmodel;
 
 /**
@@ -59,8 +61,21 @@ public class GetTweets extends HttpServlet {
 		
 		} catch (IllegalAccessException | InvocationTargetException e) {
 			e.printStackTrace();
+		}	
+		
+		User user = new User();
+		
+		try {
+			BeanUtils.populate(user, request.getParameterMap());
+			ManageUser userManager = new ManageUser();
+			user = userManager.getUser(user.getUid());
+			userManager.finalize();
+		} catch (IllegalAccessException | InvocationTargetException e) {
+			e.printStackTrace();
 		}
-
+		
+		request.setAttribute("user",user);
+		
 		request.setAttribute("tweets",tweets);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/viewTweetsFromUser.jsp"); 
 		dispatcher.forward(request,response);

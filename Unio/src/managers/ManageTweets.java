@@ -152,6 +152,29 @@ public class ManageTweets {
 		}
 	}
 	
+	/* Dislike existing tweet */
+	public void dislikeTweet(Integer tid, Integer likes, String uid) {
+		likes = likes - 1;
+		String query = "UPDATE tweets SET likes = ? WHERE tid = ?;";
+		String query2 = "DELETE FROM likes WHERE uid = ? AND tid = ?;";
+		PreparedStatement statement = null;
+		PreparedStatement statement2 = null;
+		try {
+			statement = db.prepareStatement(query);
+			statement.setInt(1,likes);
+			statement.setInt(2,tid);
+			statement.executeUpdate();
+			statement.close();
+			statement2 = db.prepareStatement(query2);
+			statement2.setString(1,uid);
+			statement2.setInt(2,tid);
+			statement2.executeUpdate();
+			statement2.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/* Check existing likes */
 	public boolean checkLike(String uid, Integer tid) {
 		String query = "SELECT * FROM likes WHERE uid = ? AND tid = ?;";		
@@ -175,13 +198,13 @@ public class ManageTweets {
 	}
 	
 	/* Delete tweets from user */
-	public void deleteUserTweets(String uid) {
+	public void deleteUserTweets(Integer tid) {
 		// Note that this is done using https://www.arquitecturajava.com/jdbc-prepared-statement-y-su-manejo/
-		String query = "DELETE FROM tweets WHERE uid = ?";
+		String query = "DELETE FROM tweets WHERE tid = ?";
 		PreparedStatement statement = null;
 		try {
 			statement = db.prepareStatement(query);
-			statement.setString(1,uid);
+			statement.setInt(1,tid);
 			statement.executeUpdate();
 			statement.close();
 		} catch (SQLException e) {
