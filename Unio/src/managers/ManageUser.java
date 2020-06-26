@@ -171,7 +171,7 @@ public class ManageUser {
 		return user;
 	}
 
-// Get a user given its PK
+	// Get a user given its PK
 	public User getUser(String username) {
 		String query = "SELECT name, surname, email, gender, birthday, uuid, uid, avatar, pwd, roll FROM users WHERE uuid = ? ;";
 		PreparedStatement statement = null;

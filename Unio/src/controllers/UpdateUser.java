@@ -39,23 +39,23 @@ public class UpdateUser extends HttpServlet {
 			throws ServletException, IOException {
 		User user = new User();
 		HttpSession session = request.getSession();
-		User realUser = (User) session.getAttribute("user");		
+		User realUser = (User) session.getAttribute("user");
 
 		try {
 			BeanUtils.populate(user, request.getParameterMap());
 			ManageUser userManager = new ManageUser();
-			realUser = userManager.getUser(realUser.getUid()); // user sin update			
+			realUser = userManager.getUser(realUser.getUid()); // user sin update
 			boolean error = false;
-			user.setUid(realUser.getUid()); 
-			
+			user.setUid(realUser.getUid());
+
 			if (!realUser.getUsername().equals(user.getUsername())) {
-				if(!userManager.updateUsername(user.getUid(), user.getUsername())) {
+				if (!userManager.updateUsername(user.getUid(), user.getUsername())) {
 					user.setError(0);
 					error = true;
 				}
-			}			
-			if (!realUser.getEmail().equals(user.getEmail())) { 
-				if(!userManager.updateEmail(user.getUid(), user.getEmail())) {
+			}
+			if (!realUser.getEmail().equals(user.getEmail())) {
+				if (!userManager.updateEmail(user.getUid(), user.getEmail())) {
 					user.setError(1);
 					error = true;
 				}
@@ -70,24 +70,23 @@ public class UpdateUser extends HttpServlet {
 
 			if (!realUser.getPwd().equals(user.getPwd())) {
 				userManager.updatePwd(user.getUid(), user.getPwd());
-			}	
-			
+			}
+
 			userManager.finalize();
-			
+
 			if (error == true) {
 				System.out.println("EDIT WRONG ");
-				request.setAttribute("user",user);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("ViewEditProfile.jsp"); 
-				dispatcher.include(request,response);
-			}
-			else {
+				request.setAttribute("user", user);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("ViewEditProfile.jsp");
+				dispatcher.include(request, response);
+			} else {
 				System.out.println("EDIT OKEY ");
-			    request.setAttribute("user",realUser);
-			    RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-			    dispatcher.forward(request, response);
-		    	
-		    }	
-			
+				request.setAttribute("user", realUser);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+				dispatcher.forward(request, response);
+
+			}
+
 		} catch (IllegalAccessException | InvocationTargetException e) {
 			e.printStackTrace();
 		}

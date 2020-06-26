@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8" session="false"%>
 
 <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light">
-	<a class="navbar-brand" id="LogoutController" href="ViewNotUsers">
+	<a class="navbar-brand" id="LogoutController">
 		<i class="fa fa-home sr-only" aria-hidden="true"></i> <img
 		src="images/unio.svg" width="30" height="30" alt="" />
 	</a>

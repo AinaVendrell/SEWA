@@ -19,7 +19,6 @@ pageEncoding="UTF-8" session="false"%>
   </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <!-- <li class="nav-item"><a class="gF menu nav-link">EPAW</a></li>  -->
       <li class="nav-item">
         <a class="vF menu nav-link" title="Friends">Friends</a>
       </li>
@@ -29,6 +28,9 @@ pageEncoding="UTF-8" session="false"%>
       <li class="nav-item">
         <a class="gF menu nav-link" title="Users">TweetsFriend</a>
       </li>
+      <!-- <li class="nav-item">
+        <a class="aU menu nav-link" title="Users">Anonymous</a>
+      </li> -->
     </ul>
     <ul class="navbar-nav my-2 my-md-0 mr-md-3">
       <li class="nav-item">
@@ -47,4 +49,3 @@ pageEncoding="UTF-8" session="false"%>
     </ul>
   </div>
 </nav>
-

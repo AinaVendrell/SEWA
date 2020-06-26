@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.BeanUtils;
 
@@ -43,38 +44,40 @@ public class GetTweets extends HttpServlet {
 		dTmodel dt = new dTmodel();
 		List<Tweets> tweets = Collections.emptyList();
 		
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		
 		try {
 			BeanUtils.populate(dt, request.getParameterMap());
 			ManageTweets tweetManager = new ManageTweets();
 			if (dt.getGlobal() == 1) {
-				//tweets = tweetManager.getFollowsTweets(dt.getUid(),dt.getStart(),dt.getEnd());
 				tweets = tweetManager.getFollowsTweets(dt.getUid());
 			}
 			else if (dt.getGlobal() == 2) {
 				tweets = tweetManager.getUserTweets(dt.getUid(),dt.getStart(),dt.getEnd());
+			}
+			else if (dt.getGlobal() == 3) {
+				tweets = tweetManager.getTweets();		
 			}
 			else {
 				tweets = tweetManager.getOthersTweets(dt.getUid());		
 			}
 			tweetManager.finalize();
 			
+			if(dt.getGlobal() != 3) {
+				ManageUser userManager = new ManageUser();
+				user = userManager.getUser(user.getUid());
+				userManager.finalize();
+			}
+			
 		
 		} catch (IllegalAccessException | InvocationTargetException e) {
 			e.printStackTrace();
 		}	
 		
-		User user = new User();
-		
-		try {
-			BeanUtils.populate(user, request.getParameterMap());
-			ManageUser userManager = new ManageUser();
-			user = userManager.getUser(user.getUid());
-			userManager.finalize();
-		} catch (IllegalAccessException | InvocationTargetException e) {
-			e.printStackTrace();
+		if(dt.getGlobal() != 3) {
+			request.setAttribute("user",user);
 		}
-		
-		request.setAttribute("user",user);
 		request.setAttribute("tweets",tweets);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/viewTweetsFromUser.jsp"); 
 		dispatcher.forward(request,response);

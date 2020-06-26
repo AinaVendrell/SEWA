@@ -110,7 +110,6 @@ prefix="c"%>
             placeholder="Confirm Password"
             aria-describedby="passwordHelpBlock"
             value="${user.pwd2}"
-            required
             data-parsley-equalto="#pwd"
           />
         </div>

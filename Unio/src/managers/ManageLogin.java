@@ -61,6 +61,13 @@ public class ManageLogin {
 		}
 	}
 	
+	// Get anonymous User
+	public User getAnonymousUser() {
+		User user = new User();
+		user.setUid(0);
+		return user;
+	}
+	
 	// Check if there is a user with this password and email
 	private Integer ckeckLogin(String email, String pwd) {
 		String query ="SELECT uid FROM users WHERE email = ? AND pwd = ?";
