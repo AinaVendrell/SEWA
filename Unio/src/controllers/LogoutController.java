@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.beanutils.BeanUtils;
+
+import managers.ManageUser;
+import models.User;
 /**
  * Servlet implementation class LogoutController
  */
@@ -40,6 +45,7 @@ public class LogoutController extends HttpServlet {
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("ViewLogoutDone.jsp");
 	    if (dispatcher != null) dispatcher.forward(request, response);
+	    
 	}
 
 	/**

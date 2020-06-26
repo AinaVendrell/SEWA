@@ -2,15 +2,16 @@
 pageEncoding="UTF-8"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core"
 prefix="c"%>
 
-<div username="${user.username}" name="${user.name}" surname="${user.surname}" gender="${user.gender}" pwd="${user.pwd}">
+<div>
   <div  class="description">
     <form
       data-parsley-trigger="keyup"
       data-parsley-validate
-      action="EditProfile"
+      action="UpdateUser"
     >
+      <div class="mb-4"></div>
       <div class="form-row justify-content-center h-100 mb-2">
-        <div class="form-group col-lg-2 col-md-4">
+        <div class="form-group col-5">
           <label class="sr-only" for="name">First Name</label>
           <input
             type="text"
@@ -23,7 +24,7 @@ prefix="c"%>
             required
           />
         </div>
-        <div class="form-group col-lg-2 col-md-4">
+        <div class="form-group col-5">
           <label class="sr-only" for="surname">Last Name</label>
           <input
             type="text"
@@ -37,28 +38,8 @@ prefix="c"%>
           />
         </div>
       </div>
-      <!-- data-parsley-pattern="^[0-9]{2}/[0-9]{2}/[0-9]{4}$" -->
-      <div class="form-row justify-content-center h-100 mb-2">
-        <!--data-parsley-maxdate="10/10/2019"-->
-        <div class="form-group col-lg-2 col-md-4">
-          <label class="sr-only" for="gender">Gender</label>
-          <select
-            id="gender"
-            name="gender"
-            class="form-control"
-            value="${user.gender}"
-            required
-          >
-            <option value="">Gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-            <option value="noAnswer">Prefer not to answer</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-row justify-content-center h-100 mb-2">
-        <div class="col-lg-4 col-md-8">
+     <div class="form-row justify-content-center h-100 mb-2">
+        <div class="col-lg-10">
           <label class="sr-only" for="uid">Username</label>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
@@ -67,9 +48,9 @@ prefix="c"%>
             <input
               type="text"
               class="form-control"
-              id="uid"
-              name="uid"
-              placeholder="Uid"
+              id="username"
+              name="username"
+              placeholder="username"
               required
               data-parsley-type="alphanum"
               value="${user.username}"
@@ -78,7 +59,7 @@ prefix="c"%>
         </div>
       </div>
       <div class="form-row justify-content-center h-100 mb-4">
-        <div class="col-lg-4 col-md-8">
+        <div class="col-lg-10">
           <label for="email" class="sr-only">Email</label>
           <input
             type="email"
@@ -93,7 +74,7 @@ prefix="c"%>
         </div>
       </div>
       <div class="form-row justify-content-center h-100 mb-4">
-        <div class="col-lg-4 col-md-8">
+        <div class="col-lg-10">
           <label class="sr-only" for="pwd">Password</label>
           <input
             type="password"
@@ -113,13 +94,13 @@ prefix="c"%>
           />
           <small id="passwordHelpBlock" class="form-text text-muted">
             Your password must be 8-20 characters long, contain lowercase and
-            captial letters and numbers, and must not contain spaces, special
+            capital letters and numbers, and must not contain spaces, special
             characters, or emoji.
           </small>
         </div>
       </div>
       <div class="form-row justify-content-center h-100 mb-4">
-        <div class="col-lg-4 col-md-8">
+        <div class="col-lg-10">
           <label class="sr-only" for="pwd2">Confirm Password</label
           ><input
             type="password"
@@ -135,8 +116,8 @@ prefix="c"%>
         </div>
       </div>
       <div class="form-row justify-content-center h-100 mb-4">
-        <div class="col-lg-4 col-md-8">
-          <button type="submit" class="uP btn-primary btn-block">
+        <div class="col-lg-10">
+          <button type="submit" class="btn btn-secondary btn-block">
             Confirm
           </button>
         </div>
@@ -205,35 +186,6 @@ prefix="c"%>
       },
     })
 
-    /* add validation for minimum age */
-    window.Parsley.addValidator('minimumage', {
-      validateString: function (value, requirements) {
-        // get validation requirments
-        var reqs = value.split('/'),
-          day = reqs[0],
-          month = reqs[1],
-          year = reqs[2]
-
-        // check if date is a valid
-        var birthday = new Date(year + '-' + month + '-' + day)
-
-        // Calculate birtday and check if age is greater than 18
-        var today = new Date()
-
-        var age = today.getFullYear() - birthday.getFullYear()
-        var m = today.getMonth() - birthday.getMonth()
-        if (m < 0 || (m === 0 && today.getDate() < birthday.getDate())) {
-          age--
-        }
-
-        return age >= requirements
-      },
-    })
-  </script>
-  <script>
-    $(document).ready(function () {
-      $('form').parsley()
-    })
   </script>
   <!-- END SCRIPTS -->
 </div>

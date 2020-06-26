@@ -22,64 +22,83 @@ import models.User;
 @WebServlet("/UpdateUser")
 public class UpdateUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UpdateUser() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		User user = new User();
-		HttpSession session = request.getSession();
-		User realUser = (User) session.getAttribute("user");
-		
-		try {
-			BeanUtils.populate(user, request.getParameterMap());
-			ManageUser userManager = new ManageUser();
-			realUser = userManager.getUser(realUser.getUid());
-			/*if (realUser.getEmail() != user.getEmail()) {
-				userManager.updateEmail(user.getUid(), user.getEmail());
-			}
-			if (realUser.getName() != user.getName()) {
-				userManager.updateName(user.getUid(), user.getName());
-			}
-			if (realUser.getSurname() != user.getSurname()) {
-				userManager.updateSurname(user.getUid(), user.getSurname());
-			}
-			if (realUser.getGender() != user.getGender()) {
-				userManager.updateGender(user.getUid(), user.getGender());
-			}*/
-			System.out.println("CANVI USERNAME	" + user.getUsername());
-			System.out.println("CANVI NAME	" + user.getName());
-			System.out.println("CANVI SURNAME	" + user.getSurname());
-			System.out.println("CANVI EMAIL	" + user.getEmail());
-			System.out.println("CANVI PWD	" + user.getPwd());
-			
-			System.out.println("\n\n\n2CANVI USERNAME	" + realUser.getUsername());
-			System.out.println("2CANVI NAME	" + realUser.getName());
-			System.out.println("2CANVI SURNAME	" + realUser.getSurname());
-			System.out.println("2CANVI EMAIL	" + realUser.getEmail());
-			System.out.println("2CANVI PWD	" + realUser.getPwd());
-			userManager.finalize();
-		} catch (IllegalAccessException | InvocationTargetException e) {
-			e.printStackTrace();
-		}
-		request.setAttribute("user",user);
-		request.setAttribute("real", realUser);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/ViewEditProfile.jsp"); 
-		dispatcher.include(request,response);
+	public UpdateUser() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		User user = new User();
+		HttpSession session = request.getSession();
+		User realUser = (User) session.getAttribute("user");		
+
+		try {
+			BeanUtils.populate(user, request.getParameterMap());
+			ManageUser userManager = new ManageUser();
+			realUser = userManager.getUser(realUser.getUid()); // user sin update			
+			boolean error = false;
+			user.setUid(realUser.getUid()); 
+			
+			if (!realUser.getUsername().equals(user.getUsername())) {
+				if(!userManager.updateUsername(user.getUid(), user.getUsername())) {
+					user.setError(0);
+					error = true;
+				}
+			}			
+			if (!realUser.getEmail().equals(user.getEmail())) { 
+				if(!userManager.updateEmail(user.getUid(), user.getEmail())) {
+					user.setError(1);
+					error = true;
+				}
+			}
+			if (!realUser.getName().equals(user.getName())) {
+				userManager.updateName(user.getUid(), user.getName());
+			}
+
+			if (!realUser.getSurname().equals(user.getSurname())) {
+				userManager.updateSurname(user.getUid(), user.getSurname());
+			}
+
+			if (!realUser.getPwd().equals(user.getPwd())) {
+				userManager.updatePwd(user.getUid(), user.getPwd());
+			}	
+			
+			userManager.finalize();
+			
+			if (error == true) {
+				System.out.println("EDIT WRONG ");
+				request.setAttribute("user",user);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("ViewEditProfile.jsp"); 
+				dispatcher.include(request,response);
+			}
+			else {
+				System.out.println("EDIT OKEY ");
+			    request.setAttribute("user",realUser);
+			    RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+			    dispatcher.forward(request, response);
+		    	
+		    }	
+			
+		} catch (IllegalAccessException | InvocationTargetException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 

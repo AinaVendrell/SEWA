@@ -22,21 +22,24 @@ import models.User;
 @WebServlet("/DeleteUser")
 public class DeleteUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public DeleteUser() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public DeleteUser() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		User user = new User();
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(false);
+		
 		try {
 			BeanUtils.populate(user, request.getParameterMap());
 			ManageUser userManager = new ManageUser();
@@ -45,22 +48,24 @@ public class DeleteUser extends HttpServlet {
 		} catch (IllegalAccessException | InvocationTargetException e) {
 			e.printStackTrace();
 		}
-		if (session==null || session.getAttribute("user")==null) {
-			request.setAttribute("menu","ViewMenuNotLogged.jsp");
-			request.setAttribute("content","ViewLoginForm.jsp");			
-			RequestDispatcher dispatcher = request.getRequestDispatcher("ViewLogoutDone.jsp");
-		    if (dispatcher != null) dispatcher.forward(request, response);
-			dispatcher.forward(request, response);
-		}
-		request.setAttribute("user",user);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp"); 
-		dispatcher.include(request,response);
+		
+		if (session!=null) {
+			session.invalidate();
+		}		
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("ViewDeleteDone.jsp");
+	    if (dispatcher != null) dispatcher.forward(request, response);
+	    
+	    
+
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 

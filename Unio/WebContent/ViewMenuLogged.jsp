@@ -27,7 +27,7 @@ pageEncoding="UTF-8" session="false"%>
         <a class="vU menu nav-link" title="Users">Users</a>
       </li>
       <li class="nav-item">
-        <a class="gF menu nav-link" title="Users">TweetsFrined</a>
+        <a class="gF menu nav-link" title="Users">TweetsFriend</a>
       </li>
     </ul>
     <ul class="navbar-nav my-2 my-md-0 mr-md-3">
@@ -48,56 +48,3 @@ pageEncoding="UTF-8" session="false"%>
   </div>
 </nav>
 
-<!-- Navbar -->
-<!-- 
-<nav class="w3-top">
-  <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
-    <a
-      class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2"
-      href="javascript:void(0);"
-      onclick="openNav()"
-      ><i class="fa fa-bars"></i
-    ></a>
-    <a class="gF w3-bar-item w3-button w3-padding-large w3-theme-d4"
-      ><i class="fa fa-home w3-margin-right"></i> EPAW
-    </a>
-    <a
-      class="vF w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"
-      title="Friends"
-      ><i class="fa fa-users"></i
-    ></a>
-    
-    <a
-      class="vU w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"
-      title="Users"
-      ><i class="fa fa-user-plus"></i
-    ></a>
-    
-    <a
-      class="vT w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white"
-      title="My Account"
-    >
-      <img
-        src="avatar/user-3.png"
-        class="w3-circle"
-        style="height: 23px; width: 23px;"
-        alt="Avatar"
-      />
-    </a>
-    <a class="menu nav-link" id="LogoutController">
-      <i class="fa fa-times"></i>
-    </a>
-  </div>
-</nav>
- -->
-<!-- Navbar on small screens -->
-<!--
-<nav
-  id="navDemo"
-  class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large"
->
-  <a class="w3-bar-item w3-button w3-padding-large">Item1</a>
-  <a class="vF w3-bar-item w3-button w3-padding-large">Friends</a>
-  <a class="vT w3-bar-item w3-button w3-padding-large">My Profile</a>
-</nav>
- -->
