@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8" session="false"%>
 
 <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light">
-	<a class="navbar-brand" id="LogoutController">
+	<a class="navbar-brand" id="AnonymusUser" href=#>
 		<i class="fa fa-home sr-only" aria-hidden="true"></i> <img
 		src="images/unio.svg" width="30" height="30" alt="" />
 	</a>
@@ -17,6 +17,8 @@
 				id="RegisterController" href=#> SignUp </a></li>
 			<li class="nav-item"><a class="menu nav-link"
 				id="LoginController" href=#> Login </a></li>
+			<li class="nav-item"><a class="menu nav-link"
+				id="AnonymusController" href=#> Anonym </a></li>
 
 		</ul>
 	</div>

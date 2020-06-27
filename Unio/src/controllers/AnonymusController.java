@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,53 +11,43 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.beanutils.BeanUtils;
+
+import managers.ManageLogin;
 import managers.ManageUser;
 import models.User;
 
 /**
- * Servlet implementation class MenuController
+ * Servlet implementation class AnonymusController
  */
-@WebServlet("/MenuController")
-public class MenuController extends HttpServlet {
+@WebServlet("/AnonymusController")
+public class AnonymusController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MenuController() {
+    public AnonymusController() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.print("ANONIM: ");
 		
-		System.out.print("MenuController: ");
+		User anonymous = new User();
+		ManageLogin manager = new ManageLogin();
 		
-		HttpSession session = request.getSession();
-		
-		if (session.getAttribute("user")!=null) {
-		
-			System.out.println("forwarding to ViewMenuLogged");
-			
-			User user = (User) session.getAttribute("user");
-			ManageUser manager = new ManageUser();
-			
-			user = manager.getUser(user.getUid());
-			
-			System.out.println(user.getAvatar());
-			
-			request.setAttribute("user",user);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("ViewMenuLogged.jsp");
-			dispatcher.forward(request, response);
-		}
-		else {
-			
-			System.out.println("forwarding to ViewMenuNotLogged ");
-			RequestDispatcher dispatcher = request.getRequestDispatcher("ViewMenuNotLogged.jsp");
-			dispatcher.forward(request, response);
-		}
+		anonymous = manager.getAnonymousUser();
+		System.out.println("ANONYMUS OK ");
+
+		request.setAttribute("menu","ViewMenuNotLogged.jsp");
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp"); 
+		dispatcher.forward(request, response);
 	}
 
 	/**

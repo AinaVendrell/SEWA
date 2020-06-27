@@ -28,9 +28,9 @@ pageEncoding="UTF-8" session="false"%>
       <li class="nav-item">
         <a class="gF menu nav-link" title="Users">TweetsFriend</a>
       </li>
-      <!-- <li class="nav-item">
+      <li class="nav-item">
         <a class="aU menu nav-link" title="Users">Anonymous</a>
-      </li> -->
+      </li>
     </ul>
     <ul class="navbar-nav my-2 my-md-0 mr-md-3">
       <li class="nav-item">
@@ -38,9 +38,8 @@ pageEncoding="UTF-8" session="false"%>
       </li>
       <li class="nav-item">
         <a class="vT menu nav-link" title="My Profile"
-          ><img
-            id="avatar_pic"
-            src=""
+          ><img            
+            src="${user.avatar}"
             class="w3-circle"
             style="height: 23px; width: 23px;"
             alt="Avatar"

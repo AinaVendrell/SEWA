@@ -35,10 +35,6 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     }
   </style>
 
-  <script type="text/javascript">
-    $('#navigation').load('MenuController')
-  </script>
-
   <script>
     var start = 0
     var nt = 4
@@ -47,7 +43,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     var uid = '${user.uid}'
 
     $(document).ready(function () {
-      document.getElementById('avatar_pic').src = '${user.avatar}'
+      
       $('#duser').load(
         'GetUserInfo',
         {
@@ -385,7 +381,6 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
           </div>
 
           <div id="dtweets"></div>
-          <div id="editProfile"></div>
 
           <!-- End Middle Column -->
         </div>
