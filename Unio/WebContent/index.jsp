@@ -5,9 +5,27 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="icon" href="images/unio.svg" />
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <title>Unio</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="parsley/parsley.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   </head>
-  <title>EPAW Template</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
@@ -43,7 +61,14 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     var uid = '${user.uid}'
 
     $(document).ready(function () {
-      
+      $('#dmenu').load(
+        'MenuController',
+        {
+          uid: uid,
+        },
+        function () {}
+      )
+
       $('#duser').load(
         'GetUserInfo',
         {
@@ -69,7 +94,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
       // Elements $("#id").click(...)  caputure clicks of elements that have been statically loaded //
       // *******************************************************************************************//
       /* Get and visualize user follows*/
-      $('.vF').click(function (event) {
+      $('body').on('click', '.vF', function (event) {
         event.preventDefault()
         $('#duser').load(
           'GetUserInfo',
@@ -93,7 +118,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
       })
 
       /* Get and visualize all users*/
-      $('.vU').click(function (event) {
+      $('body').on('click', '.vU', function (event) {
         event.preventDefault()
         $('#duser').load(
           'GetUserInfo',
@@ -117,7 +142,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
       })
 
       /* Get and visualize Tweets from a given user */
-      $('.vT').click(function (event) {
+      $('body').on('click', '.uT', function (event) {
         global = 2
         event.preventDefault()
         $('#duser').load(
@@ -143,7 +168,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
       })
 
       /* Get tweets from follow*/
-      $('.gF').click(function (event) {
+      $('body').on('click', '.gF', function (event) {
         global = 1
         event.preventDefault()
         $('#dtweets').load(
@@ -162,20 +187,9 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
       })
 
       /* Get tweets from follow*/
-      $('.aU').click(function (event) {
-        global = 3
+      $('body').on('click', '.lO', function (event) {
         event.preventDefault()
-        $('#duser').empty()
-        $('#dtweets').load(
-          'GetTweets',
-          {
-            global: 3,
-          },
-          function (data) {
-            start = nt
-            cview = 'GetTweets'
-          }
-        )
+        $('body').load('LogoutController', {})
       })
 
       /* Add tweet and reload Tweet Visualitzation */
@@ -238,17 +252,17 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
         )
       })
 
+      $('body').on('submit', 'form', function (event) {
+        event.preventDefault()
+        $('#dtweets').load($(this).attr('action'), $(this).serialize())
+      })
+
       /* Delete profile */
       $('body').on('click', '.dP', function (event) {
-        global = 0
         event.preventDefault()
-        $.post(
-          'DeleteUser',
-          {
-            uid: $(this).parent().attr('uid'),
-          },
-          function () {}
-        )
+        $('body').load('DeleteController', {
+          uid: $(this).parent().attr('uid'),
+        })
       })
 
       /* Get and visualize Profile from a given user */
@@ -345,6 +359,8 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
   </script>
 
   <body class="">
+    <div id="dmenu"></div>
+    
     <!-- Page Container -->
     <div
       class="w3-container w3-content"

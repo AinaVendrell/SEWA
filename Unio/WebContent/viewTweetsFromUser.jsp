@@ -13,7 +13,7 @@
 		<br>
 		<hr class="w3-clear">
 		<p>${t.content}</p>
-		<p>${t.likes}</p>
+		<p>Likes ${t.likes}</p>
 
 		<button type="button"
 			class="lT w3-button w3-theme-d1 w3-margin-bottom">

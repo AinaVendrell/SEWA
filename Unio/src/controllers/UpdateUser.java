@@ -76,13 +76,13 @@ public class UpdateUser extends HttpServlet {
 
 			if (error == true) {
 				System.out.println("EDIT WRONG ");
-				request.setAttribute("user", user);
+				session.setAttribute("user", user);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("ViewEditProfile.jsp");
 				dispatcher.include(request, response);
 			} else {
 				System.out.println("EDIT OKEY ");
-				request.setAttribute("user", realUser);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+				request.setAttribute("user", user);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("ViewUpdateUserDone.jsp");
 				dispatcher.forward(request, response);
 
 			}

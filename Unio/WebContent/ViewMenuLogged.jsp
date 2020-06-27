@@ -28,17 +28,14 @@ pageEncoding="UTF-8" session="false"%>
       <li class="nav-item">
         <a class="gF menu nav-link" title="Users">TweetsFriend</a>
       </li>
-      <li class="nav-item">
-        <a class="aU menu nav-link" title="Users">Anonymous</a>
-      </li>
     </ul>
     <ul class="navbar-nav my-2 my-md-0 mr-md-3">
       <li class="nav-item">
-        <a class="menu nav-link" id="LogoutController" href="#"> LogOut </a>
+        <a class="lO menu nav-link"> LogOut </a>
       </li>
       <li class="nav-item">
-        <a class="vT menu nav-link" title="My Profile"
-          ><img            
+        <a class="vP menu nav-link" title="My Profile"
+          ><img
             src="${user.avatar}"
             class="w3-circle"
             style="height: 23px; width: 23px;"

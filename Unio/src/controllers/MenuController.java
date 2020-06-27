@@ -48,7 +48,7 @@ public class MenuController extends HttpServlet {
 			System.out.println(user.getAvatar());
 			
 			request.setAttribute("user",user);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("ViewMenuLogged.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/ViewMenuLogged.jsp");
 			dispatcher.forward(request, response);
 		}
 		else {

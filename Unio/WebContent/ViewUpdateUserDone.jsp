@@ -2,4 +2,4 @@
     pageEncoding="UTF-8" session="false"%>
 
 
-<p id="nav"> Delete done! </p>
+<p id="nav"> Update done! </p>

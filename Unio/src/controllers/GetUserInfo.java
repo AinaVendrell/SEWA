@@ -42,7 +42,12 @@ public class GetUserInfo extends HttpServlet {
 		try {
 			BeanUtils.populate(user, request.getParameterMap());
 			ManageUser userManager = new ManageUser();
-			user = userManager.getUser(user.getUid());
+			if(user.getUid() == null) {
+				user = userManager.getUser(realUser.getUid());
+			}
+			else {
+				user = userManager.getUser(user.getUid());
+			}
 			userManager.finalize();
 		} catch (IllegalAccessException | InvocationTargetException e) {
 			e.printStackTrace();

@@ -42,8 +42,9 @@ public class LogoutController extends HttpServlet {
 		if (session!=null) {
 			session.invalidate();
 		}
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("ViewLogoutDone.jsp");
+		request.setAttribute("menu","ViewMenuNotLogged.jsp");
+		request.setAttribute("content","ViewLogoutDone.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("indexLogin.jsp");
 	    if (dispatcher != null) dispatcher.forward(request, response);
 	    
 	}

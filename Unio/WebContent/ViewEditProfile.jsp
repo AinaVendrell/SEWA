@@ -3,7 +3,7 @@ pageEncoding="UTF-8"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core"
 prefix="c"%>
 
 <div>
-  <div  class="description">
+  <div class="description">
     <form
       data-parsley-trigger="keyup"
       data-parsley-validate
@@ -38,7 +38,7 @@ prefix="c"%>
           />
         </div>
       </div>
-     <div class="form-row justify-content-center h-100 mb-2">
+      <div class="form-row justify-content-center h-100 mb-2">
         <div class="col-lg-10">
           <label class="sr-only" for="uid">Username</label>
           <div class="input-group mb-3">
@@ -184,7 +184,6 @@ prefix="c"%>
         en: 'Your password must not contain white spaces.',
       },
     })
-
   </script>
   <!-- END SCRIPTS -->
 </div>
