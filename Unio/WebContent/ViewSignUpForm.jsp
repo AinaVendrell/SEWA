@@ -138,7 +138,7 @@ prefix="c"%>
           />
           <small id="passwordHelpBlock" class="form-text text-muted">
             Your password must be 8-20 characters long, contain lowercase and
-            captial letters and numbers, and must not contain spaces, special
+            capital letters and numbers, and must not contain spaces, special
             characters, or emoji.
           </small>
         </div>

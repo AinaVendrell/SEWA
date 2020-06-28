@@ -52,17 +52,17 @@ public class GetTweets extends HttpServlet {
 		try {
 			BeanUtils.populate(dt, request.getParameterMap());
 			ManageTweets tweetManager = new ManageTweets();
-			if (dt.getGlobal() == 1) {
+			if (dt.getGlobal() == 1) { // see tweets from friends
 				tweets = tweetManager.getFollowsTweets(dt.getUid());
 			} else if (dt.getGlobal() == 2) {
-				if (dt.getUid() == null) {
+				if (dt.getUid() == null) { // see my tweets
 					tweets = tweetManager.getUserTweets(user.getUid(), dt.getStart(), dt.getEnd());
-				} else {
+				} else { // see user tweets
 					tweets = tweetManager.getUserTweets(dt.getUid(), dt.getStart(), dt.getEnd());
 				}
-			} else if (dt.getGlobal() == 3) {
+			} else if (dt.getGlobal() == 3) { // see all tweets
 				tweets = tweetManager.getTweets();
-			} else {
+			} else { // see other users tweets
 				tweets = tweetManager.getOthersTweets(dt.getUid());
 			}
 			tweetManager.finalize();

@@ -36,6 +36,8 @@ public class DeleteController extends HttpServlet {
 		
 		User user = new User();
 		HttpSession session = request.getSession(false);
+		User realUser = (User) session.getAttribute("user");
+		
 		try {
 			BeanUtils.populate(user, request.getParameterMap());
 			ManageUser userManager = new ManageUser();
@@ -44,14 +46,23 @@ public class DeleteController extends HttpServlet {
 		} catch (IllegalAccessException | InvocationTargetException e) {
 			e.printStackTrace();
 		}
-		if (session!=null) {
-			session.invalidate();
-		}		
-		System.out.println("DeleteController: forwarding to ViewDeleteDone");
-		request.setAttribute("menu","ViewMenuNotLogged.jsp");
-		request.setAttribute("content","ViewDeleteDone.jsp");
-		RequestDispatcher dispatcher = request.getRequestDispatcher("indexLogin.jsp");
-	    if (dispatcher != null) dispatcher.forward(request, response);
+
+		if (realUser.getUid().equals(user.getUid())) {
+			if (session!=null) {
+				session.invalidate();
+			}	
+			System.out.println("DeleteController: your user acount has been deleted forwarding to ViewDeleteDone");
+			request.setAttribute("menu","ViewMenuNotLogged.jsp");
+			request.setAttribute("content","ViewDeleteDone.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("indexLogin.jsp");
+			dispatcher.forward(request, response);
+		} else {
+			System.out.println("DeleteController: you have deleted another user acount");
+			request.setAttribute("menu","ViewMenuLogged.jsp");
+			request.setAttribute("user", user);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+			dispatcher.forward(request, response);
+		}
 	}
 
 	/**

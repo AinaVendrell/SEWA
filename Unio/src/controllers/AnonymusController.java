@@ -48,10 +48,8 @@ public class AnonymusController extends HttpServlet {
 		try {
 			BeanUtils.populate(user, request.getParameterMap());
 			ManageUser userManager = new ManageUser();
-			System.out.println("ANONYMUS			" + user.getUid());
 			if (user.getUid() != null) {
-
-				userManager.deleteUser(user.getUid());
+				user = userManager.getUser(user.getUid());
 			} else {
 				user = userManager.getUser(1);
 			}
@@ -63,8 +61,6 @@ public class AnonymusController extends HttpServlet {
 		ManageTweets tweetManager = new ManageTweets();
 		tweets = tweetManager.getTweets();
 		tweetManager.finalize();
-
-		System.out.println("AnonymusController: forwarding to ViewAnonymusUser");
 		request.setAttribute("menu", "ViewMenuNotLogged.jsp");
 		request.setAttribute("content", "viewAnonymusUser.jsp");
 		request.setAttribute("tweets", tweets);

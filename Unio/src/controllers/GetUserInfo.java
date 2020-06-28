@@ -42,8 +42,9 @@ public class GetUserInfo extends HttpServlet {
 		try {
 			BeanUtils.populate(user, request.getParameterMap());
 			ManageUser userManager = new ManageUser();
+			realUser = userManager.getUser(realUser.getUid());
 			if(user.getUid() == null) {
-				user = userManager.getUser(realUser.getUid());
+				user = realUser;
 			}
 			else {
 				user = userManager.getUser(user.getUid());

@@ -3,13 +3,13 @@ pageEncoding="UTF-8"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core"
 prefix="c"%>
 
 <div>
-  <div class="description">
+  <div class="container">
     <form
       data-parsley-trigger="keyup"
       data-parsley-validate
       action="UpdateUser"
     >
-      <div class="mb-4"></div>
+    <div class="mb-4"></div>
       <div class="form-row justify-content-center h-100 mb-2">
         <div class="form-group col-5">
           <label class="sr-only" for="name">First Name</label>
@@ -40,7 +40,7 @@ prefix="c"%>
       </div>
       <div class="form-row justify-content-center h-100 mb-2">
         <div class="col-lg-10">
-          <label class="sr-only" for="uid">Username</label>
+          <label class="sr-only" for="username">Username</label>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <div class="input-group-text">@</div>
@@ -50,7 +50,7 @@ prefix="c"%>
               class="form-control"
               id="username"
               name="username"
-              placeholder="username"
+              placeholder="Username"
               required
               data-parsley-type="alphanum"
               value="${user.username}"
@@ -109,14 +109,14 @@ prefix="c"%>
             class="form-control"
             placeholder="Confirm Password"
             aria-describedby="passwordHelpBlock"
-            value="${user.pwd2}"
+            value="${user.pwd}"
             data-parsley-equalto="#pwd"
           />
         </div>
       </div>
       <div class="form-row justify-content-center h-100 mb-4">
         <div class="col-lg-10">
-          <button type="submit" class="uP btn-secondary btn-block">
+          <button type="submit" class="btn btn-secondary btn-block">
             Confirm
           </button>
         </div>
@@ -183,6 +183,11 @@ prefix="c"%>
       messages: {
         en: 'Your password must not contain white spaces.',
       },
+    })
+  </script>
+  <script>
+    $(document).ready(function () {
+      $('form').parsley()
     })
   </script>
   <!-- END SCRIPTS -->

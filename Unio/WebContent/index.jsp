@@ -24,7 +24,25 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     <script src="parsley/parsley.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
+	  <style>
+		.footer {
+		   position: fixed;
+		   left: 0;
+		   bottom: 0;
+		   width: 100%;
+		   height: 4%;
+		   background-color: grey;
+		}
+		
+		.link {
+		   color: white;
+		   text-align: left;
+		   font-size: 20px;
+		   margin-left: 5px;
+		}
+	</style>
+
   </head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -382,7 +400,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
             <div class="w3-col m12">
               <div class="w3-card w3-round w3-white">
                 <div class="w3-container w3-padding">
-                  <h6 class="w3-opacity">EPAW template by UPF</h6>
+                  <h6 class="w3-opacity">UNIO: What's up?</h6>
                   <p
                     id="cT"
                     contenteditable="true"
@@ -409,18 +427,14 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     <br />
 
     <!-- Footer -->
-    <footer class="w3-container w3-theme-d3 w3-padding-16">
-      <h5>Avís legal</h5>
-    </footer>
-
-    <footer class="w3-container w3-theme-d5">
-      <p>
-        Powered by
-        <a href="https://www.w3schools.com/w3css/default.asp" target="_blank"
-          >w3.css</a
-        >
-      </p>
-    </footer>
+   
+    <div class="footer">
+    	<div class="link">
+   		 <a href="PrivacyPolicy.html"
+            target="popup"
+            onclick="window.open('PrivacyPolicy.html','popup','width=600,height=600'); return false;">Avís legal</a>
+	 	</div>
+	 </div>
 
     <script>
       // Accordion

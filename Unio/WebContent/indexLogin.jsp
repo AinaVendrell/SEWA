@@ -46,7 +46,7 @@ pageEncoding="UTF-8" session="false"%>
           $('body').load(
             'AnonymusController',
             {
-              user: $(this).parent().attr('uid'),
+              uid: $(this).parent().attr('uid'),
             },
             function () {}
           )
