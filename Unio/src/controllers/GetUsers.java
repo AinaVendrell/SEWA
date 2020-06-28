@@ -54,6 +54,7 @@ public class GetUsers extends HttpServlet {
 			e.printStackTrace();
 		}
 
+		System.out.println("GetUsers: forwarding to viewUsers");
 		request.setAttribute("users",users);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/viewUsers.jsp"); 
 		dispatcher.forward(request,response);

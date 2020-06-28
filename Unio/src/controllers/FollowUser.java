@@ -47,6 +47,7 @@ public class FollowUser extends HttpServlet {
 			ManageUser userManager = new ManageUser();
 			userManager.followUser(user.getUid(), userFollowing.getUid());
 			userManager.finalize();
+			System.out.println("FollowUser: following user " + userFollowing.getUid());
 		
 		} catch (IllegalAccessException | InvocationTargetException e) {
 			e.printStackTrace();

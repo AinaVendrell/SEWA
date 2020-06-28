@@ -20,10 +20,18 @@ pageEncoding="UTF-8" session="false"%>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item">
-        <a class="menu nav-link" id="RegisterController" href="#"> SignUp </a>
+        <a
+          class="menu nav-link"
+          id="RegisterController"
+          href="RegisterController"
+        >
+          SignUp
+        </a>
       </li>
       <li class="nav-item">
-        <a class="menu nav-link" id="LoginController" href="#"> Login </a>
+        <a class="menu nav-link" id="LoginController" href="LoginController">
+          Login
+        </a>
       </li>
     </ul>
   </div>

@@ -52,6 +52,7 @@ public class GetUserInfo extends HttpServlet {
 		} catch (IllegalAccessException | InvocationTargetException e) {
 			e.printStackTrace();
 		}
+		System.out.println("GetUserInfo: forwarding to viewUserInfo from " + user.getUsername());
 		request.setAttribute("user",user);
 		request.setAttribute("real", realUser);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/viewUserInfo.jsp"); 

@@ -33,8 +33,8 @@ public class MainController extends HttpServlet {
 		System.out.println(session);
 		if (session==null || session.getAttribute("user")==null) {
 			System.out.println("MainController: NO active session has been found,");
-			request.setAttribute("menu","ViewMenuNotLogged.jsp");
-			request.setAttribute("content","ViewLoginForm.jsp");
+			request.setAttribute("menu", "ViewMenuNotLogged.jsp");
+			request.setAttribute("content", "ViewLoginForm.jsp");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("indexLogin.jsp");
 			dispatcher.forward(request, response);
 		}
@@ -45,8 +45,7 @@ public class MainController extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
 			dispatcher.forward(request, response);
 		}
-		
-			}
+}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

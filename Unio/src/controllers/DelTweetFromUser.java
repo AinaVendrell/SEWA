@@ -40,6 +40,7 @@ public class DelTweetFromUser extends HttpServlet {
 			ManageTweets tweetManager = new ManageTweets();
 			tweetManager.deleteTweet(tweet.getTid());
 			tweetManager.finalize();
+			System.out.println("DelTweetFromUser: delete tweet");
 		} catch (IllegalAccessException | InvocationTargetException e) {
 			e.printStackTrace();
 		}

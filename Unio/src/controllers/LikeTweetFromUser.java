@@ -17,7 +17,7 @@ import models.Tweets;
 import models.User;
 
 /**
- * Servlet implementation class DelTweetFromUser
+ * Servlet implementation class LikeTweetFromUser
  */
 @WebServlet("/LikeTweetFromUser")
 public class LikeTweetFromUser extends HttpServlet {
@@ -50,10 +50,11 @@ public class LikeTweetFromUser extends HttpServlet {
 			
 			if(result == false) {
 				tweetManager.likeTweet(tweet.getTid(), tweet.getLikes(), user.getUid());
+				System.out.println("LikeTweetFromUser: like tweet from " + tweet.getUsername());
 			}else {
 				tweetManager.dislikeTweet(tweet.getTid(), tweet.getLikes(), user.getUid());
+				System.out.println("LikeTweetFromUser: dislike tweet from " + tweet.getUsername());
 			}
-			
 			tweetManager.finalize();
 		} catch (IllegalAccessException | InvocationTargetException e) {
 			e.printStackTrace();

@@ -22,7 +22,7 @@ import models.User;
 import models.dTmodel;
 
 /**
- * Servlet implementation class GetTweetsFromFollowing
+ * Servlet implementation class GetTweets
  */
 @WebServlet("/GetTweets")
 public class GetTweets extends HttpServlet {
@@ -44,7 +44,6 @@ public class GetTweets extends HttpServlet {
 			throws ServletException, IOException {
 
 		dTmodel dt = new dTmodel();
-		System.out.println("KLKKKK ");
 		List<Tweets> tweets = Collections.emptyList();
 
 		HttpSession session = request.getSession();
@@ -81,6 +80,7 @@ public class GetTweets extends HttpServlet {
 		if (dt.getGlobal() != 3) {
 			request.setAttribute("user", user);
 		}
+		System.out.println("GetTweets: forwarding to viewTweetsFromUser");
 		request.setAttribute("tweets", tweets);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/viewTweetsFromUser.jsp");
 		dispatcher.forward(request, response);

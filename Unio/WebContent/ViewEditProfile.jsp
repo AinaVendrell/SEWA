@@ -116,7 +116,7 @@ prefix="c"%>
       </div>
       <div class="form-row justify-content-center h-100 mb-4">
         <div class="col-lg-10">
-          <button type="submit" class="btn btn-secondary btn-block">
+          <button type="submit" class="uP btn-secondary btn-block">
             Confirm
           </button>
         </div>

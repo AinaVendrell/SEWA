@@ -22,57 +22,53 @@ import models.User;
 @WebServlet("/LoginController")
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public LoginController() {
-        super();
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public LoginController() {
+		super();
+	}
 
-		System.out.print("LoginController: ");
-		
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		User login = new User();
 		ManageLogin manager = new ManageLogin();
-		
-	    try {
-	    		    
-	    	BeanUtils.populate(login, request.getParameterMap());
-	    	if (manager.isComplete(login) && manager.isCorrect(login)) {
-	    		System.out.println("login OK, forwarding to ViewLoginDone ");
-		    	HttpSession session = request.getSession();
+		try {
+
+			BeanUtils.populate(login, request.getParameterMap());
+			if (manager.isComplete(login) && manager.isCorrect(login)) {
+				System.out.println("LoginController: login OK, forwarding to UNIO ");
+				HttpSession session = request.getSession();
 				session.setAttribute("user", login);
-				request.setAttribute("menu","ViewMenuLogged.jsp");
-		    	RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp"); 
-			    dispatcher.forward(request, response);
-			    
-		    } 
-			else {
-				System.out.println("login WRONG, forwarding to ViewLoginDone ");
-				request.setAttribute("login",login);
-				request.setAttribute("menu","ViewMenuNotLogged.jsp");
-				request.setAttribute("content","ViewLoginForm.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+				dispatcher.forward(request, response);
+			} else {
+				System.out.println("LoginController: login WRONG, forwarding to ViewLoginForm ");
+
+				request.setAttribute("menu", "ViewMenuNotLogged.jsp");
+				request.setAttribute("login", login);
+				request.setAttribute("content", "ViewLoginForm.jsp");
 				RequestDispatcher dispatcher = request.getRequestDispatcher("indexLogin.jsp");
-			    dispatcher.forward(request, response);
-		    	
-		    }
+				dispatcher.forward(request, response);
+
+			}
 		} catch (IllegalAccessException | InvocationTargetException e) {
 			e.printStackTrace();
 		}
-	    
 	}
-		
+
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 
 }
-

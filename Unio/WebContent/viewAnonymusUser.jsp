@@ -3,16 +3,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <div
+uid="${user.uid}"
       class="w3-container w3-content"
       style="max-width: 1400; margin-top: 80px;"
     >
       <!-- The Grid -->
-      <div class="w3-row">
+      <div uid="${user.uid}" class="w3-row">
         <!-- Left Column -->
-        <div class="w3-col m3">
+        <div uid="${user.uid}" class="w3-col m3">
           <!-- Profile -->
-          <div id="duser"> 
-			<div class="w3-card w3-round w3-white">
+          <div uid="${user.uid}" id="duser"> 
+			<div uid="${user.uid}" class="w3-card w3-round w3-white">
 				<div uid="${user.uid}" class="w3-container">
 				  
 					  <h4 class="w3-center">

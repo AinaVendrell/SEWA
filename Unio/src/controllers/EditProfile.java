@@ -16,7 +16,7 @@ import managers.ManageUser;
 import models.User;
 
 /**
- * Servlet implementation class FormController
+ * Servlet implementation class EditProfile
  */
 @WebServlet("/EditProfile")
 public class EditProfile extends HttpServlet {
@@ -44,6 +44,8 @@ public class EditProfile extends HttpServlet {
 		} catch (IllegalAccessException | InvocationTargetException e) {
 			e.printStackTrace();
 		}
+
+		System.out.println("EditProfile: forwarding to ViewEditProfile");
 		request.setAttribute("user",user);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("ViewEditProfile.jsp"); 
 		dispatcher.include(request,response);

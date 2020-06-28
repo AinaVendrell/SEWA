@@ -19,7 +19,7 @@ import managers.ManageUser;
 import models.User;
 
 /**
- * Servlet implementation class GetFollows
+ * Servlet implementation class UnfollowUser
  */
 @WebServlet("/UnfollowUser")
 public class UnfollowUser extends HttpServlet {
@@ -47,7 +47,7 @@ public class UnfollowUser extends HttpServlet {
 			ManageUser userManager = new ManageUser();
 			userManager.unfollowUser(user.getUid(), userFollowing.getUid());
 			userManager.finalize();
-		
+			System.out.println("UnfollowUser: unfollow user " + userFollowing.getUid());
 		} catch (IllegalAccessException | InvocationTargetException e) {
 			e.printStackTrace();
 		}

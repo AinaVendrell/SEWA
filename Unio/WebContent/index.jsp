@@ -55,7 +55,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
   <script>
     var start = 0
-    var nt = 4
+    var nt = 10
     var global = 0
     var cview = 'GetTweets'
     var uid = '${user.uid}'
@@ -360,7 +360,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
   <body class="">
     <div id="dmenu"></div>
-    
+
     <!-- Page Container -->
     <div
       class="w3-container w3-content"

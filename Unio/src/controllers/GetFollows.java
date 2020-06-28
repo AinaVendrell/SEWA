@@ -54,6 +54,7 @@ public class GetFollows extends HttpServlet {
 			e.printStackTrace();
 		}
 
+		System.out.println("GetFollows: forwarding to viewFollows");
 		request.setAttribute("users",users);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/viewFollows.jsp"); 
 		dispatcher.forward(request,response);

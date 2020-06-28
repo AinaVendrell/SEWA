@@ -16,7 +16,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import managers.ManageUser;
 import models.User;
 /**
- * Servlet implementation class LogoutController
+ * Servlet implementation class DeleteController
  */
 @WebServlet("/DeleteController")
 public class DeleteController extends HttpServlet {
@@ -36,7 +36,6 @@ public class DeleteController extends HttpServlet {
 		
 		User user = new User();
 		HttpSession session = request.getSession(false);
-		
 		try {
 			BeanUtils.populate(user, request.getParameterMap());
 			ManageUser userManager = new ManageUser();
@@ -45,17 +44,14 @@ public class DeleteController extends HttpServlet {
 		} catch (IllegalAccessException | InvocationTargetException e) {
 			e.printStackTrace();
 		}
-		
 		if (session!=null) {
 			session.invalidate();
 		}		
-		
-		System.out.println(" forwarding to ViewDeleteDone");
+		System.out.println("DeleteController: forwarding to ViewDeleteDone");
 		request.setAttribute("menu","ViewMenuNotLogged.jsp");
 		request.setAttribute("content","ViewDeleteDone.jsp");
 		RequestDispatcher dispatcher = request.getRequestDispatcher("indexLogin.jsp");
 	    if (dispatcher != null) dispatcher.forward(request, response);
-	    
 	}
 
 	/**

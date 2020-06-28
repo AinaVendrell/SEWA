@@ -42,6 +42,7 @@ public class AddTweetFromUser extends HttpServlet {
 			ManageTweets tweetManager = new ManageTweets();
 			tweetManager.addTweet(tweet.getUid(),  new Timestamp(System.currentTimeMillis()), tweet.getContent());
 			tweetManager.finalize();
+			System.out.println("AddTweetFromUser: add Tweet from " + tweet.getUid());
 
 		} catch (IllegalAccessException | InvocationTargetException e) {
 			// TODO Auto-generated catch block

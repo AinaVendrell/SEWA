@@ -22,7 +22,7 @@ import models.Tweets;
 import models.User;
 
 /**
- * Servlet implementation class LoginController
+ * Servlet implementation class AnonymusController
  */
 @WebServlet("/AnonymusController")
 public class AnonymusController extends HttpServlet {
@@ -42,10 +42,7 @@ public class AnonymusController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		System.out.print("LoginController: ");
-
 		List<Tweets> tweets = Collections.emptyList();
-
 		User user = new User();
 
 		try {
@@ -53,7 +50,7 @@ public class AnonymusController extends HttpServlet {
 			ManageUser userManager = new ManageUser();
 			System.out.println("ANONYMUS			" + user.getUid());
 			if (user.getUid() != null) {
-				
+
 				userManager.deleteUser(user.getUid());
 			} else {
 				user = userManager.getUser(1);
@@ -67,7 +64,7 @@ public class AnonymusController extends HttpServlet {
 		tweets = tweetManager.getTweets();
 		tweetManager.finalize();
 
-		System.out.println("ANONYMUS OK ");
+		System.out.println("AnonymusController: forwarding to ViewAnonymusUser");
 		request.setAttribute("menu", "ViewMenuNotLogged.jsp");
 		request.setAttribute("content", "viewAnonymusUser.jsp");
 		request.setAttribute("tweets", tweets);

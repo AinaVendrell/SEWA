@@ -17,7 +17,7 @@ import managers.ManageUser;
 import models.User;
 
 /**
- * Servlet implementation class FormController
+ * Servlet implementation class UpdateUser
  */
 @WebServlet("/UpdateUser")
 public class UpdateUser extends HttpServlet {
@@ -75,12 +75,12 @@ public class UpdateUser extends HttpServlet {
 			userManager.finalize();
 
 			if (error == true) {
-				System.out.println("EDIT WRONG ");
+				System.out.println("UpdateUser: update WRONG forwarding to ViewEditProfile");
 				session.setAttribute("user", user);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("ViewEditProfile.jsp");
 				dispatcher.include(request, response);
 			} else {
-				System.out.println("EDIT OKEY ");
+				System.out.println("UpdateUser: update OKEY forwarding to ViewUpdateUserDone");
 				request.setAttribute("user", user);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("ViewUpdateUserDone.jsp");
 				dispatcher.forward(request, response);

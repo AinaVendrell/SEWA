@@ -49,13 +49,13 @@ public class RegisterController extends HttpServlet {
 		    	RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp"); 
 			    dispatcher.forward(request, response);
 			} 
-			else {
-				System.out.println(" forwarding to ViewRegisterForm");
+			else {	
+				System.out.println("RegisterController: forwarding to ViewSignUpForm");
 				request.setAttribute("user",user);
 				request.setAttribute("menu","ViewMenuNotLogged.jsp");
 				request.setAttribute("content","ViewSignUpForm.jsp");
 				RequestDispatcher dispatcher = request.getRequestDispatcher("indexLogin.jsp");
-			    dispatcher.forward(request, response);
+				dispatcher.forward(request, response);
 			}
 		   
 		} catch (IllegalAccessException | InvocationTargetException e) {
