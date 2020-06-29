@@ -59,7 +59,7 @@ public class DeleteController extends HttpServlet {
 		} else {
 			System.out.println("DeleteController: you have deleted another user acount");
 			request.setAttribute("menu","ViewMenuLogged.jsp");
-			request.setAttribute("user", user);
+			request.setAttribute("user", realUser);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
 			dispatcher.forward(request, response);
 		}

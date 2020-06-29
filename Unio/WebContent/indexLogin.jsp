@@ -30,21 +30,21 @@ pageEncoding="UTF-8" session="false"%>
           cache: false,
         }) //Avoids Internet Explorer caching!
 
-        $('body').on('click', '.menu', function(event) {
-			$("html").load('ContentController',{content: $(this).attr('id')});
-			event.preventDefault();
-		})
+        $('body').on('click', '.menu', function (event) {
+          $('html').load('ContentController', { content: $(this).attr('id') })
+          event.preventDefault()
+        })
 
-		$('body').on('submit', 'form', function(event) {
-			$("html").load($(this).attr('action'), $(this).serialize())
-			event.preventDefault()
-		})
+        $('body').on('submit', 'form', function (event) {
+          $('html').load($(this).attr('action'), $(this).serialize())
+          event.preventDefault()
+        })
 
         /* Get and visualize Profile from a given user */
         $('body').on('click', '.vPA', function (event) {
           event.preventDefault()
           $('body').load(
-            'AnonymusController',
+            'AnonymousController',
             {
               uid: $(this).parent().attr('uid'),
             },

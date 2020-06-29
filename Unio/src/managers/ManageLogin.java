@@ -64,7 +64,9 @@ public class ManageLogin {
 	// Get anonymous User
 	public User getAnonymousUser() {
 		User user = new User();
-		user.setUid(0);
+		user.setUsername("anonymous");
+		user.setName("Anonymous");
+		user.setAvatar("avatar/user_00.png");
 		return user;
 	}
 	

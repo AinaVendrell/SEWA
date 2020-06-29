@@ -22,16 +22,16 @@ import models.Tweets;
 import models.User;
 
 /**
- * Servlet implementation class AnonymusController
+ * Servlet implementation class AnonymousController
  */
-@WebServlet("/AnonymusController")
-public class AnonymusController extends HttpServlet {
+@WebServlet("/AnonymousController")
+public class AnonymousController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public AnonymusController() {
+	public AnonymousController() {
 		super();
 	}
 
@@ -48,10 +48,11 @@ public class AnonymusController extends HttpServlet {
 		try {
 			BeanUtils.populate(user, request.getParameterMap());
 			ManageUser userManager = new ManageUser();
+			ManageLogin loginManager = new ManageLogin();
 			if (user.getUid() != null) {
 				user = userManager.getUser(user.getUid());
 			} else {
-				user = userManager.getUser(1);
+				user = loginManager.getAnonymousUser();
 			}
 			userManager.finalize();
 		} catch (IllegalAccessException | InvocationTargetException e) {
@@ -62,7 +63,7 @@ public class AnonymusController extends HttpServlet {
 		tweets = tweetManager.getTweets();
 		tweetManager.finalize();
 		request.setAttribute("menu", "ViewMenuNotLogged.jsp");
-		request.setAttribute("content", "viewAnonymusUser.jsp");
+		request.setAttribute("content", "viewAnonymousUser.jsp");
 		request.setAttribute("tweets", tweets);
 		request.setAttribute("user", user);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("indexLogin.jsp");
